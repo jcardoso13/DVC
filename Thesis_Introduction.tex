@@ -1,0 +1,91 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                      %
+%     File: Thesis_Introduction.tex                                    %
+%     Tex Master: Thesis.tex                                           %
+%                                                                      %
+%     Author: Andre C. Marta                                           %
+%     Last modified :  2 Jul 2015                                      %
+%                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+\label{chapter:introduction}
+
+A CGRA is a collection of Functional Units and memories interconnected, in which those connections are programmable to form datapaths.
+It can be implemented in both FPGAs, where for partial CGRAs there is no need to re-configure the FPGA for different workloads, and ASICs.
+On FPGAs, there's a need to reconfigure the chip and thus stop necessary work and the development time for a customized Intellectual Property (IP) can consume a lot of
+development time while CGRAs can shorten the time needed.
+Convolutional Neural Networks are a particular workload which is compute bound, that is, it's performance depends on how fast you can do certain calculations, namely the Convolutional
+layers which can take 90$\%$ of the computation time of the network.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem}
+\label{section:problem}
+
+Neural Networks have been an object of study since the 1940's, but until the beginning of this decade their
+applications were limited and Deep Neural Networks didn't play a major role in computer vision conferences.
+With it's meteoric rise in both discussion and research, several solutions to accelerate this calculations have appeared,
+from Field Programming Gate Array (FPGA) to Application-specific integrated circuit (ASIC) implementations.
+Coarse Grain Reconfigurable Arrays (CGRA) are in-between solution for acceleration  as they are real-time reconfigurable unlike FPGAs and less
+specialized and thus more flexible than ASICs.
+
+The acceleration of this workloads is a matter of importance for today's applications such as image processing for object recognition or 
+simply to enhance certain images. Other uses like instant translation and Virtual Assistants are applications of Neural Networks with their acceleration
+being vital importance to bring them into Internet of Thing devices.
+
+Adapting specific Convolutional Neural Networks to the Versat CGRA requires knowledge of it's architecture,latency and it's register configurations,
+which makes it harder to adopt.
+%an Auto Tuning compiler would take away from someone using the CGRA but to the
+%developers of said IP which would dramatically decrease time to market of it's users.
+%Currently on the market, there's several DNN Accelerators embedded into Systems-on-chip for Mobile devices (e.g smartphones), but it's uses 
+%depend on API usage like Tensorflow or Caffe. Auto tuning Compilers however are easier for software programmers by giving a layer of abstraction.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Topic Overview}
+%\label{section:overview}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Solution}
+\label{section:solution}
+
+The proposed solution is an Auto Tuning Compiler that takes a configuration file from a Neural Network framework
+like Caffe or Darknet. %cite Darknet and Caffe
+ It analyses the parameters of Deep Versat such as number
+ of layers and functional units and produces the C code needed for the Versat runs.
+ This code is ran on a controller that changes the configuration registers, e.g IOB-RV32, a small RISC-V
+CPU based on picorv32. %cite.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Thesis Outline}
+%\label{section:outline}
+
+%Briefly explain the contents of the different chapters...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Author's Work}
+%\label{section:authorwork}
+
+%TO ADD----
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Report Outline}
+\label{reportoutline}
+
+This report is composed by 4 more chapters. In the second chapter,
+ state of the art Neural Networks are described  and it's difficulties for acceleration.
+ In the third chapter, Deep Versat's Architecture is explained and how it's programmed.
+ In the fourth chapter, Convolutional Neural Network compilers techniques are explored. Finally, the
+ last chapter contains the proposed solution and planning for it's execution.
+
+
+
+%In this report,the state of the art in Deep Neural Networks.
+ %Also look into auto-tuning Compiler for this type of workload to the current state of the 
+ %Versat Architecture and how to approach the dataflow, throughput,
+  %latency and memory usage for the best acceleration possible.
