@@ -23,7 +23,6 @@ being low-power. FPGAs can meet several requirements like throughput and latency
 in diversity of applications. Thus, several toolflows that map CNN descriptions
 into hardware in order to perform inference have been created. In
 table~\ref{table:toolflow}, a list of notable ones is presented.
-
 \begin{table}[!htpb]
     \centering
     \begin{tabular}{lll}
@@ -54,9 +53,7 @@ These toolflows support the most common layers in CNNs, which are discussed in
 chapter~\ref{chapter:cnn}. The acceleration target changes depending on the
 toolflow.  For example, the fpgaConvNet~\cite{fpgaconvnet} toolflow focuses more
 on feature extraction while offering non accelerated support for fully connected
-layers by
-%FIX
-casting them as Convolutional Layers with 1x1 kernels. 
+layers.
 
 \subsection{Architecture \& Portability}
 
