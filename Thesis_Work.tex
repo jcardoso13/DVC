@@ -1,7 +1,7 @@
 \chapter{Proposed Work and Planning}
 \label{chapter:PWP}
 
-\quad The proposed work for the dissertation consists in the development of an Auto-Tuning Software for the Deep Versat Architecture
+\quad The proposed work for the dissertation consists in the development of a CNN compiler for the Deep Versat Architecture
 while connected to the IOB-RV32 CPU.
 The compiler's propose is to be able to run any state of the art CNN on the Deep Versat system with no effort on the user side. For the proof of concept
 stage, Darknet and Caffe will be the frameworks chosen to be compatible with this compiler.
@@ -11,7 +11,7 @@ Deep Versat has customizable FU amounts and options, so the compiler must be abl
 
 \section{Hardware System}
 
-\quad For the Auto-Tuning Software to be able to model CNNs for Deep Versat, the System needs to access External Memory for the weights and inputs as for state of the art network like 
+\quad For the compiler to be able to model CNNs for Deep Versat, the System needs to access external memory for the weights and inputs as for state of the art network like 
 Yolov3~\cite{yolov3} has 107 total layers with weight size of 236MB. That amount can not be stored in BRAMs so the IOB-RV32 will have
 to load from memory (RAM) to Deep Versat and vice-versa.
 
