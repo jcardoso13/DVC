@@ -3,17 +3,17 @@
 
 \quad Versat is a Coarse Grained Reconfigurable Array (CGRA) Architecture. CGRAs are in-between Field Programmable Gate Arrays (FPGA) and general purpose processors (GPP).
 The former is fully reconfigurable and the highest performance for a workload can be achieved as the Architecture is tailored to the workload.
-GPPs on the other hand, aren't reconfigurable and thus slower but are more generic and can process different workloads.
+GPPs on the other hand, are nor reconfigurable and thus slower but are more generic and can process different workloads.
 While FPGAs have the granularity at the gate level, CGRAs have the granularity at the functional unit level. They are configurable at run-time and the datapath can be
 changed in-between runs.   
 
 In this chapter, the base Versat Architecture will be explained and then the Deep Versat Architecture
- and it's improvements.
+ and its improvements.
 
 \section{Versat Architecture}
 
 \quad The Versat Architecture~\cite{sousa:compiler,sousa:controller,sousa:FFT,sousa:versat2016} 
-is depicted in figure \ref{figure:oldversat}. It's composed by the following modules: DMA,Controller,Program Memory,Control File Registry,Data-Engine and Configuration module.
+is depicted in figure \ref{figure:oldversat}. Its composed by the following modules: DMA,Controller,Program Memory,Control File Registry,Data-Engine and Configuration module.
 The Controller accesses the modules through the control bus. The code made in assembly or C is loaded into the program Memory (RAM) where the user
 can write to the configuration module the versat runs. Between runs of the Data Engine,
  the Controller can start doing the next run configuration and calculations.
@@ -27,7 +27,7 @@ can write to the configuration module the versat runs. Between runs of the Data 
 \end{figure} 
 
 \subsection{Data Engine}
-\quad The Data Engine which is represented in figure \ref{figure:DE} carries out the computation needed on the data arrays. It's a 32 bit Architecture with up to 11 Functional Units:
+\quad The Data Engine which is represented in figure \ref{figure:DE} carries out the computation needed on the data arrays. Its a 32 bit Architecture with up to 11 Functional Units:
  Arithmetic and Logic Unit(ALU), stripped down ALU (ALU-Lite),
  Multiplier and Accumulator (MAC) and Barrel Shifter.
  Depending on the project and calculations, a new type of FU or the existing ones can be altered to support the algorithm.
@@ -43,7 +43,7 @@ can write to the configuration module the versat runs. Between runs of the Data 
 \end{figure} 
 
  The 4 Memories are dual port and for the input of both ports, 
- there's an Address Generation Unit (AGU) that is able to 
+ there is an Address Generation Unit (AGU) that is able to 
  reproduce two nested loops of memory indexes.
  The AGUs control which MEM data is the input of the FUs and where
  to store the results of the operation. Also, the AGUs support a delayed start to line up timings
@@ -74,9 +74,9 @@ The Configuration Module (CM), depicted in figure \ref{figure:conf},
 has three components:configuration memory, variable length configuration register file 
 and configuration shadow register.
 The latter holds the current configuration so the controller can change the values of the configuration file in-between runs.
-The decode logic finds which component to write or read, if it's the registers, it ignores read operations.
+The decode logic finds which component to write or read, if its the registers, it ignores read operations.
 Meanwhile, the configuration memory interprets both write and reads. When it receives a read,
-it writes into the register configuration data, when it's a write, it stores the data instead.
+it writes into the register configuration data, when its a write, it stores the data instead.
 
 
 \newpage
@@ -94,10 +94,10 @@ it writes into the register configuration data, when it's a write, it stores the
 , in figure \ref{figure:deepversatarch}, decouples the Data Engine (DE) from all control and as such, it can be used with any CPU. 
 It can be paired with hard cores in
 FPGA boards like the ZYNC board %cite here
-with it's A9 ARM dual core CPU's or pair it with a soft core.
+with its A9 ARM dual core CPUs or pair it with a soft core.
 
-It's principle is to create the concept of a Versat Core: Configuration Module (CM) and it's Functional Units (FU) connected with a control bus and a data bus.
-Instead of writing to a memory, there's the option to write for the next
+Its principle is to create the concept of a Versat Core: Configuration Module (CM) and its Functional Units (FU) connected with a control bus and a data bus.
+Instead of writing to a memory, there is the option to write for the next
 Versat Core to create more complex and more complete Datapaths, to avoid
 having to reconfigure a lot of times.
 
@@ -121,7 +121,7 @@ from the Verilog .vh files.
 \quad To make a complete system, a new controller is needed with a more robust toolchain.
 In a recent dissertation~\cite{valter:deepversat}, the IOB-RV32 processor was used which uses the RISC-V 32IM. The core is derived from
 the open source PicoRV32 CPU~\cite{picorv}.
-The IOB-RV32 uses it's memory bus to access peripherals in which Deep Versat and the UART module are connected as such.
+The IOB-RV32 uses its memory bus to access peripherals in which Deep Versat and the UART module are connected as such.
 The control bus is used to acess the configuration modules of Deep Versat. The data bus is used to read and write
 large amount of data into Deep Versat. The data flow bus is reserved for inter Versat Core communication.
 
