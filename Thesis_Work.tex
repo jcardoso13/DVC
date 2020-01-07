@@ -2,7 +2,7 @@
 \label{chapter:PWP}
 
 The proposed work for the dissertation consists in the development of an
-automatic compiler of DNN descripition into Deep Versat / IOB-RV32 C++ code. The
+automatic compiler of DNN description into Deep Versat / IOB-RV32 C++ code. The
 purpose of this work is to be able to run any state of the art CNN on the Deep
 Versat system with no effort on the user side, allowing the design and
 architectural exploration.
@@ -10,12 +10,21 @@ architectural exploration.
 For the proof of concept stage, Darknet and Caffe will be the frameworks chosen
 to be supported by the compiler. Deep Versat can customized with the number of
 layers, numbers of each FU type and other options. Hence, the compiler must be
-able to take thes configurations into account when producing computational
+able to take the configurations into account when producing computational
 datapaths for Deep Versat.
 
 \section{Flowchart}
 
-Figure X presents the flowachart of the system to be developed. The mais steps
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figures/flowchart.png}
+    \caption{Flowchart of the software architecture}
+    \label{figure:flowchart}
+\end{figure}
+
+
+
+Figure~\ref{figure:flowchart} presents the flowchart of the system to be developed. The mais steps
 of the algorithm are explained in the next paragraphs.
 
 %FIX Aproveitas o que está em bx para alguma box fo do fluxo grama ?
