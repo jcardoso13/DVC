@@ -27,31 +27,31 @@ datapaths for Deep Versat.
 Figure~\ref{figure:flowchart} presents the flowchart of the system to be developed. The steps
 of the algorithm are explained in the next paragraphs.
 
-%FIX Aproveitas o que está em bx para alguma box fo do fluxo grama ?
-To build a CNN model for Versat, a parser from Configuration file to layer is needed. For darknet~\cite{darknet},
- the parser can be re-used.
-For Caffe, a new one would need to be built so the output of the parser is equal to other frameworks for the same CNN network.
-The objective to be accomplished is to support all Caffe possible layers and Darknet's layers.
-After parsing the network, constant propagation is taken care of. That means,
-%After parsing, the Versat dataflow and runs for each type of layer will be defined depending on current silicon set up of the CGRA. Then,
-%the C code with the Versat runs will be written.
 
-%FIX Aproveitas para alguma box fo do fluxograma ?
-Some of the activation functions discussed in chapter \ref{chapter:cnn}
-will have to be processed in software on the core unless custom Functional Units
-are made for each function. Convolutional,Fully Connected,Shortcut and Route
-layers can be implemented on Deep Versat without any FU changes. How much it
-will be accelerated is based on number of cores and MACs available. Pooling
-needs adaptation in Hardware to run them, if not implemented, run on the RISC-V
-core.
+The frameworks to be adopted for the Configuration files are Darknet~\cite{darknet} and Caffe~\cite{caffe}.The former is to be adopted
+to support other dissertations that use Yolov3~\cite{yolov3} while the latter is one of the most used frameworks as seen in table~\ref{table:toolflow}.Also,
+unlike some other frameworks, Caffe is also based on Google's Protocol Buffers serialization library which is easier to work with.
+The goal after parsing is for the end result to be framework abstract, so other frameworks can be implemented into the compiler.
+When parsing the network, the compiler propagates the constants i.e input and output parameters of each layer.
+
+With the network defined and Deep Versat deployed, each layer of the network can be mapped onto Versat (Layer Optimizer). Because the input size of each layer
+can be bigger than a Versat Memory, certain optimizations such parallelism exploration must be made to guarantee that each network layer is processed as efficiently as possible. 
+How much performance can be extracted depends on the Deep Versat Configuration that is deployed, that is, performance per functional Unit, how many per Versat core and
+total number of cores.
+
+Memory accesses are all the operations to manage data from external memory to the RISC-V core and to the Deep Versat Cores and vice-versa.
+Finally the compiler generates the code for the CPU that controls Deep Versat.
 
 \section{Workplan}
 
 In fig~\ref{figure:gant}, a GANT chart with the proposed schedule for the
-planned work is presented. Further explanations on each task will follow in the
-next paragraphs.
+planned work is presented. In the GANT chart, 20 days will be used to deploy Deep Versat system and study external memory use and testing
+memory accesses with the RISC-V core and with Deep Versat. Then the core components in~\ref{figure:flowchart} are designed. Afterwards
+software validation and testing is done to ensure the compiler works as intended. Finally, because Deep Versat uses Integer functional units, fixed-point arithmetic
+is used instead. Fixed-Point formats are prone to overflow or underflow due to the fixed range it offers, thus 15 working days are allocated to
+make sure the outputs of any CNN network are valid and according to expected results. 
 
-\begin{figure}[!htbp]
+\begin{figure}[!htpb]
     %\centering
     \includegraphics[width=1\textwidth]{Figures/gant2.png}
     \caption{GANT chart of Proposed Work}
