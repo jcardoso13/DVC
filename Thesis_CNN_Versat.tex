@@ -1,11 +1,10 @@
 \chapter{CNN Compiling and Computation}
 \label{chapter:CNNVersat}
 
-\quad In section~\ref{section:darknet}, Neural Network Frameworks are introduced. This chapter is divided into two sections.
- Section~\ref{section:toolflow} is an overview of Toolflows that map Convolutional
-Neural Networks using said frameworks into FPGA. Section~\ref{section:autotuning} introduces concepts to accelerating CNNs into 
-deployed hardware like CGRAs.
-
+This chapter presents an overview of toolflows that map convolutional neural
+networks into FPGA using the frameworks presented in
+Section~\ref{section:darknet}. Next, the concepts for mapping CNNs
+into CGRAs are introduced.
 
 %PAPERS
 %https://www.cv-foundation.org/openaccess/content_cvpr_workshops_2014/W17/html/Gokhale_A_240_G-opss_2014_CVPR_paper.html
@@ -14,11 +13,16 @@ deployed hardware like CGRAs.
 \section{Toolflows for Mapping CNNs in FPGAs}
 \label{section:toolflow}
 
-\quad Several software frameworks have been developed to accelerate development and high-performance execution of CNNs.
- Neural Networks Frameworks discussed in section~\ref{section:darknet} provide high level APIs together with high performance execution on Multi Core CPUs, GPUs, Digital Signal Processors (DSP) and Neural Processing Units (NPU)~\cite{smartphones}.
-FPGAs provide an alternative to these architectures by being high-performance while also being low-power that can meet several requirements
-like throughput and latency in diverse applications. Thus, toolflows that map descriptions of CNN into hardware architecture to perform inference of the Network
-were created. Several toolflows and their interfaces are present in table~\ref{table:toolflow}.
+Several software frameworks have been developed to accelerate development and
+execution of CNNs. The neural networks frameworks discussed in
+section~\ref{section:darknet} provide high level APIs together with high
+performance execution on multi-core CPUs, GPUs, Digital Signal Processors (DSPs)
+and Neural Processing Units (NPUs)~\cite{smartphones}. FPGAs provide an
+alternative to these architectures as they provide high-performance while also
+being low-power. FPGAs can meet several requirements like throughput and latency
+in diversity of applications. Thus, several toolflows that map CNN descriptions
+into hardware in order to perform inference have been created. In
+table~\ref{table:toolflow}, a list of notable ones is presented.
 
 \begin{table}[!htpb]
     \centering
@@ -42,11 +46,17 @@ were created. Several toolflows and their interfaces are present in table~\ref{t
     \label{table:toolflow}
     \caption{CNN to FPGA Toolflows, adapted from~\cite{misc:cnntofpga}}
 \end{table}
+
+
 \subsection{Supported Neural Network Models}
 
-\quad These toolflows support the most common layers in CNNs discussed in chapter~\ref{chapter:cnn}. The acceleration target changes
-depending on toolflow. fpgaConvNet~\cite{fpgaconvnet} focuses more on feature extraction while offering non accelerated support for Fully Connected layers
-by casting them as Convolutional Layers with 1x1 kernels.
+These toolflows support the most common layers in CNNs, which are discussed in
+chapter~\ref{chapter:cnn}. The acceleration target changes depending on the
+toolflow.  For example, the fpgaConvNet~\cite{fpgaconvnet} toolflow focuses more
+on feature extraction while offering non accelerated support for fully connected
+layers by
+%FIX
+casting them as Convolutional Layers with 1x1 kernels. 
 
 \subsection{Architecture \& Portability}
 
@@ -57,9 +67,18 @@ by casting them as Convolutional Layers with 1x1 kernels.
     \label{figure:fpgaconvnet}
 \end{figure}
 
-As shown in figure~\ref{figure:fpgaconvnet}, fpaconvnet architecture consits of a Front-End Parser to capture
-the number of layers to implement, their size and kernels. Then the architecture is optimized to the device target and Neural Network.
-Finally, its mapped to hardware by using High Level Syntheses (HLS) which is a programming model for hardware based on C with a layer of abstraction.
+As shown in figure~\ref{figure:fpgaconvnet}, the fpgaConvNet architecture
+consists of a Front-End Parser that reads a (ConvNet) description of the network
+and a description of the target platform and produces, on the one hand a
+Directed Acyclic Graph (DAG), which is then converted to a Synchronous Data Flow
+(SDF) hardware model, and on the other hand, a model of the target platform from
+which resource constraints are derived. The hardware model thus obtained goes
+into an Optimiser procedure, which produces a hardware mapping. Using hardware
+and software templates, a Code Generator procedure, generates both the High
+Level Synthesis (HLS) input files and the software binaries that will run on the
+control CPU embedded in the FPGA. The HLS files go into the Xilinx (FPGA
+manufacturer) tools so that the configuration bitstream of the FPGA is produced.
+
 \newpage
 \section{CNN Auto Tuning Framework}
 \label{section:autotuning}
