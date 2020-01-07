@@ -19,14 +19,18 @@
 \contentsline {subsection}{\numberline {2.2.2}Caffe}{8}{subsection.2.2.2}
 \contentsline {chapter}{\numberline {3}Deep Versat}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}Versat Architecture}{11}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Data Engine}{12}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.1}Data Engine}{11}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Configuration Module}{13}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Deep Versat Architecture}{14}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Deep Versat System}{15}{subsection.3.2.1}
+\contentsline {section}{\numberline {3.2}Deep Versat Architecture}{15}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Deep Versat System}{16}{subsection.3.2.1}
 \contentsline {chapter}{\numberline {4}CNN Compiling and Computation}{17}{chapter.4}
-\contentsline {chapter}{\numberline {5}Proposed Work and Planning}{19}{chapter.5}
-\contentsline {section}{\numberline {5.1}Hardware System}{19}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Acceleration on Deep Versat}{19}{subsection.5.1.1}
-\contentsline {section}{\numberline {5.2}Software Proposal}{20}{section.5.2}
-\contentsline {section}{\numberline {5.3}Planning}{21}{section.5.3}
+\contentsline {section}{\numberline {4.1}Toolflows for Mapping CNNs in FPGAs}{17}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Supported Neural Network Models}{18}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Architecture \& Portability}{18}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}CNN Auto Tuning Framework}{19}{section.4.2}
+\contentsline {chapter}{\numberline {5}Proposed Work and Planning}{21}{chapter.5}
+\contentsline {section}{\numberline {5.1}Hardware System}{21}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Acceleration on Deep Versat}{21}{subsection.5.1.1}
+\contentsline {section}{\numberline {5.2}Software Proposal}{22}{section.5.2}
+\contentsline {section}{\numberline {5.3}Planning}{22}{section.5.3}
 \contentsline {chapter}{Bibliography}{23}{section*.12}

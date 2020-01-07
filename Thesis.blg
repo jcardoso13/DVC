@@ -8,45 +8,45 @@ Warning--entry type for "sousa:FFT" isn't style-file defined
 Warning--empty year in mnist:digits
 Warning--empty publisher in alexnet
 Warning--empty year in picorv
-You've used 17 entries,
+You've used 21 entries,
             2481 wiz_defined-function locations,
-            648 strings with 6854 characters,
-and the built_in function-call counts, 5885 in all, are:
-= -- 504
-> -- 285
-< -- 9
-+ -- 116
-- -- 82
-* -- 412
-:= -- 923
-add.period$ -- 56
-call.type$ -- 17
-change.case$ -- 34
-chr.to.int$ -- 17
-cite$ -- 22
-duplicate$ -- 302
-empty$ -- 552
-format.name$ -- 103
-if$ -- 1273
+            668 strings with 7869 characters,
+and the built_in function-call counts, 7596 in all, are:
+= -- 626
+> -- 423
+< -- 11
++ -- 166
+- -- 124
+* -- 555
+:= -- 1208
+add.period$ -- 70
+call.type$ -- 21
+change.case$ -- 42
+chr.to.int$ -- 21
+cite$ -- 26
+duplicate$ -- 377
+empty$ -- 688
+format.name$ -- 151
+if$ -- 1635
 int.to.chr$ -- 1
-int.to.str$ -- 18
-missing$ -- 7
-newline$ -- 96
-num.names$ -- 47
-pop$ -- 158
+int.to.str$ -- 22
+missing$ -- 9
+newline$ -- 117
+num.names$ -- 59
+pop$ -- 199
 preamble$ -- 1
-purify$ -- 17
+purify$ -- 21
 quote$ -- 0
-skip$ -- 205
+skip$ -- 257
 stack$ -- 0
-substring$ -- 180
-swap$ -- 59
-text.length$ -- 2
+substring$ -- 208
+swap$ -- 77
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 119
+type$ -- 147
 warning$ -- 3
-while$ -- 40
+while$ -- 50
 width$ -- 0
-write$ -- 225
+write$ -- 278
 (There were 4 warnings)

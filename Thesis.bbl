@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -55,6 +55,19 @@ N.~Srivastava, G.~Hinton, A.~Krizhevsky, I.~Sutskever, and R.~Salakhutdinov.
 \newblock \emph{Journal of Machine Learning Research}, 15:\penalty0 1929--1958,
   2014.
 
+\bibitem[Redmon(2013--2016)]{darknet}
+J.~Redmon.
+\newblock Darknet: Open source neural networks in c.
+\newblock \url{http://pjreddie.com/darknet/}, 2013--2016.
+
+\bibitem[Jia et~al.(2014)Jia, Shelhamer, Donahue, Karayev, Long, Girshick,
+  Guadarrama, and Darrell]{caffe}
+Y.~Jia, E.~Shelhamer, J.~Donahue, S.~Karayev, J.~Long, R.~B. Girshick,
+  S.~Guadarrama, and T.~Darrell.
+\newblock Caffe: Convolutional architecture for fast feature embedding.
+\newblock \emph{CoRR}, abs/1408.5093, 2014.
+\newblock URL \url{http://arxiv.org/abs/1408.5093}.
+
 \bibitem[Santiago et~al.(2017)Santiago, Lopes, and de~Sousa]{sousa:compiler}
 R.~Santiago, J.~D. Lopes, and J.~T. de~Sousa.
 \newblock Compiler for the versat reconfigurable architecture.
@@ -93,6 +106,28 @@ V.~J.~B. Mário.
 Picorv32- a size-optimized risc-v cpu.
 \newblock URL \url{https://github.com/cliffordwolf/picorv32}.
 
+\bibitem[Ignatov et~al.(2018)Ignatov, Timofte, Szczepaniak, Chou, Wang, Wu,
+  Hartley, and Van~Gool]{smartphones}
+A.~Ignatov, R.~Timofte, P.~Szczepaniak, W.~Chou, K.~Wang, M.~Wu, T.~Hartley,
+  and L.~Van~Gool.
+\newblock Ai benchmark: Running deep neural networks on android smartphones, 10
+  2018.
+
+\bibitem[Venieris et~al.(2018)Venieris, Kouris, and Bouganis]{misc:cnntofpga}
+S.~I. Venieris, A.~Kouris, and C.-S. Bouganis.
+\newblock Toolflows for mapping convolutional neural networks on fpgas: A
+  survey and future directions, 2018.
+
+\bibitem[Venieris and Bouganis(2016)]{fpgaconvnet}
+S.~I. Venieris and C.-S. Bouganis.
+\newblock {fpgaConvNet: A Framework for Mapping Convolutional Neural Networks
+  on FPGAs}.
+\newblock In \emph{2016 {IEEE} 24th Annual International Symposium on
+  Field-Programmable Custom Computing Machines ({FCCM})}, pages 40--47.
+  Institute of Electrical and Electronics Engineers ({IEEE}), May 2016.
+\newblock \doi{10.1109/FCCM.2016.22}.
+\newblock URL \url{http://dx.doi.org/10.1109/FCCM.2016.22}.
+
 \bibitem[Bae et~al.(2018)Bae, Harris, Min, and Egger]{cgraopt}
 I.~Bae, B.~Harris, H.~Min, and B.~Egger.
 \newblock Auto-tuning cnns for coarse-grained reconfigurable array-based
@@ -100,10 +135,5 @@ I.~Bae, B.~Harris, H.~Min, and B.~Egger.
 \newblock \emph{IEEE Transactions on Computer-Aided Design of Integrated
   Circuits and Systems}, 37, 07 2018.
 \newblock \doi{10.1109/TCAD.2018.2857278}.
-
-\bibitem[Redmon(2013--2016)]{darknet}
-J.~Redmon.
-\newblock Darknet: Open source neural networks in c.
-\newblock \url{http://pjreddie.com/darknet/}, 2013--2016.
 
 \end{thebibliography}
