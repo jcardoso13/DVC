@@ -15,7 +15,7 @@ datapaths for Deep Versat.
 
 \section{Flowchart}
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=0.5\textwidth]{Figures/flowchart.png}
     \caption{Flowchart of the software architecture}
@@ -24,15 +24,17 @@ datapaths for Deep Versat.
 
 
 
-Figure~\ref{figure:flowchart} presents the flowchart of the system to be developed. The mais steps
+Figure~\ref{figure:flowchart} presents the flowchart of the system to be developed. The steps
 of the algorithm are explained in the next paragraphs.
 
 %FIX Aproveitas o que está em bx para alguma box fo do fluxo grama ?
-To build a CNN model for Versat, a parser from Configuration file to layer is needed. For darknet~\cite{darknet}, the parser can be re-used.
+To build a CNN model for Versat, a parser from Configuration file to layer is needed. For darknet~\cite{darknet},
+ the parser can be re-used.
 For Caffe, a new one would need to be built so the output of the parser is equal to other frameworks for the same CNN network.
 The objective to be accomplished is to support all Caffe possible layers and Darknet's layers.
-After parsing, the Versat dataflow and runs for each type of layer will be defined depending on current silicon set up of the CGRA. Then,
-the C code with the Versat runs will be written. In~\ref{figure:cgraopt}, a CGRA optimization flow for CNN is presented.
+After parsing the network, constant propagation is taken care of. That means,
+%After parsing, the Versat dataflow and runs for each type of layer will be defined depending on current silicon set up of the CGRA. Then,
+%the C code with the Versat runs will be written.
 
 %FIX Aproveitas para alguma box fo do fluxograma ?
 Some of the activation functions discussed in chapter \ref{chapter:cnn}
