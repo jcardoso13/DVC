@@ -1,5 +1,5 @@
 # Fdb version 3
-["bibtex Thesis"] 1578401681 "Thesis.aux" "Thesis.bbl" "Thesis" 1578401683
+["bibtex Thesis"] 1578401681 "Thesis.aux" "Thesis.bbl" "Thesis" 1578402257
   "./abbrvunsrtnat.bst" 1428583930 24267 a4941d7f62480388d05ebc2186bb1e4c ""
   "Thesis.aux" 1578401682 12714 7d6279d42c8de1143f149dcfbae6b5c6 ""
   "Thesis.bcf" 0 -1 0 ""
@@ -7,7 +7,7 @@
   (generated)
   "Thesis.blg"
   "Thesis.bbl"
-["pdflatex"] 1578401681 "/mnt/c/Users/joaop/Documents/Thesis-Part1/Thesis.tex" "/mnt/c/Users/joaop/Documents/Thesis-Part1/Thesis.pdf" "Thesis" 1578401683
+["pdflatex"] 1578401681 "/mnt/c/Users/joaop/Documents/Thesis-Part1/Thesis.tex" "/mnt/c/Users/joaop/Documents/Thesis-Part1/Thesis.pdf" "Thesis" 1578402257
   "./Code/caffe.prototxt" 1578213839 3904 115de498da8313dc7f9e5019c02f3c0f ""
   "./Code/yolov3.cfg" 1570209401 7920 fe0aec3fe289199315d66fff873d0ed0 ""
   "/etc/texmf/web2c/texmf.cnf" 1563445196 475 c0e671620eb5563b2130f56340a5fde8 ""
@@ -163,7 +163,7 @@
   "Thesis.tex" 1578195559 11742 f702bc9483f7f321ecb8e2580696205c ""
   "Thesis.toc" 1578401682 2702 992715a5952f251fd5bd274e32d165bb ""
   "Thesis_CNN.tex" 1578400062 12555 0d70c06f8e2c76a9dbebb96f2efaccef ""
-  "Thesis_CNN_Versat.tex" 1578401680 3779 982beac73f6c0357c6555a0a387de58e ""
+  "Thesis_CNN_Versat.tex" 1578402257 3779 982beac73f6c0357c6555a0a387de58e ""
   "Thesis_Deep_Versat.tex" 1578391795 7302 5dd9aea0ad3ae20db2ad0c92b9f94fb9 ""
   "Thesis_FrontCover.tex" 1578369313 2125 32fd1d0390e1594dda649352b42b678b ""
   "Thesis_Introduction.tex" 1578189190 5018 e771423d84d6d3f8cfdbfb5a0a8b1bcf ""
@@ -171,15 +171,15 @@
   "Thesis_Work.tex" 1578392483 2747 5b577f5c2afc72bb47f15cf60c6c4070 ""
   "glossary.sty" 1327325702 36100 01242adb46bb6fac5b1bb3f08ef3b1c5 ""
   (generated)
+  "Thesis.pdf"
   "Thesis.glo"
-  "Thesis.nlo"
-  "Thesis.aux"
   "Thesis.ist"
+  "Thesis.lot"
+  "Thesis.toc"
+  "/mnt/c/Users/joaop/Documents/Thesis-Part1/Thesis.log"
+  "Thesis.log"
+  "Thesis.nlo"
+  "Thesis.out"
+  "Thesis.aux"
   "/mnt/c/Users/joaop/Documents/Thesis-Part1/Thesis.pdf"
   "Thesis.lof"
-  "/mnt/c/Users/joaop/Documents/Thesis-Part1/Thesis.log"
-  "Thesis.lot"
-  "Thesis.pdf"
-  "Thesis.log"
-  "Thesis.toc"
-  "Thesis.out"
