@@ -1,7 +1,8 @@
 \chapter{Deep Versat}
 \label{chapter:DeepVersat}
 
-\quad Versat is a Coarse Grained Reconfigurable Array (CGRA) Architecture. CGRAs are in-between Field Programmable Gate Arrays (FPGA) and general purpose processors (GPP).
+\quad Versat is a Coarse Grained Reconfigurable Array (CGRA) Architecture. CGRAs are in-between Field Programmable Gate Arrays (FPGA)
+ and general purpose processors (GPP).
 The former is fully reconfigurable and the highest performance for a workload can be achieved as the Architecture is tailored to the workload.
 GPPs on the other hand, are nor reconfigurable and thus slower but are more generic and can process different workloads.
 While FPGAs have the granularity at the gate level, CGRAs have the granularity at the functional unit level. They are configurable at run-time and the datapath can be
@@ -122,7 +123,7 @@ from the Verilog .vh files.
 In a recent dissertation~\cite{valter:deepversat}, the IOB-RV32 processor was used which uses the RISC-V 32IM. The core is derived from
 the open source PicoRV32 CPU~\cite{picorv}.
 The IOB-RV32 uses its memory bus to access peripherals in which Deep Versat and the UART module are connected as such.
-The control bus is used to acess the configuration modules of Deep Versat. The data bus is used to read and write
+The control bus is used to access the configuration modules of Deep Versat. The data bus is used to read and write
 large amount of data into Deep Versat. The data flow bus is reserved for inter Versat Core communication.
 
 \begin{table}[!htbp]
@@ -141,9 +142,9 @@ large amount of data into Deep Versat. The data flow bus is reserved for inter V
 
 The memory map to address the peripherals,
  including deep versat, is in table \ref{table:deepversat}.
- Each Versat has 15 bits of Address while the CPU addresses
+ Each Versat has 15 bits of address while the CPU addresses
  the peripherals with 32 bits, with 8 of those occupied to chose
  the peripheral in question. That leaves 9 bits to address several Versat Cores
- which brings the theoretical maximum versat cores to 512. The IOB-RV32 is compatible with
+ which brings the theoretical maximum versat cores to 512. The IOB-RV32 is compatible with the
  GNU toolchain to offer better portability of code and alongside the C++ Versat API the difficulty
  to code for the System diminishes.

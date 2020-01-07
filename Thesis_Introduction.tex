@@ -18,7 +18,7 @@ FIX: mete citaçoes nas coisas mais importantes
 In this report, the problem of accelerating the execution of Deep Neural
 Networks (DNNs) using Coarse GRained Reconfigurable Arrays (CGRAs) is studied,
 with special emphasis on compiling a DNN description into code that runs on
-CPU/CGRA system. The Deep Versat Architecture~\cite{bla} CGRA will be used as an
+CPU/CGRA system. The Deep Versat Architecture~\cite{valter:deepversat} CGRA will be used as an
 implementation tool in this work.
 
 
@@ -50,7 +50,7 @@ collection of Functional Units and memories with programmable interconnections
 in order to form computational datapaths. A CGRA can be implemented in both
 FPGAs and ASICs. CGRAs can be reconfigured much faster than FPGAs, as they have
 much less configuration bits. If reconfiguration is done at runtime, CGRAs add
-temporal scalability to the spacial scalabilty that characterize
+temporal scalability to the spacial scalability that characterize
 FPGAs. Moreover, partial reconfiguration is much easier to do in CGRAs compared
 to FPGAs which further speeds up reconfiguration time. Another advantage of
 CGRAs is the fact that they can be programmed entirely in software, contrasting
@@ -76,8 +76,7 @@ The proposed solution is a compiler that takes a configuration file from a
 neural network framework like Caffe or Darknet. This new tool inputs the
 parameters of Deep Versat, such as the number of layers and functional units,
 and produces the C code needed for the Versat runs. This code is run on the
-RISC-V picorv32~\cite{bla} CPU controller that has Deep Versat as a peripheral.
-
+RISC-V picorv32~\cite{picorv} CPU controller that has Deep Versat as a peripheral.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Thesis Outline}
