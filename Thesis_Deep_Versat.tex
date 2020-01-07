@@ -14,9 +14,9 @@ In this chapter, the base Versat Architecture will be explained and then the Dee
 \section{Versat Architecture}
 
 \quad The Versat Architecture~\cite{sousa:compiler,sousa:controller,sousa:FFT,sousa:versat2016} 
-is depicted in figure \ref{figure:oldversat}. Its composed by the following modules: DMA,Controller,Program Memory,Control File Registry,Data-Engine and Configuration module.
+is depicted in Figure~\ref{figure:oldversat}. Its composed by the following modules: DMA,Controller,Program Memory,Control File Registry,Data-Engine and Configuration module.
 The Controller accesses the modules through the control bus. The code made in assembly or C is loaded into the program Memory (RAM) where the user
-can write to the configuration module the versat runs. Between runs of the Data Engine,
+can write to the configuration module for the versat runs. Between runs of the Data Engine,
  the Controller can start doing the next run configuration and calculations.
 
 
@@ -28,11 +28,11 @@ can write to the configuration module the versat runs. Between runs of the Data 
 \end{figure} 
 
 \subsection{Data Engine}
-\quad The Data Engine which is represented in figure \ref{figure:DE} carries out the computation needed on the data arrays. Its a 32 bit Architecture with up to 11 Functional Units:
+\quad The Data Engine which is represented in Figure~\ref{figure:DE} carries out the computation needed on the data arrays. Its a 32 bit Architecture with up to 11 Functional Units (FU):
  Arithmetic and Logic Unit(ALU), stripped down ALU (ALU-Lite),
  Multiplier and Accumulator (MAC) and Barrel Shifter.
  Depending on the project and calculations, a new type of FU or the existing ones can be altered to support the algorithm.
- The DE has a full mesh  topology, that means that each FU can be the output to another, This decreases the operating frequency.
+ The DE has a full mesh  topology, that means that each FU can be the output to another, which leads to a decrease in operating frequency.
 
  Each Input of a Functional Unit has a Mux with 19 entries, 8 of which are from the memories (2 from each Mem out of 4 total units) and the rest from the Functional Units (11).
 
@@ -48,12 +48,12 @@ can write to the configuration module the versat runs. Between runs of the Data 
  reproduce two nested loops of memory indexes.
  The AGUs control which MEM data is the input of the FUs and where
  to store the results of the operation. Also, the AGUs support a delayed start to line up timings
-due to latencies.
+due to latencies.The memory module is represented in Fig~\ref{figure:FU}.
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/fu2.pdf}
-    \caption{Versat Functional Unit, taken from~\cite{lopes:versat}}
+    \includegraphics[width=0.5\textwidth]{Figures/fu2.pdf}
+    \caption{Versat Memory Unit with one AGU per port, taken from~\cite{lopes:versat}}
     \label{figure:FU}
 \end{figure} 
 
@@ -91,8 +91,8 @@ it writes into the register configuration data, when its a write, it stores the 
     \label{figure:deepversatarch}
 \end{figure} 
 
-\quad The Deep Versat Architecture\cite{valter:deepversat}
-, in figure \ref{figure:deepversatarch}, decouples the Data Engine (DE) from all control and as such, it can be used with any CPU. 
+\quad The Deep Versat Architecture~\cite{valter:deepversat}
+, in figure~\ref{figure:deepversatarch}, decouples the Data Engine (DE) from all control and as such, it can be used with any CPU. 
 It can be paired with hard cores in
 FPGA boards like the ZYNC board %cite here
 with its A9 ARM dual core CPUs or pair it with a soft core.
@@ -100,7 +100,7 @@ with its A9 ARM dual core CPUs or pair it with a soft core.
 Its principle is to create the concept of a Versat Core: Configuration Module (CM) and its Functional Units (FU) connected with a control bus and a data bus.
 Instead of writing to a memory, there is the option to write for the next
 Versat Core to create more complex and more complete Datapaths, to avoid
-having to reconfigure a lot of times.
+having to reconfigure the cores.
 
 The number of Layers and FUs are reconfigurable pre-silicon with the only limitation
 that each layer is identical. To program Deep Versat, an API is generated
@@ -115,12 +115,13 @@ from the Verilog .vh files.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/deep-versat-top.png}
-    \caption{Deep Versat System, taken from~\cite{valter:deepversat}}
+    \caption{Deep Versat System using a RISC-V RV32IMC soft core, taken from~\cite{valter:deepversat}}
     \label{figure:deepversattop}
 \end{figure} 
 
 \quad To make a complete system, a new controller is needed with a more robust toolchain.
-In a recent dissertation~\cite{valter:deepversat}, the IOB-RV32 processor was used which uses the RISC-V 32IM. The core is derived from
+In a recent dissertation~\cite{valter:deepversat}, the IOB-RV32 processor was used which uses the RISC-V Instruction Set (ISA) with 32 bit Integer base alongside Multiplication and Division extension and Compact Instruction extension.
+ The core is derived from
 the open source PicoRV32 CPU~\cite{picorv}.
 The IOB-RV32 uses its memory bus to access peripherals in which Deep Versat and the UART module are connected as such.
 The control bus is used to access the configuration modules of Deep Versat. The data bus is used to read and write

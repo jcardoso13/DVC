@@ -1,4 +1,4 @@
-\chapter{CNN Compiling and Computation}
+\chapter{CNN Compiling in FPGAs}
 \label{chapter:CNNVersat}
 
 This chapter presents an overview of toolflows that map convolutional neural
@@ -76,6 +76,14 @@ Level Synthesis (HLS) input files and the software binaries that will run on the
 control CPU embedded in the FPGA. The HLS files go into the Xilinx (FPGA
 manufacturer) tools so that the configuration bitstream of the FPGA is produced.
 
-\newpage
-\section{CNN Auto Tuning Framework}
-\label{section:autotuning}
+%\newpage
+%\section{Optimizing Convolutional Layers}
+%\label{section:autotuning}
+
+%To perform Convolutional Layers, the most used algorithm is General Matrix Multiply (GEMM). First the input is converted with a step called
+%im2col which transforms the 2D convolution into a Matrix Multiply.
+
+%In Deep Versat,discussed in~\ref{chapter:DeepVersat}, due to the use of the Address Generating Units that can do 2 nested Loops, a single Versat Core
+%can do a convolution on it's own
+
+
