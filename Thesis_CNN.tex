@@ -160,7 +160,7 @@ by dropping the neurons with probability below the threshold. In figure \ref{fig
 graphical representation.
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.6\textwidth]{Figures/Dropout.png}
+    \includegraphics[width=0.6\textwidth]{Figures/dropout.png}
     \caption{Dropout if applied to all layers, adapted from~\cite{Dropout}}
     \label{figure:Dropout}
 \end{figure} 
@@ -171,7 +171,8 @@ Activation Functions (AF) are functions used in each layer of a Neural Network t
 which is used to give a value to a neuron.Non-linear AFs are used to transform linear inputs to non-linear outputs.
  While training Deep Neural Networks, vanishing and exploding gradients
 are common issues, in other words, after successive multiplications of the loss gradient, the values tend to tend to 0 or infinity and thus the gradient disappears.
-AFs help mitigate this issue by keeping the gradient in specific limits. The most popular activation functions can be found in table
+AFs help mitigate this issue by keeping the gradient in specific limits. The most popular activation functions can be found in table~\ref{table:AF}.
+
 
 
 \begin{table}[]
