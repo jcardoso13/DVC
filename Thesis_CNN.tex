@@ -5,13 +5,17 @@
 %http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networ
 
 
+%FIX decide whether to replace figures or not
 
-\quad A Neural Network is an interconnected group of nodes that follow a computational model that propagates data forward while processing. 
-The earliest Neural Networks were proposed by McCulloh and Pitts~\cite{neuron:model}
-, in which a Neuron has a linear part, based on aggregation of data and then a non linear part called the activation function. The issue with using only one neuron
-is that it is not able to be used in non-linear separable problems.
-By aggregating several neurons in layers and the input of each neuron as in figure~\ref{MLP}
-being based on the previous layers, that problem can be eliminated.
+A Neural Network (NN) is an interconnected group of nodes that follow a
+computational model that propagates data forward while processing. The earliest
+NNs were proposed by McCulloh and Pitts~\cite{neuron:model}, in which a neuron
+has a linear part, based on aggregation of data and then a non-linear part
+called the activation function, which is applied to the aggregate sum. The issue
+with using only one neuron is that it is not able to be used in non-linear
+separable problems. By aggregating several neurons in layers and the input of
+each neuron as in figure~\ref{MLP} being based on the previous layers, that
+problem can be eliminated.
 
 \begin{figure}[!htbp]
     \centering
@@ -20,37 +24,40 @@ being based on the previous layers, that problem can be eliminated.
     \label{MLP}
 \end{figure} 
 
+Each input to a neuron contributes differently to the output. The share is
+dependent on the weight value. These are obtained by training the network
+through various techniques, one of which is called Deep Supervised
+Learning~\cite{deeplearning} . For a certain input, there is an expected output
+and the real output of the NN. Then the loss function (the difference) is
+calculated and the weight values are iteratively modified for improving the
+outputs of the NN.
 
- Each input to a Neuron contributes differently to the output. This share is dependent on the weight value. 
- These are obtained by training the network through various techniques, one of which is Deep Supervised
- Learning~\cite{deeplearning}
- . For a certain input, there is an expected output and the real output of the NN. Then the loss function based on these outputs
- is calculated and then the weight values are iteratively modified for better outputs by the Neural Network.
+A Deep Neural Network (DNN) is a Neural Network that uses this approach for
+learning. It has multiple hidden layers and it can model complex non-linear
+relationships. If the activation function is non polynomial, it satisfies the
+Universal approximation problem~\cite{approximation:problem}.
 
-
-
- A Deep Neural Network (DNN) is a Neural Network that uses this approach for learning. It has multiple hidden layers and it can 
- model complex non-linear relationships. If the activation function is not a polynomial, it satisfies
- the Universal approximation problem~\cite{approximation:problem}.
-
-One of the limitations of traditional Networks is the complexity that is given between each layer.Using the example of hand digit recognition problem.
-The MNIST data set is composed of 28x28 grayscaled images~\cite{mnist:digits}. In a traditional fully connected Neural Network, a neuron from the second layer
-would have 28x28 weights. That is 3.136 kiloBytes per neuron of weight values while using Floating-Point 32 bit (FP32). 
-By making the layer size constant, the computational power required grows exponentially.
-When building a more complex network for image recognition, the input layer grows and so by default does the number of weights.
-
+One of the limitations of traditional NNs is the complexity of layer
+interconnections. Using as example the hand digit recognition problem and MNIST
+data set, composed of 28x28 grayscaled images~\cite{mnist:digits}, in a
+traditional fully connected NN, a neuron from the second layer would have 28x28
+weights. That is 3.136 kiloBytes per neuron of weight values while using 32-bit
+floating-point numbers (FP32). When building a more complex network for image
+recognition, the computationally complexity grows quadratically with the number
+of neuros per layer.
 
 %One propriety of CNN's is the shift invariance due to the use of 2D image convolution with filters and that makes them specifically
 %good for Image and video recognition.
 
- \section{Convolutional Neural Networks}
- \label{section:subcnn}
+\section{Convolutional Neural Networks}
+\label{section:subcnn}
 
- \quad Convolutional Neural Networks (CNN) are a class of DNNs used in Image and Video recognition due to their shift invariance characteristic. They were first proposed in the 
- 1980s but it was not until 2012 with AlexNet~\cite{alexnet} 
- that CNNs really took off. Fundamentally, CNNs are a regularized version of Multilayer Perceptrons (MLP).
-
- These networks fix the issues discussed due to each neuron of the following layer being connected to a few of the previous layer.
+Convolutional Neural Networks (CNN) are a class of DNNs used in Image and Video
+recognition due to their shift invariance characteristic. They were first
+proposed in the 1980s but it was not until 2012 with AlexNet~\cite{alexnet} that
+CNNs really took off. Fundamentally, CNNs are a regularized version of
+Multilayer Perceptrons (MLP). These networks fix the complexity issue discussed
+as each neuron is only connected to a few neurons of the previous layer.
  
 
  \begin{figure}[!htbp]
@@ -63,21 +70,24 @@ When building a more complex network for image recognition, the input layer grow
  \subsection{Architecture Overview}
  \label{section:Aoverview}
 
-
  %There's several types of layers used in these networks to achieve the desired result.
 
  \subsubsection{Convolutional Layer}
 \label{section:convlayer}
 
-\quad The most processing time consuming  is the Convolutional Layer due to its raw processing needs. 
-It takes an input with several dimensions: image width,height and color space for the first layer,
-for the following convolutional layers it takes a 3D array: map width,height and number of channels.
-For the earlier example of the MNIST
-data set, it would be 28x28x1 as it is a 2D image in grayscale.
+In a typical CNN not all layers are convolutional,but the convolutional layers
+are the most compute intensive ones. CNNs take input images with 3 dimensions
+(width, height and color space); for the following convolutional layers 3D
+arrays are used (width, height and number of channels). For the earlier example
+of the MNIST data set, the input would have dimensions 28x28x1 as it is a 2D
+image in grayscale.
 
-To compute a neuron in the next layer we get the convolution in equation~\ref{equation:convolution} and image representation in figure \ref{Cl},
-where $x_{j}^{l+1}$ is the output, $\delta$ is the activation function, which depends on the architecture, $x_{i}^{l}$ is the input of the convolution layer, $k_{ij}^{l+1}$ is
-the kernel of said layer which is obtained by training the network and $b_{j}^{l+1}$ is the bias.
+To compute a neuron in the next layer we get the convolution in
+equation~\ref{equation:convolution} and image representation in figure \ref{Cl},
+where $x_{j}^{l+1}$ is the output, $\delta$ is the activation function, which
+depends on the architecture, $x_{i}^{l}$ is the input of the convolution layer,
+$k_{ij}^{l+1}$ is the kernel of said layer which is obtained by training the
+network and $b_{j}^{l+1}$ is the bias.
 \begin{equation} \label{equation:convolution}
    %\resizebox{.5 \textwidth}{!} 
     %{%
@@ -85,7 +95,8 @@ the kernel of said layer which is obtained by training the network and $b_{j}^{l
     %}%
 \end{equation}
 
-Thus an output neuron depends only on a small region of the input which is called the local receptive field. 
+Thus an output neuron depends only on a small region of the input which is
+called the local receptive field.
 
 \begin{figure}[!htbp]
     \centering
@@ -94,31 +105,37 @@ Thus an output neuron depends only on a small region of the input which is calle
     \label{Cl}
 \end{figure} 
 
-The output's dimensions depend on several parameters of the convolution such as zero-padding and stride. The Former means to add zeros around the edges
-of the input matrix. The latter means the step used for the convolution, if the value is e.g 2, it will skip a pixel each iteration of the convolution.
-The equation in~\ref{equation:padding} can be used to calculate the output size. Where $n$ is the width/height of the input of layer $l$,
-$ b$ is the width/height of the kernel, $p$ is  zero-padding while $s$ is the stride.
+The output's dimensions depend on several parameters of the convolution such as
+zero-padding and stride. The Former means to add zeros around the edges of the
+input matrix. The latter means the step used for the convolution, if the value
+is e.g 2, it will skip a pixel each iteration of the convolution.  The equation
+in~\ref{equation:padding} can be used to calculate the output size. Where $n$ is
+the width/height of the input of layer $l$, $ b$ is the width/height of the
+kernel, $p$ is zero-padding while $s$ is the stride.
 
 \begin{equation} \label{equation:padding}
      n^{l+1} = \frac{n^{l}- b^{l}+2 \times p}{s}
 \end{equation}
 
-The number of channels of the output is equal to the number of filters
-in the convolutional layer.
-
+The number of channels of the output is equal to the number of filters in the
+convolutional layer.
 
 
 %Then a 3D convolution is performed with the kernel changing from layer to layer
 
 \subsubsection{Pooling Layer}
 
-\quad The MaxPool or AvgPool are layers used in Convolutional Neural Networks to downsampling the feature maps to make 
-the output maps less sensitive to the location of the features.
+The MaxPool or AvgPool are layers used in Convolutional Neural Networks to
+downsampling the feature maps to make the output maps less sensitive to the
+location of the features.
 
-Maximum Pooling or MaxPool, like it is suggested in its name groups $ n * n $ points and outputs the pixel with highest value.
- The output will have its size lowered by $ n $ times.
-The Average Pooling or AvgPool, instead takes all of the input points and calculates the average. Downsampling can also be achieved by using convolutions with stride 2 and padding equal to 1.
-Upsample layers can be also used that turn each pixel into $ n^{2} $, where n is the amount of times the output will be bigger than the input.
+Maximum Pooling or MaxPool, like it is suggested in its name groups $ n * n $
+points and outputs the pixel with highest value.  The output will have its size
+lowered by $ n $ times.  The Average Pooling or AvgPool, instead takes all of
+the input points and calculates the average. Downsampling can also be achieved
+by using convolutions with stride 2 and padding equal to 1.  Upsample layers can
+be also used that turn each pixel into $ n^{2} $, where n is the amount of times
+the output will be bigger than the input.
 
 \begin{figure}[!htbp]
     \centering
@@ -130,10 +147,12 @@ Upsample layers can be also used that turn each pixel into $ n^{2} $, where n is
 
 \subsubsection{Fully Connected Layer}
 
-\quad The fully Connected Layer is mostly used for classification in the final layers of the Neural Network. It associates the feature map to the respective labels.
-It takes the 3D vector and outputs a single vector thus it is also known as flatten.
- The equation in~\ref{equation:connected} describes the operation. Here $w_{ji}^{l+1}$ are the weights
- associated with a specific input for each output pixel.
+The fully Connected Layer is mostly used for classification in the final layers
+of the Neural Network. It associates the feature map to the respective labels.
+It takes the 3D vector and outputs a single vector thus it is also known as
+flatten.  The equation in~\ref{equation:connected} describes the operation. Here
+$w_{ji}^{l+1}$ are the weights associated with a specific input for each output
+pixel.
 
 
 
@@ -145,19 +164,20 @@ It takes the 3D vector and outputs a single vector thus it is also known as flat
  \end{equation}
  
 
-
 \subsubsection{Route $\&$ Shortcut Layer}
 
-\quad The Shortcut layer or skip connection was first introduced in Resnet~\cite{resnet}.
-It allows to connect the previous layer to another to allow the flow of information across layers.
-The Route layer, used in Yolov3~\cite{yolov3}
-,concatenates 2 layers in depth (channel) or skips the layer forward. This is used after the detection layer in Yolov3 to extract other features.
+The Shortcut layer or skip connection was first introduced in
+Resnet~\cite{resnet}.  It allows to connect the previous layer to another to
+allow the flow of information across layers.  The Route layer, used in
+Yolov3~\cite{yolov3} ,concatenates 2 layers in depth (channel) or skips the
+layer forward. This is used after the detection layer in Yolov3 to extract other
+features.
 
 \subsubsection{Dropout Layer}
 
-\quad This type of layer was conceived to avoid overfitting~\cite{Dropout}
-by dropping the neurons with probability below the threshold. In figure~\ref{figure:Dropout}, there is a
-graphical representation.
+This type of layer was conceived to avoid overfitting~\cite{Dropout} by dropping
+the neurons with probability below the threshold. In
+figure~\ref{figure:Dropout}, there is a graphical representation.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/dropout.png}
@@ -167,13 +187,15 @@ graphical representation.
 
 \subsubsection{Activation Functions}
 
-\quad Activation Functions (AF) are functions used in each layer of a Neural Network to compute the weighted sum of input and biases,
-which is used to give a value to a neuron.Non-linear AFs are used to transform linear inputs to non-linear outputs.
- While training Deep Neural Networks, vanishing and exploding gradients.
-are common issues, in other words, after successive multiplications of the loss gradient, the values tend to tend to 0 or infinity and thus the gradient disappears.
-AFs help mitigate this issue by keeping the gradient in specific limits. The most popular activation functions can be found in table~\ref{table:AF}.
-
-
+Activation Functions (AF) are functions used in each layer of a Neural Network
+to compute the weighted sum of input and biases, which is used to give a value
+to a neuron.Non-linear AFs are used to transform linear inputs to non-linear
+outputs.  While training Deep Neural Networks, vanishing and exploding
+gradients.  are common issues, in other words, after successive multiplications
+of the loss gradient, the values tend to tend to 0 or infinity and thus the
+gradient disappears.  AFs help mitigate this issue by keeping the gradient in
+specific limits. The most popular activation functions can be found in
+table~\ref{table:AF}.
 
 \begin{table}[]
     \centering
@@ -208,38 +230,50 @@ AFs help mitigate this issue by keeping the gradient in specific limits. The mos
  \section{Frameworks for Neural Networks}
  \label{section:darknet}
 
-\quad To run a Neural Network model there are several popular frameworks like Tensorflow, PyTorch, Caffe and Darknet.
-Their purpose is to offer abstraction to software developers that want to run these networks. They also offer
+To run a Neural Network model there are several popular frameworks like
+Tensorflow, PyTorch, Caffe and Darknet.  Their purpose is to offer abstraction
+to software developers that want to run these networks. They also offer
 programming for different platforms like nVidia GPUs by using the CUDA API.
-
 
 \subsection{Darknet}
 
-\quad Darknet~\cite{darknet} is an open source neural network framework written in C and CUDA.It is used as the backbone for Yolov3~\cite{yolov3} and supports several different network configurations such as AlexNet and Resnet.
- It utilizes a network configuration
-file (.cfg) and a weights file (.weights) as input for inference.
+Darknet~\cite{darknet} is an open source neural network framework written in C
+and CUDA.It is used as the backbone for Yolov3~\cite{yolov3} and supports
+several different network configurations such as AlexNet and Resnet.  It
+utilizes a network configuration file (.cfg) and a weights file (.weights) as
+input for inference.
 
-\lstinputlisting[label=cfg,language=Python,frame=single,breaklines=true,firstline=13,lastline=19,caption=cfg code for a Convolutional Layer used in Yolov3~\cite{yolov3}]{./Code/yolov3.cfg}
+\lstinputlisting[label=cfg,language=Python,frame=single,breaklines=true,firstline=13,lastline=19,caption=cfg
+  code for a Convolutional Layer used in
+  Yolov3~\cite{yolov3}]{./Code/yolov3.cfg}
 
-In listing \ref{cfg}, there is a snippet of the file featuring
-a convolution layer with 32 kernels of size 3x3. It has stride of 1 and zero padding of 1, meaning the output size will
-be equal to the input. The input size can be calculated by analyzing the previous layers and the network parameters. The network parameters in \ref{net} includes
-data to be used for training while only the first three parameters are needed for inference.
+In listing \ref{cfg}, there is a snippet of the file featuring a convolution
+layer with 32 kernels of size 3x3. It has stride of 1 and zero padding of 1,
+meaning the output size will be equal to the input. The input size can be
+calculated by analyzing the previous layers and the network parameters. The
+network parameters in \ref{net} includes data to be used for training while only
+the first three parameters are needed for inference.
 
-\lstinputlisting[label=net,language=Python,frame=single,breaklines=true,firstline=1,lastline=11,caption=cfg code for the network parameters]{./Code/yolov3.cfg}
+\lstinputlisting[label=net,language=Python,frame=single,breaklines=true,firstline=1,lastline=11,caption=cfg
+  code for the network parameters]{./Code/yolov3.cfg}
 
 
 \subsection{Caffe}
 
-
-\quad Convolutional Architecture for Fast Feature Embedding (Caffe)~\cite{caffe} is also an Open source framework written in C++ with interface for Python.
-Caffe exports a neural network by serializing it using the Google Protocol Buffers (ProtoBuf) serialization library. Each network has 2 prototxt files:
+Convolutional Architecture for Fast Feature Embedding (Caffe)~\cite{caffe} is
+also an Open source framework written in C++ with interface for Python.  Caffe
+exports a neural network by serializing it using the Google Protocol Buffers
+(ProtoBuf) serialization library. Each network has 2 prototxt files:
 \begin{itemize}
-    \item  deploy.prototxt- File that describes the structure of the network that can be deployed for inference.
-    \item  train\_val.prototxt- File that includes structure for training. 
-    it includes the extra layers used to aid the training and validation process.
+    \item deploy.prototxt- File that describes the structure of the network that
+      can be deployed for inference.
+    \item train\_val.prototxt- File that includes structure for training.  it
+      includes the extra layers used to aid the training and validation process.
 \end{itemize}
 
-The interface for python helps generate these files. For inference only the deploy file matters.
+The interface for python helps generate these files. For inference only the
+deploy file matters.
 
-\lstinputlisting[label=caffe,language=Python,frame=single,breaklines=true,firstline=1,lastline=26,caption=prototxt file for the input data and the first convolution layer of AlexNet~\cite{alexnet}]{./Code/caffe.prototxt}
+\lstinputlisting[label=caffe,language=Python,frame=single,breaklines=true,firstline=1,lastline=26,caption=prototxt
+  file for the input data and the first convolution layer of
+  AlexNet~\cite{alexnet}]{./Code/caffe.prototxt}
