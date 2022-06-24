@@ -1,0 +1,103 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                      %
+%     File: Thesis_Introduction.tex                                    %
+%     Tex Master: Thesis.tex                                           %
+%                                                                      %
+%     Author: Andre C. Marta                                           %
+%     Last modified :  2 Jul 2015                                      %
+%                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+\label{chapter:introduction}
+
+
+
+
+In this report, the problem of accelerating the execution of Deep Neural
+Networks (DNNs) using Coarse GRained Reconfigurable Arrays (CGRAs) is studied,
+with special emphasis on compiling a DNN description into code that runs on
+CPU/CGRA system. The Deep Versat Architecture~\cite{valter:deepversat} CGRA will be used as an
+implementation tool in this work.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem}
+\label{section:problem}
+
+Neural Networks have been an object of study since the 1940's, but until the
+beginning of this decade their applications were limited and did not play a
+major role in computer vision conferences. With its meteoric rise in research,
+several solutions to accelerate this algorithm have appeared, from Field Programmable Gate Arrays (FPGA) to
+Application Specific Integrated Circuits (ASIC) implementations.
+
+Convolutional Neural Networks (CNNs) are a particular kind of DNN where the output
+values of the neurons in one layer are convolved with a kernel to produce the
+input values of the neurons of the next layer. This algorithm is compute bound,
+that is, its performance depends on how fast it can do certain calculations, and
+depend less on the memory access time. Namely the convolutional layers take
+approximately 90$\%$ of the computation time.
+
+The acceleration of these workloads is a matter of importance for today's
+applications such as image processing for object recognition or simply to
+enhance certain images. Other uses like instant translation and virtual
+assistants are applications of neural networks and their acceleration is of
+vital importance to bring them into Internet of Things.
+
+A suitable circuit to accelerate DNNs in hardware is the CGRA. A CGRA is a
+collection of Functional Units and memories with programmable interconnections
+in order to form computational datapaths. A CGRA can be implemented in both
+FPGAs and ASICs. CGRAs can be reconfigured much faster than FPGAs, as they have
+much less configuration bits. If reconfiguration is done at runtime, CGRAs add
+temporal scalability to the spacial scalability that characterize
+FPGAs. Moreover, partial reconfiguration is much easier to do in CGRAs compared
+to FPGAs which further speeds up reconfiguration time. Another advantage of
+CGRAs is the fact that they can be programmed entirely in software, contrasting
+with the large development time of customized Intellectual Property (IP) blocks.
+The Coarse Grain Reconfigurable Arrays (CGRA) is a midway acceleration solution
+between FPGAs, which are flexible but large, power hungry and difficult to
+reprogram, and ASICs, which are fast but generally not programmable.
+
+However, mapping a specific DNN to a CGRA requires knowledge of its
+architecture, latencies and register configurations, which may become a lengthy
+process, especially if the user wants to explore the design space for several
+DNN configurations. An automatic compiler that can map a standard DNN
+description into CPU/CGRA code would dramatically decrease time to market of its
+users. Currently there are equivalent tools for CPUs and GPUs and
+even for FPGAS.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Solution}
+\label{section:solution}
+
+The proposed solution is a compiler that takes a configuration file from a
+neural network framework like Caffe or Darknet. This new tool inputs the
+parameters of Deep Versat, such as the number of layers and functional units,
+and produces the C code needed for the Versat runs. This code is run on the
+RISC-V picorv32~\cite{picorv} CPU controller that has Deep Versat as a peripheral.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Thesis Outline}
+%\label{section:outline}
+
+%Briefly explain the contents of the different chapters...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Author's Work}
+%\label{section:authorwork}
+
+%TO ADD----
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Report Outline}
+\label{reportoutline}
+
+This report is composed of 4 more chapters. In the second chapter, the
+state-of-the-art of neural networks and the difficulties accelerating them is
+described. In the third chapter, the Deep Versat architecture and how to program
+it is explained. In the fourth chapter, CNN compiler techniques are
+explored. Finally, the last chapter contains the proposed solution and the plan
+for its execution.
+
+

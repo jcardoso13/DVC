@@ -20,7 +20,7 @@
 %       Email: andre.marta@tecnico.ulisboa.pt                          %
 %                                                                      %
 %  Created:       Jan 20, 2011                                         %
-%  Last Modified: Feb 19, 2018                                         %
+%  Last Modified: Jan 29, 2021                                         %
 %                                                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Revision history                                                    %
@@ -36,6 +36,10 @@
 %                    new option for appendix page numbering format,    %
 %                    custom bibliography style                         %
 %  v7 - 2018/02/19 - multiple citations compressed                     %
+%  v8 - 2019/05/13 - added examples (pseudo-code)                      %
+%  v9 - 2020/03/03 - added French language support                     %
+%                    indented first paragraphs                         %
+%  V10- 2021/01/29 - place caption above table                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                      %
 % To generate the PDF file, type "make" at the terminal prompt.        %
@@ -64,33 +68,6 @@
 % ----------------------------------------------------------------------
 \documentclass[10pt,a4paper,twoside]{report}
 
-\usepackage{listings}
-\usepackage{color}
-\usepackage[printonlyused]{acronym}
-\usepackage[all]{nowidow}
-
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\lstset{frame=tb,
-	language=C,
-	aboveskip=5mm,
-	belowskip=5mm,
-	showstringspaces=false,
-	columns=flexible,
-	basicstyle={\small\ttfamily},
-	numbers=none,
-	numberstyle=\tiny\color{gray},
-	keywordstyle=\color{blue},
-	commentstyle=\color{dkgreen},
-	stringstyle=\color{mauve},
-	breaklines=true,
-	breakatwhitespace=true,
-	tabsize=3,
-}
-
-
 % ----------------------------------------------------------------------
 % Define external packages, language, margins, fonts and new commands
 % ----------------------------------------------------------------------
@@ -113,21 +90,9 @@
 \input{Thesis_FrontCover} % file "Thesis_FrontCover.tex"
 \cleardoublepage
 
-
-% ----------------------------------------------------------------------
-%  Declaration
-% ----------------------------------------------------------------------
-\section*{Declaration}
-I declare that this document is an original work of my own authorship and that it 
-fulfills all the requirements of the Code of Conduct and Good Practices of the 
-Universidade de Lisboa.
-\cleardoublepage
-
-
 % ----------------------------------------------------------------------
 % Dedication page (optional)
 % ----------------------------------------------------------------------
-
 \input{Thesis_Dedication} % file "Thesis_Dedication.tex"
 \cleardoublepage
 
@@ -173,34 +138,27 @@ Universidade de Lisboa.
 \listoffigures
 \cleardoublepage 
 
-\chapter*{List of Acronyms}
-% Add entry in the table of contents as section
-\addcontentsline{toc}{section}{List of Acronyms}
-\input{Thesis_Acronyms} % file "Thesis_Acronyms.tex"
-\cleardoublepage
-
-
 % Nomenclature
 %
 % entries of nomenclature list
-%\input{Thesis_Nomenclature} % file "Thesis_Nomenclature.tex"
+\input{Thesis_Nomenclature} % file "Thesis_Nomenclature.tex"
 %
 % Add entry in the table of contents as section
-%\phantomsection
-%\addcontentsline{toc}{section}{\nomname}
+\phantomsection
+\addcontentsline{toc}{section}{\nomname}
 % Insert glossary/nomenclature section produced by MakeIndex
-%\printnomenclature
-%\cleardoublepage
+\printnomenclature
+\cleardoublepage
 
 % entries of glossary list
-%\input{Thesis_Glossary} % file "Thesis_Glossary.tex"
+\input{Thesis_Glossary} % file "Thesis_Glossary.tex"
 
 % Add entry in the table of contents as section
 \phantomsection
 \addcontentsline{toc}{section}{\glossaryname}
 % Insert glossary section produced by MakeIndex
 \printglossary
-%\cleardoublepage
+\cleardoublepage
 
 % Set arabic numbering (1,2,...) after preface
 %
@@ -214,28 +172,26 @@ Universidade de Lisboa.
 \input{Thesis_Introduction} % file "Thesis_Introduction.tex"
 \cleardoublepage
 
-
-\input{Thesis_CNN}
+\input{Thesis_Background} % file "Thesis_Background.tex"
 \cleardoublepage
 
-\input{Thesis_Deep_Versat}
-%\input{Thesis_Implementation} % file "Thesis_Implementation.tex"
-\cleardoublepage
-
-\input{Thesis_CNN_Versat} % add new .tex files for new chapters
-\cleardoublepage
-
-\input{Thesis_Work} % add new .tex files for new chapters
+\input{Thesis_Implementation} % file "Thesis_Implementation.tex"
 \cleardoublepage
 
 %\input{Thesis_new_file} % add new .tex files for new chapters
-% \cleardoublepage
-
-%\input{Thesis_Results} % file "Thesis_Results.tex"
 %\cleardoublepage
 
-%\input{Thesis_Conclusions} % file "Thesis_Conclusions.tex"
+%\input{Thesis_new_file} % add new .tex files for new chapters
 %\cleardoublepage
+
+%\input{Thesis_new_file} % add new .tex files for new chapters
+%\cleardoublepage
+
+\input{Thesis_Results} % file "Thesis_Results.tex"
+\cleardoublepage
+
+\input{Thesis_Conclusions} % file "Thesis_Conclusions.tex"
+\cleardoublepage
 
 % ----------------------------------------------------------------------
 %  Bibliography
@@ -291,7 +247,7 @@ Universidade de Lisboa.
 %  CAUTION: 1) the main document (up to the conclusions) shall not exceed 80 pages
 %           2) the document shall not exceed a total of 100 pages (per IST regulations)
 % ----------------------------------------------------------------------
-%\appendix
+\appendix
 
 % add page number prefix according to apendix chapter (optional)
 %\renewcommand{\thepage}{\thechapter.\arabic{page}}
@@ -299,14 +255,14 @@ Universidade de Lisboa.
 % re-set arabic numbering (A.1,A.2,...) (optional, use only if chapter prefix is added)
 %\setcounter{page}{1}
 
-%\input{Thesis_Appendix_A} % file "Thesis_Appendix_A.tex"
-%\cleardoublepage
+\input{Thesis_Appendix_A} % file "Thesis_Appendix_A.tex"
+\cleardoublepage
 
 % re-set arabic numbering (B.1,B.2,...) (optional, use only if chapter prefix is added)
 %\setcounter{page}{1}
 
-%\input{Thesis_Appendix_B} % file "Thesis_Appendix_B.tex"
-%\cleardoublepage
+\input{Thesis_Appendix_B} % file "Thesis_Appendix_B.tex"
+\cleardoublepage
 
 % ----------------------------------------------------------------------
 \end{document}
