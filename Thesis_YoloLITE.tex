@@ -7,12 +7,18 @@ that can run any convolutional neural network on this system, it must first run 
 
 \section{Porting Darknet to an embedded CPU}
 
-Darknet is a framework on C++ that uses dynamic memory and GPU acceleration option to get faster outputs. Also the use of floats is also prohibited in the embedded code
-as the RISC-V CPU only supports the extentions IM. I for Integer and M for multiplication. It also has a lot of features that are not needed in this work, such as training code
-that is part of Darknet.
+As mentioned in Section \ref{section:darknet} is a framework for Neural Networks on C++ that uses dynamic memory and GPU acceleration option to get faster outputs. Also the use of floats is also prohibited in the embedded code
+as the RISC-V CPU only supports the extentions IM. I for Integer and M for multiplication. It also has a lot of features that are not needed in this work, such as training the CNN. By stripping the features of darknet we get a much simpler
+code framework apropriately named darknet lite.
+
+In the following figure, the data strucuture for a layer is showed. A CNN on darknet lite is just an array of layers in which each has an input, output and layer parameters. Usually the input is a past layer output or the image input.
+
+\lstinputlisting[label=DarknetLiteStrut,language=C++,frame=single,breaklines=true,firstline=1,lastline=38,caption=Layer Struct
+  Yolov3~\cite{yolov3}]{./Code/DarknetLiteStrut.h}
 
 
 \section{Conversion of Caffe to CFG}
+
 
 
 \section{Writting Layers into Memory}
