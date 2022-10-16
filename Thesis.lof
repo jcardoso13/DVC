@@ -1,0 +1,22 @@
+\babel@toc {english}{}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Deep Neural Network Structure}}{3}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces CNN architecture example, taken from~\cite {cgracnn}}}{4}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces 2D convolution with stride = 1 and without zero padding}}{5}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Simple example of a maxpool layer, taken from~\cite {maxpoolimg}}}{6}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Dropout if applied to all layers, adapted from~\cite {Dropout}}}{6}{figure.2.5}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Versat Topology, taken from~\cite {sousa:controller}}}{12}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Versat Data Engine Topology, taken from~\cite {sousa:FFT}}}{12}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Versat Memory Unit with one AGU per port, taken from~\cite {lopes:versat}}}{13}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Configuration Module,taken from~\cite {sousa:controller}}}{13}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Deep Versat Architecture, taken from~\cite {valter:deepversat}}}{15}{figure.3.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Deep Versat System using a RISC-V RV32IMC soft core, taken from~\cite {valter:deepversat}}}{16}{figure.3.6}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces fpgaConvNet Architecture. Taken from~\cite {fpgaconvnet}}}{18}{figure.4.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Class Structure for the Versat Simulator}}{24}{figure.6.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }

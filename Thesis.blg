@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Thesis.aux
+The style file: abbrvunsrtnat.bst
+Database file #1: Thesis_bib_DB.bib
+Warning--entry type for "sousa:FFT" isn't style-file defined
+--line 249 of file Thesis_bib_DB.bib
+Warning--empty year in picorv
+Warning--empty year in mnist:digits
+Warning--empty publisher in alexnet
+Warning--empty booktitle in cgracnn
+Warning--empty year in maxpoolimg
+You've used 22 entries,
+            2481 wiz_defined-function locations,
+            669 strings with 7898 characters,
+and the built_in function-call counts, 7959 in all, are:
+= -- 659
+> -- 423
+< -- 12
++ -- 168
+- -- 124
+* -- 574
+:= -- 1238
+add.period$ -- 72
+call.type$ -- 22
+change.case$ -- 44
+chr.to.int$ -- 22
+cite$ -- 30
+duplicate$ -- 401
+empty$ -- 738
+format.name$ -- 151
+if$ -- 1730
+int.to.chr$ -- 1
+int.to.str$ -- 23
+missing$ -- 9
+newline$ -- 121
+num.names$ -- 59
+pop$ -- 218
+preamble$ -- 1
+purify$ -- 22
+quote$ -- 0
+skip$ -- 279
+stack$ -- 0
+substring$ -- 231
+swap$ -- 86
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 154
+warning$ -- 5
+while$ -- 52
+width$ -- 0
+write$ -- 286
+(There were 6 warnings)

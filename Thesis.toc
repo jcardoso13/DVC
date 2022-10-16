@@ -1,0 +1,52 @@
+\babel@toc {english}{}
+\contentsline {section}{Acknowledgments}{vii}{section*.2}%
+\contentsline {section}{Resumo}{ix}{section*.3}%
+\contentsline {section}{Abstract}{xi}{section*.4}%
+\contentsline {section}{List of Tables}{xv}{section*.6}%
+\contentsline {section}{List of Figures}{xvii}{section*.8}%
+\contentsline {section}{List of Acronyms}{xix}{chapter*.10}%
+\contentsline {section}{Glossary}{1}{section*.11}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Problem}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Solution}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Report Outline}{2}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Deep Neural Networks}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Convolutional Neural Networks}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Architecture Overview}{4}{subsection.2.1.1}%
+\contentsline {subsubsection}{Convolutional Layer}{4}{section*.12}%
+\contentsline {subsubsection}{Pooling Layer}{5}{section*.13}%
+\contentsline {subsubsection}{Fully Connected Layer}{6}{section*.14}%
+\contentsline {subsubsection}{Route $\&$ Shortcut Layer}{6}{section*.15}%
+\contentsline {subsubsection}{Dropout Layer}{6}{section*.16}%
+\contentsline {subsubsection}{Activation Functions}{7}{section*.17}%
+\contentsline {section}{\numberline {2.2}Frameworks for Neural Networks}{7}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Darknet}{7}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Caffe}{8}{subsection.2.2.2}%
+\contentsline {chapter}{\numberline {3}Deep Versat}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Versat Architecture}{11}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Data Engine}{11}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Configuration Module}{13}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Deep Versat Architecture}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Deep Versat System}{16}{subsection.3.2.1}%
+\contentsline {chapter}{\numberline {4}CNN Compiling in FPGAs}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Toolflows for Mapping CNNs in FPGAs}{17}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Supported Neural Network Models}{18}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Architecture \& Portability}{18}{subsection.4.1.2}%
+\contentsline {chapter}{\numberline {5}Darknet Lite}{19}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Porting Darknet to an embedded CPU}{19}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Conversion of Caffe to CFG}{21}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Parsing CFG Files into the program}{21}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Deep Versat Software Simulator}{23}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Architecture and Object Relation}{23}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Software API}{25}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Simulation}{25}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Improving the Versat API}{27}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Software Layers}{27}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Generic Convolution API}{27}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Hardware Configurations}{27}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Abstracting Versat Configuration}{27}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}Convolution Scenarios}{27}{subsection.7.2.3}%
+\contentsline {chapter}{\numberline {8}Conclusions}{29}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Achievements}{29}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Future Work}{29}{section.8.2}%
+\contentsline {chapter}{Bibliography}{31}{section*.18}%
