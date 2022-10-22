@@ -1,5 +1,5 @@
-\chapter{Deep Neural Networks}
-\label{chapter:cnn}
+\section{Deep Neural Networks}
+\label{section:cnn}
 %PAPERS TO USE FOR CITING
 %https://ieeexplore.ieee.org/abstract/document/6639344
 %http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networ
@@ -49,7 +49,7 @@ of neuros per layer.
 %One propriety of CNN's is the shift invariance due to the use of 2D image convolution with filters and that makes them specifically
 %good for Image and video recognition.
 
-\section{Convolutional Neural Networks}
+\subsection{Convolutional Neural Networks}
 \label{section:subcnn}
 
 Convolutional Neural Networks (CNN) are a class of DNNs used in Image and Video
@@ -67,12 +67,12 @@ as each neuron is only connected to a few neurons of the previous layer.
     \label{CNNl}
 \end{figure} 
 
- \subsection{Architecture Overview}
+ \subsubsection{Architecture Overview}
  \label{section:Aoverview}
 
  %There's several types of layers used in these networks to achieve the desired result.
 
- \subsubsection{Convolutional Layer}
+ \paragraph{Convolutional Layer}
 \label{section:convlayer}
 
 In a typical CNN not all layers are convolutional, but the convolutional layers
@@ -123,7 +123,7 @@ convolutional layer.
 
 %Then a 3D convolution is performed with the kernel changing from layer to layer
 
-\subsubsection{Pooling Layer}
+\paragraph{Pooling Layer}
 
 The MaxPool or AvgPool are layers used in Convolutional Neural Networks to
 downsampling the feature maps to make the output maps less sensitive to the
@@ -145,7 +145,7 @@ the output will be bigger than the input.
 \end{figure} 
  
 
-\subsubsection{Fully Connected Layer}
+\paragraph{Fully Connected Layer}
 
 The fully connected layer is mostly used for classification in the final layers
 of the NN. It associates the feature map to the respective labels.  It takes the
@@ -161,7 +161,7 @@ Equation~\ref{equation:connected} describes the operation.
 where $w_{ji}^{l+1}$ are the weights associated with a specific input for each output.
 
 
-\subsubsection{Route $\&$ Shortcut Layer}
+\paragraph{Route $\&$ Shortcut Layer}
 
 The Shortcut layer or skip connection was first introduced in
 Resnet~\cite{resnet}.  It allows to connect the previous layer to another to
@@ -170,7 +170,7 @@ Yolov3~\cite{yolov3}, concatenates 2 layers in depth (channel) or skips the
 layer forward. This is used after the detection layer in Yolov3 to extract other
 features.
 
-\subsubsection{Dropout Layer}
+\paragraph{Dropout Layer}
 
 This type of layer was conceived to avoid overfitting~\cite{Dropout} by dropping
 the neurons with probability below the threshold. In
@@ -182,7 +182,7 @@ Figure~\ref{figure:Dropout}, there is a graphical representation.
     \label{figure:Dropout}
 \end{figure} 
 
-\subsubsection{Activation Functions}
+\paragraph{Activation Functions}
 
 Activation Functions (AF) are functions used in each layer of a NN
 to compute the weighted sum of input and biases, which is used to give a value
@@ -224,7 +224,7 @@ table~\ref{table:AF}.
 
 %image of activation functions?
 
- \section{Frameworks for Neural Networks}
+ \subsection{Frameworks for Neural Networks}
  \label{section:darknet}
 
 To run a Neural Network model there are several popular frameworks like
@@ -232,7 +232,7 @@ Tensorflow, PyTorch, Caffe and Darknet.  Their purpose is to offer abstraction
 to software developers that want to run these networks. They also offer
 programming for different platforms like nVidia GPUs by using the CUDA API.
 
-\subsection{Darknet}
+\subsubsection{Darknet}
 
 Darknet~\cite{darknet} is an open source neural network framework written in C
 and CUDA. It is used as the backbone for Yolov3~\cite{yolov3} and supports
@@ -255,7 +255,7 @@ the first three parameters are needed for inference.
   code for the network parameters]{./Code/yolov3.cfg}
 
 
-\subsection{Caffe}
+\subsubsection{Caffe}
 
 Convolutional Architecture for Fast Feature Embedding (Caffe)~\cite{caffe} is
 also an open source framework written in C++ with a Python interface.  Caffe

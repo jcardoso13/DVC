@@ -1,18 +1,27 @@
 \chapter{Deep Versat Software Simulator}
 \label{chapter:Simulator}
 
-The need for a software simulator comes from the complexity of the configurations being written into Versat and
-the hardware simulation faults of being slow.
+The need for a software simulator comes from the complexity of the configurations 
+being written into Versat and the hardware simulation faults of taking too much time and hard to debug.
 
 The goal is to emulate what the hardware is doing much more efficienctly than 
 a simple Hardware simulation as the time of development for hardware
 is much higher than simple software. The Simulator executes clock iteration per iteration 
-getting the same results in each clock as the hardware. As Versat is a CGRA, different functional
-unit configurations are easy to accomplish in the simulator and the time to get results on performance
-for a specific program is a lot quicker. The only thing the Simualator can't do is predict
-if the hardware configurations fits the FPGA that is going to be used and the clocks that 
-the hardware can run. But, the propagation time is predictable depending on the number of functional units
-as the difference between times in different setups is due to the multiplexers on the inputs of the FUs.
+getting the same results in each clock as the hardware. 
+As Versat is a CGRA, different functional unit configurations are easy to accomplish 
+in the simulator and the time to get results on performance
+for a specific program is a lot faster. 
+
+In this chapter, we will explore the software arquitecture, 
+object relation and explain in detail each method used to emulate Versat clock by clock.
+
+% The only data the simulator can't output
+% is FPGA resource usage the hardware configurations fits the FPGA that is going to be used and the clocks that 
+% the hardware can run. But, the propagation time is predictable depending on the number of 
+% functional units as the difference between times in different setups is 
+% due to the multiplexers on the inputs of the FUs.
+
+
 
 \section{Architecture and Object Relation}
 
@@ -32,44 +41,154 @@ of the current stage and previous one.
     \label{figure:VersatSimulatorClass}
 \end{figure} 
 
-\section{Software API}
+
+\subsection{Functional Units}
+
+The following table contains the functional units present in the simulator 
+and is represented by 
+"CFU" in figure ~\ref{figure:VersatSimulatorClass}. 
+VI and VO represent CRead and CWrite 
+classes respectively.
 
 
+
+\begin{table}[!htbp]
+    \centering
+    \begin{tabular}{|ll|}
+        \hline
+        \textbf{Functional Unit}     & \textbf{Porpuse}  \\  \hline
+        Read (VI) Mem Unit             & Reads from DDR and sends Data to databus            \\ \hline
+        Write (VO) Mem Unit & Reads from databus and sends Data to DDR             \\ \hline
+        MulAdd (MAC)    & Multiplication and Accumulate          \\ \hline
+		Mul    & Multiplication     \\ \hline
+		Alu    & Standard algorithmic and logic unit     \\ \hline
+		AluLite    & Stripped down  algorithmic and logic unit     \\ \hline
+		Barrel Shifter (BS) & Shifts to the right (division by 2) or to the left (multiplication by 2) \\ \hline
+		Memory (Mem) & Sends/Receives data to/from the pipeline. Data is inserted through CPU communication   \\ \hline
+        \end{tabular}
+    \caption{Versat Simulator Functional Units}
+    \label{table:versatsimfu}
+    \end{table}
+
+To add a new FU, it's as easy as to create a new class that will be used by CStage with
+a run(),update(),output(),copy() method. Of course, if it has variables needed to be defined
+by the program, set param functions are also needed. Using the simulator, hardware development
+and program development can be parallelized to output a new program 
+with more optimized performance.
+
+In the next section, these methods will be explained in detail and 
+their importance to the simulator.
+
+\section{Simulation}
+
+After the program that is running on the CPU finishes writing the configurations, it will call the run method of Versat.
+On figure \ref{figure:VersatSimulatorSequenceDiagram}, a sequence diagram is presented with the rundown
+of a typical program that uses Versat Simulator.
+
+\newpage
 %Previously, a software API was made in a previous thesis~\cite{valter:deepversat}
 %for Versat. To build on top of this several, software functions were added to make writting configurations to Versat
 %easier.
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/versatsim.png}
+    \caption{Sequence Diagram of a Program using Versat Simulator}
+    \label{figure:VersatSimulatorSequenceDiagram}
+\end{figure} 
 
-\subsection{Run Simulator}
+
+
+\subsection{Run() Function}
 
 In the software API for Embedded Versat, the run function would write to a shadow register,
-which we can call it "start" changing the value from 0 to 1. Similarly, another register would
+which we can call it "start" changing the value from 0 to 1. 
+Similarly, another register would
 change value to 0, which we can call "done". While this last register isn't turned to 1, 
-Versat hasn't finished running with the previous configurations so all that can be done is to write
+Versat hasn't finished running with the 
+previous configurations so all that can be done is to write
 configurations for future runs.
 
-In the simulator, it works in a similar way to preserve compability as the goal is to have the same
+In the simulator, it works in a similar way to preserve compability 
+as the goal is to have the same
 programs run on software simulator and on the FPGA.
 
 \lstinputlisting[label=DarknetLiteStrut,language=C++,frame=single,breaklines=true,firstline=222,lastline=245,caption= The Run function code]{./Code/versat.cpp}
 
 As we can see in the previous listing, we reset state variables of the simulator, then shift the 
 VO and FU shadow registers.
-This is done to simulate the pipeline delay in the FPGA. Because the data needs to come and go to main memory (DDR),
-1 run cycle is used just for fetching data and writting data. Using a small example:
-If a developer writes a configuration to do a 5x5 matrix multiplication, Versat will have to run 3 times.
-Once to fetch data from memory, the second for the actual use of Versat and the final one to get data onto memory.
-In the simulator, this is done using the same class instances and copying the configuration values. On the hardware it's several flip-flop registers in a row.
-However, all these 3 stages can happen at once if you run multiple configurations in one program, e.g: running a CNN
-through Versat, it will have at least 1 run per layer. So, if it has 5 layers, Versat will have to run 5+2 times, the last 2 times are done to
+This is done to simulate the pipeline delay in the FPGA. 
+Because the data needs to come and go to main memory (DDR),
+1 run cycle is used just for fetching data and writting data. 
+Using a small example:
+If a developer writes a configuration to do a 5x5 matrix multiplication, 
+Versat will have to run 3 times.
+Once to fetch data from memory, the second for the actual use of Versat 
+and the final one to get data onto memory.
+
+In the simulator, this is done using the same class instances and 
+copying the configuration values. On the hardware it's several flip-flop registers in a row.
+However, all these 3 stages can happen at once if you run multiple configurations in one program, 
+e.g: running a CNN
+through Versat, it will have at least 1 run per layer. 
+So, if it has 5 layers, Versat will have to run 5+2 times, the last 2 times are done to
 flush the Versat of any data.
 
-After the shift, a new thread is created to run the simulator in parallel with the configurations,
+After the shift, a new thread is created to run the simulator in parallel 
+with the configurations,
 having the same behaviour as the hardware.
 
-\subsection{Simulation Functions}
+\subsection{Start() Method}
 
-At the beginning of the configuration run, the method "start_run" of all FUs and memories is started.
-This means, for functional units like the Barrel Shifter nothing as it has no delay for the output
-\section{Simulation}
+At the beginning of the configuration run, the method "start run" of 
+all FUs and memories is started.
+In this function, several functional units will have it's state variables 
+reset such as VI,VO and MAC FU.
+
+\subsection{Databus}
+
+The databus on Versat is a simple array that holds all the outputs of the functional units.
+The data type (versat\_t) of the array depends on the width of Versat, which is part of the configuration file.
+Using higher width, e.g: 64 bits, is useful for same instruction, multiple data (SIMD) 
+applications but requires the functional units to be adapted.
+For the porpuse of this thesis, 16 bits and 32 bits are used depending 
+on the neural network and how it is optimized.
+
+When the versat is instanced in the program, the functional units constructor will point
+to the correct position of the databus as it's referenced in the following figure.
+
+As mentioned in figure \ref{figure:deepversatarch} from chapter \ref{chapter:Background}, section \ref{sector:DeepVersat}, 
+each functional unit will be able to access the output from the functional units of the
+current stage and previous. Software wise, each stage will be pointing to a part of the databus.  
+
+% INSERT FIGURE HERE
 
 
+\subsection{Update() and Output() Method}
+
+
+The update method's goal is to update the functional unit's value on the databus. 
+Each functional unit has a pipeline delay to output or has a run delay configured, 
+like the memories or MAC.
+
+Meanwhile, the output method's goal is to, based on the inputs from the databus, calculate the result from
+ the functional Unit.
+
+ For a compute functional unit such as the MAC or the ALU, this means reading from the databus for operands A and B
+ and performing the selected operation. For the read memory (VI), it will output an address on the mem
+ and performs a read operation. For the write memory, it will output an address and performs a write operation.
+
+ In the listing \ref{listing:fu}, the code of the Mul functional unit is used as an example.
+
+ \newpage
+ \lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=21,lastline=65,caption=Update and Output method of Mul]{./Code/mul.cpp}
+
+
+\subsection{Copy() and Info() Method}
+
+Finally, the last functions of the simulator, copy() main porpuse is to copy the configuration parameters from instance to another,
+used mostly in the beginning of the run to simulate the shadow registers.
+Meanwhile the Info method is a State printing function that outputs a string with the full data of the current iteration,
+this way, you can check iteration by iteration the progress of the simulation, just like in hardware.
+At this moment, if debugging is activated, each clock iteration output and state of versat will be in a file.
+
+\lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=572,lastline=584,caption=Info output for the MAC functional unit]{./Code/versat_iter22.txt}

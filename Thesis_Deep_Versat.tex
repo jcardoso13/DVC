@@ -1,5 +1,5 @@
-\chapter{Deep Versat}
-\label{chapter:DeepVersat}
+\section{Deep Versat}
+\label{sector:DeepVersat}
 
 \quad Versat is a Coarse Grained Reconfigurable Array (CGRA) Architecture. CGRAs are in-between Field Programmable Gate Arrays (FPGA)
  and general purpose processors (GPP).
@@ -11,7 +11,7 @@ changed in-between runs.
 In this chapter, the base Versat Architecture will be explained and then the Deep Versat Architecture
  and its improvements.
 
-\section{Versat Architecture}
+\subsection{Versat Architecture}
 
 \quad The Versat Architecture~\cite{sousa:compiler,sousa:controller,sousa:FFT,sousa:versat2016} 
 is depicted in Figure~\ref{figure:oldversat}. Its composed by the following modules: DMA,Controller,Program Memory,Control File Registry,Data-Engine and Configuration module.
@@ -27,7 +27,7 @@ can write to the configuration module for the versat runs. Between runs of the D
     \label{figure:oldversat}
 \end{figure} 
 
-\subsection{Data Engine}
+\subsubsection{Data Engine}
 \quad The Data Engine which is represented in Figure~\ref{figure:DE} carries out the computation needed on the data arrays. Its a 32 bit Architecture with up to 11 Functional Units (FU):
  Arithmetic and Logic Unit(ALU), stripped down ALU (ALU-Lite),
  Multiplier and Accumulator (MAC) and Barrel Shifter.
@@ -81,7 +81,7 @@ it writes into the register configuration data, when its a write, it stores the 
 
 
 \newpage
-\section{Deep Versat Architecture}
+\subsection{Deep Versat Architecture}
 
 
 \begin{figure}[!htb]
@@ -110,7 +110,7 @@ from the Verilog .vh files.
 
 
 \newpage
-\subsection{Deep Versat System}
+\subsubsection{Deep Versat System}
 
 \begin{figure}[!htbp]
     \centering

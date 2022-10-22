@@ -1,5 +1,5 @@
-\chapter{CNN Compiling in FPGAs}
-\label{chapter:CNNVersat}
+\section{CNN Compiling in FPGAs}
+\label{section:CNNVersat}
 
 This chapter presents an overview of toolflows that map convolutional neural
 networks into FPGA using the frameworks presented in
@@ -10,7 +10,7 @@ into CGRAs are introduced.
 %https://www.cv-foundation.org/openaccess/content_cvpr_workshops_2014/W17/html/Gokhale_A_240_G-opss_2014_CVPR_paper.html
 %
 
-\section{Toolflows for Mapping CNNs in FPGAs}
+\subsection{Toolflows for Mapping CNNs in FPGAs}
 \label{section:toolflow}
 
 Several software frameworks have been developed to accelerate development and
@@ -47,7 +47,7 @@ table~\ref{table:toolflow}, a list of notable ones is presented.
 \end{table}
 
 
-\subsection{Supported Neural Network Models}
+\subsubsection{Supported Neural Network Models}
 
 These toolflows support the most common layers in CNNs, which are discussed in
 chapter~\ref{chapter:cnn}. The acceleration target changes depending on the
@@ -55,7 +55,7 @@ toolflow.  For example, the fpgaConvNet~\cite{fpgaconvnet} toolflow focuses more
 on feature extraction while offering non accelerated support for fully connected
 layers.
 
-\subsection{Architecture \& Portability}
+\subsubsection{Architecture \& Portability}
 
 \begin{figure}[!htbp]
     \centering

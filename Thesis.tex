@@ -68,6 +68,16 @@
 \usepackage{color}
 \usepackage[printonlyused]{acronym}
 \usepackage[all]{nowidow}
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -214,14 +224,12 @@ Universidade de Lisboa.
 \input{Thesis_Introduction} % file "Thesis_Introduction.tex"
 \cleardoublepage
 
+\chapter{Background}
+\label{chapter:Background}
 
 \input{Thesis_CNN}
-\cleardoublepage
-
 \input{Thesis_Deep_Versat}
 %\input{Thesis_Implementation} % file "Thesis_Implementation.tex"
-\cleardoublepage
-
 \input{Thesis_CNN_Versat} % add new .tex files for new chapters
 \cleardoublepage
 
