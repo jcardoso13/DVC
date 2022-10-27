@@ -34,12 +34,19 @@ On figure \ref{newAPI}, a graphic representation of the new API is presented. It
 
 When utilizing the VI instead of a MEM, the data transfer happens between the functional unit and a Direct memory access while
 on the mem, the CPU writes directly to Versat, wasting CPU cycles. For the API, this means going from a read method that is straightforward
-to more configuration methods to set up the read operation from DDR The same happens to Write operations. To address this, 7 functions were created in 2 levels of abstraction.
-
-
+to more configuration methods to set up the read operation from DDR The same happens to Write operations. To address this, 7 functions were created in 2 levels of abstraction:
 load\_data(),load\_segmented\_data(),write\_data() that use a lower level functions: set\_IntMem\_Write(),set\_ExtMem\_Write(),set\_IntMem\_Read() and set\_ExtMem\_Read().
+The function of the higher abstraction memory functions is to abstract the parameters of the AGU. In the following listing we have one of the implementations
+as an example.
 
-The first three functions use the lower level 
+Insert Listing of LOAD SEGMENTED DATA
+
+Although this means having to write code with the AGUs in mind
+and how they function. To avoid it, a new class was created to also abstract how the AGU counts loops and approximate 
+the code to simple C++ code that runs on a CPU.
+
+Insert Listing of ACCUMULATOR
+
 
 \subsection{}
 
