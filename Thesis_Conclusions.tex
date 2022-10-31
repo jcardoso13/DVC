@@ -4,26 +4,59 @@
 %     Tex Master: Thesis.tex                                           %
 %                                                                      %
 %     Author: Andre C. Marta                                           %
-%     Last modified :  2 Jul 2015                                      %
+%     Last modified:  2 Jul 2015                                      %
 %                                                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Conclusions}
 \label{chapter:conclusions}
 
-Insert your chapter material here...
-
+In this thesis, several modules and tools were presented for neural networking development on Versat.
+The simulator is a significant improvement over normal hardware simulation for testing new
+software configurations and workloads. It also can predict the performance of the workloads
+and helps size how many functional units, stages or how much the size of the memories should be
+to achieve the highest performance.
+Furthermore, the new Versat API can bring new tools for development using the hardware
+and be able to write code for Versat akin to writing normal C++ code that runs on a CPU.
+Finally, the tools designed for Darknet give embedded development a boost by being able to
+run any CNN on embedded hardware, even if it's just a CPU.
+To test this, a suite of programs was planned and the results show the new software tools
+effectiveness.
 
 % ----------------------------------------------------------------------
 \section{Achievements}
 \label{section:achievements}
 
-The major achievements of the present work...
-
+One achievement of this thesis was the development of the simulator. The simulator is able
+to successfully emulate the output of the hardware, where a new program written for versat
+can be tested in 5 seconds instead of several minutes to put the program into the FPGA.
+Another achievement is the generic convolution being able to run any type of convolution layer
+efficiently. By changing the Versat parameters, a new complete hardware configuration can be
+done and tested with the software to check new performance figures.
+Lastly, the darknet framework for embedded devices and the tools used to parse CFG
+are important for future work using the Versat CGRA.
 
 % ----------------------------------------------------------------------
 \section{Future Work}
 \label{section:future}
 
-A few ideas for future work...
+For future work, obvious sections need to be addressed. While darknet lite was developed,
+they were not linked with Versat and the simulator. For that, a maxpool generic function
+needs to be added and redirect the convolution layer to the generic convolution for Versat.
+
+Other work includes improving the simulator by adding new FUs and new generic functions. On that
+topic, adding partial results to the convolution will also benefit possible Versat configurations.
+
+Versat is a highly versatile CGRA but for deep neural networks, datapath width is needed, i.e
+more memories and MACs to add more MACs means increasing the propagation time and as such
+grouping VIs and MACs into a bigger functional unit to avoid the usage of a multiplexer
+in the entrance of the MACs. This could be called the SIMD path while the rest of the configuration
+could still be highly configurable and have the usual functional units to have the cake and eat it too.
+Highest performance and high configurability.
+
+On the memory side, the ability to configure the size of each mem would give more flexibility
+and the configurations to be more data efficient. In this thesis, there were 2 types of VIs. One
+that holds the inputs and another that holds the kernels. The kernels don't use much space and thus
+the memory will hold a lot of empty values because both VIs have the same size.
+
 

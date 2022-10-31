@@ -1,9 +1,9 @@
 \section{CNN Compiling in FPGAs}
 \label{section:CNNVersat}
 
-This chapter presents an overview of toolflows that map convolutional neural
+This chapter presents an overview of tool flows that map convolutional neural
 networks into FPGA using the frameworks presented in
-Section~\ref{section:darknet}. Next, the concepts for mapping CNNs
+Section~\ref{section:Darknet}. Next, the concepts for mapping CNNs
 into CGRAs are introduced.
 
 %PAPERS
@@ -15,13 +15,13 @@ into CGRAs are introduced.
 
 Several software frameworks have been developed to accelerate development and
 execution of CNNs. The neural networks frameworks discussed in
-section~\ref{section:darknet} provide high level APIs together with high
+section~\ref{section:Darknet} provides high-level APIs together with high
 performance execution on multi-core CPUs, GPUs, Digital Signal Processors (DSPs)
 and Neural Processing Units (NPUs)~\cite{smartphones}. FPGAs provide an
-alternative to these architectures as they provide high-performance while also
-being low-power. FPGAs can meet several requirements like throughput and latency
-in diversity of applications. Thus, several toolflows that map CNN descriptions
-into hardware in order to perform inference have been created. In
+alternative to these architectures as they provide high performance while also
+being low-power. FPGAs can meet several requirements including throughput and latency
+in the diversity of applications. Thus, several toolflows that map CNN descriptions
+into hardware to perform inference have been created. In
 table~\ref{table:toolflow}, a list of notable ones is presented.
 \begin{table}[!htpb]
     \centering
@@ -50,9 +50,9 @@ table~\ref{table:toolflow}, a list of notable ones is presented.
 \subsubsection{Supported Neural Network Models}
 
 These toolflows support the most common layers in CNNs, which are discussed in
-chapter~\ref{chapter:cnn}. The acceleration target changes depending on the
-toolflow.  For example, the fpgaConvNet~\cite{fpgaconvnet} toolflow focuses more
-on feature extraction while offering non accelerated support for fully connected
+section~\ref{section:cnn}. The acceleration target changes depending on the
+toolflow.  For example, the fpgaConvNet~\cite{fpgaconvnet} tool flow focuses more
+on feature extraction while offering nonaccelerated support for fully connected
 layers.
 
 \subsubsection{Architecture \& Portability}
@@ -66,7 +66,7 @@ layers.
 
 As shown in figure~\ref{figure:fpgaconvnet}, the fpgaConvNet architecture
 consists of a Front-End Parser that reads a (ConvNet) description of the network
-and a description of the target platform and produces, on the one hand a
+and a description of the target platform and produces, on the one hand, a
 Directed Acyclic Graph (DAG), which is then converted to a Synchronous Data Flow
 (SDF) hardware model, and on the other hand, a model of the target platform from
 which resource constraints are derived. The hardware model thus obtained goes
@@ -76,14 +76,5 @@ Level Synthesis (HLS) input files and the software binaries that will run on the
 control CPU embedded in the FPGA. The HLS files go into the Xilinx (FPGA
 manufacturer) tools so that the configuration bitstream of the FPGA is produced.
 
-%\newpage
-%\section{Optimizing Convolutional Layers}
-%\label{section:autotuning}
-
-%To perform Convolutional Layers, the most used algorithm is General Matrix Multiply (GEMM). First the input is converted with a step called
-%im2col which transforms the 2D convolution into a Matrix Multiply.
-
-%In Deep Versat,discussed in~\ref{chapter:DeepVersat}, due to the use of the Address Generating Units that can do 2 nested Loops, a single Versat Core
-%can do a convolution on it's own
 
 

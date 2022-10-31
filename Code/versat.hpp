@@ -1,4 +1,4 @@
-#include "versat.h"
+#include "Versat.h"
 
 //Macro functions to use cpu interface
 #define MEMSET(base, location, value) (*((volatile int *)(base + (sizeof(int)) * location)) = value)
@@ -643,7 +643,7 @@ int sBS[nBS], sBS_p[nBS];
 inline void versat_init(int base_addr)
 {
 
-  //init versat stages
+  //init Versat stages
   int i;
   base = base_addr;
   for (i = 0; i < nSTAGE; i++)

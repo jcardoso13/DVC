@@ -5,10 +5,14 @@
         "tensorflow"
     ],
     "grammarly.selectors": [
-        {
-            "language": "latex",
-            "scheme": "file",
-            "pattern": "Thesis_Abstract.tex"
-        }
-    ]
+		{
+			"language": "latex",
+			"scheme": "file",
+			"pattern": "Thesis_Abstract.tex"
+		},
+		{
+			"language": "latex",
+			"scheme": "file"
+		}
+	]
 }

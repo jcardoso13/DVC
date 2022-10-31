@@ -1,4 +1,4 @@
-#include "versat.hpp"
+#include "Versat.hpp"
 #include <pthread.h>
 
 
@@ -29,7 +29,7 @@ int sBS[nBS], sBS_p[nBS];
 void CVersat::versat_init(int base_addr)
 {
 
-    //init versat stages
+    //init Versat stages
     int i;
     base_addr = 0;
     base = base_addr;
@@ -246,8 +246,8 @@ void CVersat::run()
 
 void* run_simulator(void* in)
 {
-	CVersat* versat = (CVersat*)in;
-	versat->run_sim(NULL);
+	CVersat* Versat = (CVersat*)in;
+	Versat->run_sim(NULL);
 	return NULL;
 }
 
