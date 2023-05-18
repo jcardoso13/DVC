@@ -14,7 +14,7 @@
 In this thesis, several modules and tools were presented for neural networking development on Versat.
 The simulator is a significant improvement over normal hardware simulation for testing new
 software configurations and workloads. It also can predict the performance of the workloads
-and helps size how many functional units, stages or how much the size of the memories should be
+and helps size how many functional units, stages, or how much the size of memories should be
 to achieve the highest performance.
 Furthermore, the new Versat API can bring new tools for development using the hardware
 and be able to write code for Versat akin to writing normal C++ code that runs on a CPU.
@@ -28,7 +28,7 @@ effectiveness.
 \label{section:achievements}
 
 One achievement of this thesis was the development of the simulator. The simulator is able
-to successfully emulate the output of the hardware, where a new program written for versat
+to successfully emulate the output of the hardware, where a new program written for Versat
 can be tested in 5 seconds instead of several minutes to put the program into the FPGA.
 Another achievement is the generic convolution being able to run any type of convolution layer
 efficiently. By changing the Versat parameters, a new complete hardware configuration can be
@@ -41,7 +41,7 @@ are important for future work using the Versat CGRA.
 \label{section:future}
 
 For future work, obvious sections need to be addressed. While darknet lite was developed,
-they were not linked with Versat and the simulator. For that, a maxpool generic function
+they were not linked with Versat and the simulator. For that, a max pool generic function
 needs to be added and redirect the convolution layer to the generic convolution for Versat.
 
 Other work includes improving the simulator by adding new FUs and new generic functions. On that

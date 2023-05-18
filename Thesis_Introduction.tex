@@ -4,7 +4,7 @@
 %     Tex Master: Thesis.tex                                           %
 %                                                                      %
 %     Author: Andre C. Marta                                           %
-%     Last modified :  2 Jul 2015                                      %
+%     Last modified:  2 Jul 2015                                      %
 %                                                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -15,9 +15,9 @@
 
 
 In this thesis, the problem of accelerating the execution of Deep Neural
-Networks (DNNs) using Coarse Grained Reconfigurable Arrays (CGRAs) are studied,
+Networks (DNNs) using Coarse-Grained Reconfigurable Arrays (CGRAs) are studied,
 with special emphasis on compiling a DNN description into code that runs on
-CPU/CGRA system. The Deep Versat Architecture~\cite{valter:deepversat} CGRA is used as an
+CPU/CGRA system. The DeepVersat Architecture~\cite{valter:deepversat} CGRA is used as an
 implementation tool in this work.
 
 
@@ -25,7 +25,7 @@ implementation tool in this work.
 \section{Motivation}
 \label{section:motivation}
 
-Neural Networks have been an object of study since the 1940s, but until the
+Neural Networks have been an object of study since the 1940s but until the
 beginning of this decade their applications were limited and did not play a
 major role in computer vision conferences. With its meteoric rise in research,
 several solutions to accelerate this algorithm have appeared, from Field Programmable Gate Arrays (FPGA) to
@@ -52,14 +52,14 @@ much fewer configuration bits. If reconfiguration is done at runtime, CGRAs add
 temporal scalability to the spacial scalability that characterizes
 FPGAs. Moreover, partial reconfiguration is much easier to do in CGRAs compared
 to FPGAs which further speeds up reconfiguration time. Another advantage of
-CGRAs is the fact that they can be programmed entirely in software, contrasting
+CGRAs are the fact that they can be programmed entirely in software, contrasting
 with the large development time of customized Intellectual Property (IP) blocks.
 The Coarse Grain Reconfigurable Array (CGRA) is a midway acceleration solution
-between FPGAs, which are flexible but large, power-hungry and difficult to
+between FPGAs, which are flexible but large, power-hungry, and difficult to
 reprogram, and ASICs, which are fast but generally not programmable.
 
 However, mapping a specific DNN to a CGRA requires knowledge of its
-architecture, latencies and register configurations, which may become a lengthy
+architecture, latencies, and register configurations, which may become a lengthy
 process, especially if the user wants to explore the design space for several
 DNN configurations. An automatic compiler that can map a standard DNN
 description into CPU/CGRA code would dramatically decrease the time to market of its
@@ -72,7 +72,7 @@ even for FPGAs.
 \label{section:objetctive}
 
 The main objective of this thesis is to take an established Neural Network Framework, in this case
-Darknet\cite{Darknet}. A tool will transform Caffe prototext files into CFG files
+Darknet\cite{Darknet}. A tool will transform a prototype machine learning model file created for Caffe into CFG files
 which are read by Darknet, so if a user has a DNN in Caffe, it can be used by the system.
 Afterward, the CFG file can be parsed by the tool to create the layer and data structures
 needed for Darknet.
@@ -110,7 +110,7 @@ The document has the following chapters:
 chapters relating to neural networks and the Versat CGRA.
 	\item Chapter 3 describes the Darknet framework and its embedded implementation, the tool
 to transform Caffe to CFG and to transform CFG to C++ code with the layers and data structures needed
-	\item Chapter 4 talks about the Deep Versat Simulator and how the simulator structure 
+	\item Chapter 4 talks about the DeepVersat Simulator and how the simulator structure 
 and architecture is designed and implemented.
 	\item Chapter 5 explains the new functions that the Versat API has that are used for
 development

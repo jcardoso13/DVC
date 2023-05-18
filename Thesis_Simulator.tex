@@ -1,4 +1,4 @@
-\chapter{Deep Versat Software Simulator}
+\chapter{DeepVersat Software Simulator}
 \label{chapter:Simulator}
 
 The need for a software simulator comes from the complexity of the configurations 
@@ -16,9 +16,9 @@ In this chapter, we will explore the software architecture,
 object relation and explain in detail each method used to emulate Versat clock by clock.
 
 % The only data the simulator can't output
-% is FPGA resource usage the hardware configurations fits the FPGA that is going to be used and the clocks that 
+% is FPGA resource usage the hardware configurations fit the FPGA that is going to be used and the clocks that 
 % the hardware can run. But, the propagation time is predictable depending on the number of 
-% functional units as the difference between times in different setups is 
+% functional units as the difference between times in different setups are 
 % due to the multiplexers on the inputs of the FUs.
 
 
@@ -71,7 +71,7 @@ classes respectively.
     \end{table}
 
 To add a new FU, it's as easy as creating a new class that will be used by CStage with
-a run(),update(),output(),copy() method. Of course, if it has variables needed to be defined
+a run(), update(), output(), and copy() method. Of course, if it has variables needed to be defined
 by the program, set param functions are also needed. Using the simulator, hardware development
 and program development can be parallelized to output a new program 
 with more optimized performance.
@@ -103,14 +103,14 @@ of a typical program that uses Versat Simulator.
 In the software API for Embedded Versat, the run function would write to a shadow register,
 which we can call "start" changing the value from 0 to 1. 
 Similarly, another register would
-change value to 0, which we can call "done". While this last register isn't turned to 1, 
+change the value to 0, which we can call "done". While this last register isn't turned to 1, 
 Versat hasn't finished running with the 
 previous configurations so all that can be done is to write
 configurations for future runs.
 
 In the simulator, it works in a similar way to preserve compatibility 
 as the goal is to have the same
-programs run on software simulator and the FPGA.
+programs run on software simulators and the FPGA.
 
 \lstinputlisting[label=runfunctioncode,language=C++,frame=single,breaklines=true,firstline=222,lastline=245,caption= The Run function code]{./Code/Versat.cpp}
 
@@ -128,7 +128,7 @@ and the final one is to get data onto memory.
 In the simulator, this is done using the same class instances and 
 copying the configuration values. On the hardware, it's several flip-flop registers in a row.
 However, all these 3 stages can happen at once if you run multiple configurations in one program, 
-e.g: running a CNN
+e.g.: running a CNN
 through Versat, will have at least 1 run per layer. 
 So, if it has 5 layers, Versat will have to run 5+2 times, the last 2 times are done to
 flush the Versat of any data.

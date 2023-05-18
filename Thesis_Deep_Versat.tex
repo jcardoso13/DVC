@@ -1,20 +1,20 @@
-\section{Deep Versat}
+\section{DeepVersat}
 \label{sector:DeepVersat}
 
-\quad Versat is a Coarse Grained Reconfigurable Array (CGRA) Architecture. CGRAs are in-between Field Programmable Gate Arrays (FPGA)
+\quad Versat is a Coarse-Grained Reconfigurable Array (CGRA) Architecture. CGRAs are in-between Field Programmable Gate Arrays (FPGA)
  and general purpose processors (GPP).
 The former is fully reconfigurable and the highest performance for a workload can be achieved as the Architecture is tailored to the workload.
 GPPs on the other hand, are not reconfigurable and thus slower but are more generic and can process different workloads.
 While FPGAs have granularity at the gate level, CGRAs have granularity at the functional unit level. They are configurable at run-time and the datapath can be
 changed in-between runs.   
 
-In this chapter, the base Versat Architecture will be explained and then the Deep Versat Architecture
+In this chapter, the base Versat Architecture will be explained, and then the DeepVersat Architecture
  and its improvements.
 
 \subsection{Versat Architecture}
 
 \quad The Versat Architecture~\cite{sousa:compiler,sousa:controller,sousa:FFT,sousa:versat2016} 
-is depicted in Figure~\ref{figure:oldversat}. It is composed of the following modules: DMA, Controller, Program Memory, Control File Registry, Data Engine and Configuration module.
+is depicted in Figure~\ref{figure:oldversat}. It is composed of the following modules: DMA, Controller, Program Memory, Control File Registry, Data Engine, and Configuration module.
 The Controller accesses the modules through the control bus. The code made in assembly or C is loaded into the program Memory (RAM) where the user
 can write to the configuration module for the Versat runs. Between runs of the Data Engine,
  the Controller can start doing the next run configuration and calculations.
@@ -61,7 +61,7 @@ due to latencies. The memory module is represented in Fig~\ref{figure:FU}.
 \newpage
 \subsection{Configuration Module}
 \quad Versat has several configuration spaces devised for each Functional Unit,
-with each space having multiple fields to define the operation of the Functional unit (e.g which op for the ALU).
+with each space having multiple fields to define the operation of the Functional unit (e.g. which op for the ALU).
 These are accessed before the run by the controller to define the datapath.
 
 \begin{figure}[!htbp]
@@ -81,17 +81,17 @@ it writes into the register configuration data, when it's a write, it stores the
 
 
 \newpage
-\subsection{Deep Versat Architecture}
+\subsection{DeepVersat Architecture}
 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/deep-Versat.png}
-    \caption{Deep Versat Architecture, taken from~\cite{valter:deepversat}}
+    \caption{DeepVersat Architecture, taken from~\cite{valter:deepversat}}
     \label{figure:deepversatarch}
 \end{figure} 
 
-\quad The Deep Versat Architecture~\cite{valter:deepversat}
+\quad The DeepVersat Architecture~\cite{valter:deepversat}
 , in figure~\ref{figure:deepversatarch}, decouples the Data Engine (DE) from all control and as such, it can be used with any CPU. 
 It can be paired with hard cores in
 FPGA boards like the ZYNC board %cite here
@@ -103,19 +103,19 @@ Versat Core to create more complex and more complete Datapaths, to avoid
 having to reconfigure the cores.
 
 The number of Layers and FUs are reconfigurable pre-silicon with the only limitation
-that each layer is identical. To program Deep Versat, an API is generated
+that each layer is identical. To program DeepVersat, an API is generated
 from the Verilog .vh files. 
 
 
 
 
 \newpage
-\subsubsection{Deep Versat System}
+\subsubsection{DeepVersat System}
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/deep-Versat-top.png}
-    \caption{Deep Versat System using a RISC-V RV32IMC soft core, taken from~\cite{valter:deepversat}}
+    \caption{DeepVersat System using a RISC-V RV32IMC soft processor, taken from~\cite{valter:deepversat}}
     \label{figure:deepversattop}
 \end{figure} 
 
@@ -123,9 +123,9 @@ from the Verilog .vh files.
 In a recent dissertation~\cite{valter:deepversat}, the IOB-RV32 processor was used which uses the RISC-V Instruction Set (ISA) with 32-bit Integer base alongside Multiplication and Division extension and Compact Instruction extension.
  The core is derived from
 the open-source PicoRV32 CPU~\cite{picorv}.
-The IOB-RV32 uses its memory bus to access peripherals in which Deep Versat and the UART module are connected as such.
-The control bus is used to access the configuration modules of Deep Versat. The data bus is used to read and write
-a large amount of data into Deep Versat. The data flow bus is reserved for inter-Versat Core communication.
+The IOB-RV32 uses its memory bus to access peripherals in which DeepVersat and the UART module are connected as such.
+The control bus is used to access the configuration modules of DeepVersat. The data bus is used to read and write
+a large amount of data into DeepVersat. The data flow bus is reserved for inter-Versat Core communication.
 
 \begin{table}[!htbp]
     \centering
@@ -133,16 +133,16 @@ a large amount of data into Deep Versat. The data flow bus is reserved for inter
         \hline
         \textbf{Peripheral}     & \textbf{Memory address} \\ \hline
         UART module             & 12’h100xxxxx            \\ \hline
-        Deep Versat control bus & 8’h11xxxxxx             \\ \hline
-        Deep Versat data bus    & 8’h12xxxxxx             \\ \hline
+        DeepVersat control bus & 8’h11xxxxxx             \\ \hline
+        DeepVersat data bus    & 8’h12xxxxxx             \\ \hline
         \end{tabular}
-    \caption{Deep Versat Memory Map}
+    \caption{DeepVersat Memory Map}
     \label{table:deepversat}
     \end{table}
 
 
 The memory map to address the peripherals,
- including deep Versat, is in table \ref{table:deepversat}.
+ including DeepVersat, is in table \ref{table:deepversat}.
  Each Versat has 15 bits of address while the CPU addresses
  the peripherals with 32 bits, with 8 of those occupied to choose
  the peripheral in question. That leaves 9 bits to address several Versat Cores

@@ -1,10 +1,10 @@
 \chapter{Darknet Lite}
 \label{chapter:Darknet}
 
-As mentioned in Section \ref{sector:DeepVersat}, the Deep Versat system includes a RISC-V CPU to take out generic
+As mentioned in Section \ref{sector:DeepVersat}, the DeepVersat system includes a RISC-V CPU to take out generic
 code and to write the configuration runs into Versat's memories. This means the first step into implementing software
 that can run any convolutional neural network on this system, the software must first run on the CPU then we offload Fixed Functions 
-to Versat such as the convolutional layers, maxpool etc.
+to Versat such as the convolutional layers, max pool, etc.
 
 \section{Porting Darknet to an embedded CPU}
 
@@ -18,7 +18,7 @@ code framework appropriately named Darknet lite.
 
 In the following figure, 
 the data structure for a layer is shown. A CNN on Darknet lite is just an array of layers in which each has input, 
-output and layer parameters. 
+output, and layer parameters. 
 Usually, the input is a past layer output or an image input.
 
 \lstinputlisting[label=DarknetLiteStrut,language=C++,frame=single,breaklines=true,firstline=1,lastline=38,caption=Layer Struct
@@ -38,12 +38,12 @@ The following figure is an example of a CPU layer that computes the convolutiona
 
 Caffe~\cite{caffe} is a deep learning framework as shown in chapter \ref{chapter:Background},
 using an open source tool~\cite{caffe2darknet}, the output can be set to CFG.
-By using the network parser of darknet, an array of layers is created with all
+By using the network parser of Darknet, an array of layers is created with all
 its required parameters. 
 
 \lstinputlisting[label=listing:cfg2versat,language=C,frame=single,breaklines=true,firstline=22,lastline=61,caption=For Loop for writing darknet layers ]{./Code/parse2compiler.c}
 
-Afterwards, by going through each layer, "yolo.c" will be written
+Afterward, by going through each layer, "yolo.c" will be written
 with all the data darknet lite will need. 
 In listing \ref{listing:cfg2versat2}, the addresses of the data needed for the layer. 
 In \ref{listing:cfg2versat3}, the static parameters are defined as well.

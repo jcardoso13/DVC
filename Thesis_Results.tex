@@ -4,7 +4,7 @@
 %     Tex Master: Thesis.tex                                           %
 %                                                                      %
 %     Author: Andre C. Marta                                           %
-%     Last modified :  2 Jul 2015                                      %
+%     Last modified:  2 Jul 2015                                      %
 %                                                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -12,14 +12,13 @@
 \label{chapter:results}
 
 In this chapter, the results from the simulator are presented and the new functions developed
-for Versat. In Section \ref{section:simtest}, a setup used by a testbench used by Deep Versat is used
+for Versat. In Section \ref{section:simtest}, a setup used by a testbench used by DeepVersat is used
 to prove the simulator is working according to predictions. Afterward, in section \ref{section:testgencov}, 
 a testbench is prepared to test the matrix multiplication and generic convolution with several hardware configurations
 available to test the performance of different scenarios in the simulator.
 
 The tests were executed on a 64-bit machine, with an AMD Ryzen 7 5800H Processor and 16GB of RAM running
-Windows 11, version 22H2, WSL 2.0 with the image of Ubuntu 20.04. The compiler used is
-g++ version 9.4.0 .
+Windows 11, version 22H2, WSL 2.0 with the image of Ubuntu 20.04. The compiler used is g++ version 9.4.0.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulator Testing}
@@ -33,8 +32,8 @@ To be more specific in the beginning, the configurations of the VIs are written 
 from the program to Versat. The data uses the rand() function with seed using current time
 so the result is different every time. Both the input matrix and kernel map are randomized.
 The former value varies from -25 to 25 while the kernel varies from -5 to 5. Using the data, 
-we calculate the result of the convolution in CPU. Afterward, the configuration for the Bias mem
-is done and then stage by stage the configuration of the VI, MAC and ALU is done. Finally, the
+we calculate the result of the convolution in the CPU. Afterward, the configuration for the Bias mem
+is done and then stage by stage the configuration of the VI, MAC, and ALU is done. Finally, the
 configuration of the VO is written.
 
 \begin{figure}[!htbp]
@@ -56,14 +55,14 @@ through the several stages by adding two due to the MACs and ALUs.
 \label{section:testgencov}
 
 In this section, the same method for the previous testbench is made. 
-While the previous one relies on using API v1 for the configuration, these testbenches
+While the previous one relies on using API v1 for the configuration, these test benches
 run the new API. 
 
 \subsection{Testbench for Matrix Multiplication}
 
-The Matrix Multiplication is a quite simple program. The only thing needed is to instance
-Versat, run versat\_init(), create the matrixes and then use the function matrix\_multiplication()
-The data is also used to compute in CPU the result to verify the output which can be found in
+The Matrix Multiplication is a quite simple program. The only thing needed is to an instance
+Versat, run versat\_init(), create the matrixes, and then use the function matrix\_multiplication()
+The data is also computed in the CPU the result to verify the output which can be found in
 figure \ref{figure:test2}.
 
 \begin{figure}[!htbp]
@@ -75,7 +74,7 @@ figure \ref{figure:test2}.
 
 \subsection{Testbench for Generic Convolution}
 
-Using the same method on the previous testbenches, the following Convolution Layer was used
+Using the same method on the previous test benches, the following Convolution Layer was used
 with several Versat Configurations.
 
 \begin{table}[!htpb]
@@ -98,7 +97,7 @@ with several Versat Configurations.
 \end{table}
 
 With this layer, figure \ref{figure:test3} has the output result of the generic convolution testbench.
-For this specific Versat hardware configuration the number iterations needed is 711 using 3 Datapaths.
+For this specific Versat hardware configuration the number of iterations needed is 711 using 3 Datapaths.
 
 \begin{figure}[!htbp]
     \centering
@@ -108,7 +107,7 @@ For this specific Versat hardware configuration the number iterations needed is 
 \end{figure}
 
 In Table \ref{table:Iterations}, the different Datapath numbers and how it affects performance.
-A datapath is a combination of 1 VI, 1 MAC and 1 VO. So the lower number in the Versat configuration file
+A datapath is a combination of 1 VI, 1 MAC, and 1 VO. So the lower number in the Versat configuration file
 decides the number of valid datapaths, of course, VI needs +1 in numbers more than the functional units due to the Kernel memory.
 \newpage
 \begin{table}[!htpb]

@@ -2,16 +2,16 @@
 \label{chapter:PWP}
 
 The proposed work for the dissertation consists in the development of an
-automatic compiler of DNN description into Deep Versat / IOB-RV32 C++ code. The
+automatic compiler of DNN description into DeepVersat / IOB-RV32 C++ code. The
 purpose of this work is to be able to run any state of the art CNN on the Deep
 Versat system with no effort on the user side, allowing the design and
 architectural exploration.
 
 For the proof of concept stage, Darknet and Caffe will be the frameworks chosen
-to be supported by the compiler. Deep Versat can customized with the number of
+to be supported by the compiler. DeepVersat can customized with the number of
 layers, numbers of each FU type and other options. Hence, the compiler must be
 able to take the configurations into account when producing computational
-datapaths for Deep Versat.
+datapaths for DeepVersat.
 
 \section{Flowchart}
 
@@ -34,13 +34,13 @@ unlike some other frameworks, Caffe is also based on Google's Protocol Buffers s
 The goal after parsing is for the end result to be framework abstract, so other frameworks can be implemented into the compiler.
 When parsing the network, the compiler propagates the constants i.e input and output parameters of each layer.
 
-With the network defined and Deep Versat deployed, each layer of the network can be mapped onto Versat (Layer Optimizer). Because the input size of each layer
+With the network defined and DeepVersat deployed, each layer of the network can be mapped onto Versat (Layer Optimizer). Because the input size of each layer
 can be bigger than a Versat Memory, certain optimizations such parallelism exploration must be made to guarantee that each network layer is processed as efficiently as possible. 
-How much performance can be extracted depends on the Deep Versat Configuration that is deployed, that is, performance per functional Unit, how many per Versat core and
+How much performance can be extracted depends on the DeepVersat Configuration that is deployed, that is, performance per functional Unit, how many per Versat core and
 total number of cores.
 
-Memory accesses are all the operations to manage data from external memory to the RISC-V core and to the Deep Versat Cores and vice-versa.
-Finally the compiler generates the code for the CPU that controls Deep Versat.
+Memory accesses are all the operations to manage data from external memory to the RISC-V core and to the DeepVersat Cores and vice-versa.
+Finally the compiler generates the code for the CPU that controls DeepVersat.
 \newpage
 \section{Workplan}
 
@@ -53,9 +53,9 @@ Finally the compiler generates the code for the CPU that controls Deep Versat.
 \end{figure}
 
 In Fig~\ref{figure:gant}, a GANT chart with the proposed schedule for the
-planned work is presented. In the GANT chart, 20 days will be used to deploy Deep Versat system and study external memory use and testing
-memory accesses with the RISC-V core and with Deep Versat. Then the core components in~\ref{figure:flowchart} are designed. Afterwards
-software validation and testing is done to ensure the compiler works as intended. Finally, because Deep Versat uses Integer functional units, fixed-point arithmetic
+planned work is presented. In the GANT chart, 20 days will be used to deploy DeepVersat system and study external memory use and testing
+memory accesses with the RISC-V core and with DeepVersat. Then the core components in~\ref{figure:flowchart} are designed. Afterwards
+software validation and testing is done to ensure the compiler works as intended. Finally, because DeepVersat uses Integer functional units, fixed-point arithmetic
 is used instead. Fixed-Point formats are prone to overflow or underflow due to the fixed range it offers, thus 15 working days are allocated to
 make sure the outputs of any CNN network are valid and according to expected results. 
 

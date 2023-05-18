@@ -10,15 +10,23 @@
 
 \section*{Resumo}
 
-% Add entry in the table of contents as section
+% Add an entry in the table of contents as a section
 \addcontentsline{toc}{section}{Resumo}
 
-Esta tese apresenta uma solução para simular o Deep Versat, uma CGRA que é acupulada de um processador RISC-V.
-Tambem é apresentada nesta tese ferramentas para o Deep Versat correr Redes Neuronais Convolucionais. Estas cargas de trabalho são
-usadas em diversos algoritmos de Inteligencia Arteficial como a deteção de objetos em imagens. As vantagens da ferramenta são várias.
-Primeiro, a escrita das configurações do Versat é preciso conhecimento da arquitetura a nivel detalhado e das suas APIs.
-Segundo, a escrita de algoritmos complexos para o Versat é preciso muitas horas de desenvolvimento e mais outras quantas para testar em hardware, ou seja
-o custo de usar o Versat baixa consideravelmente e a performance é otimizada á configuração do Versat escolhida podendo testar centenas de configurações de Hardware para otimizar a performance de uma rede em especifico.
+% Esta tese apresenta uma solução para simular o DeepVersat, uma CGRA que é acupulada de um processador RISC-V.
+% Tambem é apresentada nesta tese ferramentas para o DeepVersat correr Redes Neuronais Convolucionais. Estas cargas de trabalho são
+% usadas em diversos algoritmos de Inteligencia Arteficial como a deteção de objetos em imagens. As vantagens da ferramenta são várias.
+% Primeiro, a escrita das configurações do Versat é preciso conhecimento da arquitetura a nivel detalhado e das suas APIs.
+% Segundo, a escrita de algoritmos complexos para o Versat é preciso muitas horas de desenvolvimento e mais outras quantas para testar em hardware, ou seja
+% o custo de usar o Versat baixa consideravelmente e a performance é otimizada á configuração do Versat escolhida podendo 
+% testar centenas de configurações de Hardware para otimizar a performance de uma rede em especifico.
+
+Nesta tese, o problema de acelerar a execução de Redes Neuronais (DNNs) usando CGRA com emfase em compilar uma descrição de uma DNN para codigo que corre num sistema
+CPU/CGRA. Este é um tópico vasto, por isso esta tese foca-se na simulação do DeepVersat, um sistema CPU/CGRA capaz de correr DNNs, e ferramentas para correr qualquer
+tipo de Rede Neuronais Convolucionais (CNNs) no DeepVersat. As ferramentas apresentadas nesta tese dão a possibilidade de exploração e otimização, e uma redução dramática
+de tempo de desenvolvimento.
+
+
 \vfill
 
 \textbf{\Large Palavras-chave:} CGRA, Versat, Darknet, Redes Neuronais

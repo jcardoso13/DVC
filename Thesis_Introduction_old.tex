@@ -17,7 +17,7 @@
 In this report, the problem of accelerating the execution of Deep Neural
 Networks (DNNs) using Coarse GRained Reconfigurable Arrays (CGRAs) is studied,
 with special emphasis on compiling a DNN description into code that runs on
-CPU/CGRA system. The Deep Versat Architecture~\cite{valter:deepversat} CGRA will be used as an
+CPU/CGRA system. The DeepVersat Architecture~\cite{valter:deepversat} CGRA will be used as an
 implementation tool in this work.
 
 
@@ -73,9 +73,9 @@ even for FPGAS.
 
 The proposed solution is a compiler that takes a configuration file from a
 neural network framework like Caffe or Darknet. This new tool inputs the
-parameters of Deep Versat, such as the number of layers and functional units,
+parameters of DeepVersat, such as the number of layers and functional units,
 and produces the C code needed for the Versat runs. This code is run on the
-RISC-V picorv32~\cite{picorv} CPU controller that has Deep Versat as a peripheral.
+RISC-V picorv32~\cite{picorv} CPU controller that has DeepVersat as a peripheral.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Thesis Outline}
@@ -95,7 +95,7 @@ RISC-V picorv32~\cite{picorv} CPU controller that has Deep Versat as a periphera
 
 This report is composed of 4 more chapters. In the second chapter, the
 state-of-the-art of neural networks and the difficulties accelerating them is
-described. In the third chapter, the Deep Versat architecture and how to program
+described. In the third chapter, the DeepVersat architecture and how to program
 it is explained. In the fourth chapter, CNN compiler techniques are
 explored. Finally, the last chapter contains the proposed solution and the plan
 for its execution.
