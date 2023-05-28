@@ -60,7 +60,7 @@ run the new API.
 
 \subsection{Testbench for Matrix Multiplication}
 
-The Matrix Multiplication is a quite simple program. The only thing needed is to an instance
+The Matrix Multiplication is a quite simple program. The only thing needed is an instance
 Versat, run versat\_init(), create the matrixes, and then use the function matrix\_multiplication()
 The data is also computed in the CPU the result to verify the output which can be found in
 figure \ref{figure:test2}.
@@ -131,6 +131,6 @@ decides the number of valid datapaths, of course, VI needs +1 in numbers more th
 
 The reason for these results is quite simple. In total, 11 output lines are divided
 by the datapaths. When the division is not a whole number, the remainder gets distributed
-by available datapaths. The Consequence of this, when changing from 6 to 8 datapaths, the performance
+by available datapaths. The consequence of this, when changing from 6 to 8 datapaths, the performance
 doesn't get any better. Datapath 0 will have to run twice to (2 lines) while Datapath 8 will run 1 line.
 To increase further the performance, the output channels would have to be divided through more datapaths.
