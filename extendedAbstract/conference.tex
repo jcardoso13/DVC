@@ -243,12 +243,12 @@ by using convolutions with stride 2 and padding equal to 1.  Upsample layers can
 be also used that turn each pixel into $n^{2}$, where $n$ is the number of times
 the output will be bigger than the input.
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/maxpool.png}
-    \caption{Simple example of a max pool layer~\cite{maxpoolimg}}
-    \label{figure:maxpool}
-\end{figure} 
+% \begin{figure}[!htb]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{Figures/maxpool.png}
+%     \caption{Simple example of a max pool layer~\cite{maxpoolimg}}
+%     \label{figure:maxpool}
+% \end{figure} 
  
 
 \paragraph{Fully Connected Layer}
@@ -279,14 +279,14 @@ features.
 \paragraph{Dropout Layer}
 
 This type of layer was conceived to avoid overfitting~\cite{Dropout} by dropping
-the neurons with a probability below the threshold. In
-Figure~\ref{figure:Dropout}, there is a graphical representation.
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/dropout.png}
-    \caption{Dropout if applied to all layers, adapted from~\cite{Dropout}}
-    \label{figure:Dropout}
-\end{figure} 
+the neurons with a probability below the threshold. 
+% In Figure~\ref{figure:Dropout}, there is a graphical representation.
+% \begin{figure}[!htbp]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{Figures/dropout.png}
+%     \caption{Dropout if applied to all layers, adapted from~\cite{Dropout}}
+%     \label{figure:Dropout}
+% \end{figure} 
 
 \paragraph{Activation Functions}
 
@@ -376,11 +376,11 @@ In Listing~\ref{cfg}, there is a snippet of the file featuring a convolution
 layer with 32 kernels of size 3x3. It has stride 1 and zero padding of 1,
 meaning the output size equals the input size. The input size can be
 calculated by analyzing the previous layers and the network parameters. The
-network parameters in Listing~\ref{net} includes data to be used for training while only
+network parameters includes data to be used for training while only
 the first three parameters are needed for inference.
 
-\lstinputlisting[label=net,language=Python,frame=single,breaklines=true,firstline=1,lastline=11,caption=cfg
-  code for the network parameters]{./Code/yolov3.cfg}
+% \lstinputlisting[label=net,language=Python,frame=single,breaklines=true,firstline=1,lastline=11,caption=cfg
+%   code for the network parameters]{./Code/yolov3.cfg}
 
 
 \subsubsection{Caffe}
@@ -397,11 +397,12 @@ exports a neural network by serializing it using the Google Protocol Buffers
 \end{itemize}
 
 The Python interface helps generate these files. For inference only the
-deploy file matters. In Listing~\ref{caffe}, there is a snippet of a deployed file. 
+deploy file matters. 
+% In Listing~\ref{caffe}, there is a snippet of a deployed file. 
 
-\lstinputlisting[label=caffe,language=Python,frame=single,breaklines=true,firstline=1,lastline=26,caption=prototxt
-  file for the input data and the first convolution layer of
-  AlexNet~\cite{alexnet}]{./Code/caffe.prototxt}
+% \lstinputlisting[label=caffe,language=Python,frame=single,breaklines=true,firstline=1,lastline=26,caption=prototxt
+%   file for the input data and the first convolution layer of
+%   AlexNet~\cite{alexnet}]{./Code/caffe.prototxt}
 
 
 
@@ -438,15 +439,15 @@ can write to the configuration module for the Versat runs. Between runs of the D
 \end{figure} 
 
 \subsubsection{Data Engine}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/de.png}
-    \caption{Versat Data Engine Topology~\cite{sousa:FFT}}
-    \label{figure:DE}
-\end{figure} 
+% \begin{figure}[!htbp]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{Figures/de.png}
+%     \caption{Versat Data Engine Topology~\cite{sousa:FFT}}
+%     \label{figure:DE}
+% \end{figure} 
 
 
-The Data Engine which is represented in Figure~\ref{figure:DE} carries out the computation needed on the data arrays. It is a 32-bit architecture with up to 11 Functional Units (FU):
+The Data Engine carries out the computation needed on the data arrays. It is a 32-bit architecture with up to 11 Functional Units (FU):
  Arithmetic and Logic Unit(ALU), stripped down ALU (ALU-Lite),
  Multiplier and Accumulator (MAC) and Barrel Shifter.
  Depending on the project and calculations, a new type of FU or the existing ones can be altered to support the algorithm.
@@ -474,14 +475,14 @@ Versat has several configuration spaces devised for each Functional Unit,
 with each space having multiple fields to define the operation of the Functional unit (e.g. which op for the ALU).
 These are accessed before the run by the controller to define the datapath.
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/conf.png}
-    \caption{Configuration Module~\cite{sousa:controller}}
-    \label{figure:conf}
-\end{figure} 
+% \begin{figure}[!htbp]
+%     \centering
+%     \includegraphics[width=0.25\textwidth]{Figures/conf.png}
+%     \caption{Configuration Module~\cite{sousa:controller}}
+%     \label{figure:conf}
+% \end{figure} 
 
-The Configuration Module (CM), depicted in figure \ref{figure:conf}, 
+The Configuration Module (CM), 
 has three components: configuration memory, variable length configuration register file 
 and configuration shadow register.
 The latter holds the current configuration so the controller can change the values of the configuration file in-between runs.
@@ -535,24 +536,22 @@ The IOB-RV32 uses its memory bus to access peripherals in which DeepVersat and t
 The control bus is used to access the configuration modules of DeepVersat. The data bus is used to read and write
 a large amount of data into DeepVersat. The data flow bus is reserved for inter-Versat Core communication.
 
-\begin{table}[!htbp]
-    \centering
-    \begin{tabular}{|l|l|}
-        \hline
-        \textbf{Peripheral}     & \textbf{Memory address} \\ \hline
-        UART module             & 12’h100xxxxx            \\ \hline
-        DeepVersat control bus & 8’h11xxxxxx             \\ \hline
-        DeepVersat data bus    & 8’h12xxxxxx             \\ \hline
-        \end{tabular}
-    \linebreak
-    \caption{DeepVersat Memory Map}
-    \label{table:deepversat}
-    \end{table}
+% \begin{table}[!htbp]
+%     \centering
+%     \begin{tabular}{|l|l|}
+%         \hline
+%         \textbf{Peripheral}     & \textbf{Memory address} \\ \hline
+%         UART module             & 12’h100xxxxx            \\ \hline
+%         DeepVersat control bus & 8’h11xxxxxx             \\ \hline
+%         DeepVersat data bus    & 8’h12xxxxxx             \\ \hline
+%         \end{tabular}
+%     \linebreak
+%     \caption{DeepVersat Memory Map}
+%     \label{table:deepversat}
+%     \end{table}
 
 
-The memory map to address the peripherals,
- including DeepVersat, is in table \ref{table:deepversat}.
- Each Versat has 15 bits of address while the CPU addresses
+To address the peripherals, each Versat has 15 bits of address while the CPU addresses
  the peripherals with 32 bits, with 8 of those occupied to choose
  the peripheral in question. That leaves 9 bits to address several Versat Cores
  which brings the theoretical maximum Versat cores to 512. The IOB-RV32 is compatible with the
@@ -571,10 +570,10 @@ The memory map to address the peripherals,
 \subsection{Toolflows for Mapping CNNs in FPGAs}
 \label{section:toolflow}
 
-Several software frameworks have been developed to accelerate development and
+Several software frameworks have been developed to accelerate the development and
 execution of CNNs. The neural networks frameworks discussed in
-section~\ref{section:Darknet} provides high-level APIs together with high
-performance execution on multi-core CPUs, GPUs, Digital Signal Processors (DSPs)
+section~\ref{section:Darknet} provides high-level APIs together with high-performance 
+execution on multi-core CPUs, GPUs, Digital Signal Processors (DSPs)
 and Neural Processing Units (NPUs)~\cite{smartphones}. FPGAs provide an
 alternative to these architectures as they provide high performance while also
 being low-power. FPGAs can meet several requirements including throughput and latency
@@ -611,27 +610,26 @@ table~\ref{table:toolflow}, a list of notable ones is presented.
 
 These toolflows support the most common layers in CNNs, which are discussed in
 section~\ref{section:cnn}. The acceleration target changes depending on the
-toolflow.  For example, the fpgaConvNet~\cite{fpgaconvnet} tool flow focuses more
+toolflow.  For example, the fpgaConvNet~\cite{fpgaconvnet} toolflow focuses more
 on feature extraction while offering nonaccelerated support for fully connected
 layers.
 
 \subsubsection{Architecture \& Portability}
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/fpgaconvnet.png}
-    \caption{fpgaConvNet Architecture. Taken from~\cite{fpgaconvnet}}
-    \label{figure:fpgaconvnet}
-\end{figure}
+% \begin{figure}[!htbp]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{Figures/fpgaconvnet.png}
+%     \caption{fpgaConvNet Architecture. Taken from~\cite{fpgaconvnet}}
+%     \label{figure:fpgaconvnet}
+% \end{figure}
 
-As shown in figure~\ref{figure:fpgaconvnet}, the fpgaConvNet architecture
-consists of a Front-End Parser that reads a (ConvNet) description of the network
+The fpgaConvNet architecture consists of a Front-End Parser that reads a (ConvNet) description of the network
 and a description of the target platform and produces, on the one hand, a
 Directed Acyclic Graph (DAG), which is then converted to a Synchronous Data Flow
 (SDF) hardware model, and on the other hand, a model of the target platform from
 which resource constraints are derived. The hardware model thus obtained goes
 into an Optimiser procedure, which produces a hardware mapping. Using hardware
-and software templates, a Code Generator procedure, generates both the High
+and software templates, a Code Generator procedure generates both the High
 Level Synthesis (HLS) input files and the software binaries that will run on the
 control CPU embedded in the FPGA. The HLS files go into the Xilinx (FPGA
 manufacturer) tools so that the configuration bitstream of the FPGA is produced.
@@ -660,21 +658,20 @@ It also has a lot of features that are not needed in this work, such as training
 By stripping the features of Darknet we get a much simpler
 code framework appropriately named Darknet lite.
 
-In the following figure, 
-the data structure for a layer is shown. A CNN on Darknet lite is just an array of layers in which each has input, 
-output, and layer parameters. 
+A CNN on Darknet lite is just an array of layers in which each has input, 
+output, and layer parameters all defined using a layer struct in which all variables are defined.
 Usually, the input is a past layer output or an image input.
 
-\lstinputlisting[label=DarknetLiteStrut,language=C++,frame=single,breaklines=true,firstline=1,lastline=38,caption=Layer Struct
-  Yolov3~\cite{yolov3}]{./Code/DarknetLiteStrut.h}
+% \lstinputlisting[label=DarknetLiteStrut,language=C++,frame=single,breaklines=true,firstline=1,lastline=38,caption=Layer Struct
+%   Yolov3~\cite{yolov3}]{./Code/DarknetLiteStrut.h}
 
 By Parsing the .cfg file, a configuration file is written in C with the layer array and static position of the data for each layer. 
 Each Layer has its definition in C to be run by the embedded CPU but for the sake of this project, several layers can be
 replaced by Functions that utilize Versat, the same way that the original Darknet framework had its functions written for CPU or GPU usage.
 
-The following figure is an example of a CPU layer that computes the convolutional layer while using Fixed Point Logic.
+% The following figure is an example of a CPU layer that computes the convolutional layer while using Fixed Point Logic.
 
-\lstinputlisting[label=ConvolutionalLayerCPU,language=C++,frame=single,breaklines=true,firstline=54,lastline=85,caption=Convolutional Layer using only CPU and fixed memory]{./Code/convolutional_layer.c}
+% \lstinputlisting[label=ConvolutionalLayerCPU,language=C++,frame=single,breaklines=true,firstline=54,lastline=85,caption=Convolutional Layer using only CPU and fixed memory]{./Code/convolutional_layer.c}
 
 
 
@@ -685,16 +682,16 @@ using an open source tool~\cite{caffe2darknet}, the output can be set to CFG.
 By using the network parser of Darknet, an array of layers is created with all
 its required parameters. 
 
-\lstinputlisting[label=listing:cfg2versat,language=C,frame=single,breaklines=true,firstline=22,lastline=61,caption=For Loop for writing darknet layers ]{./Code/parse2compiler.c}
+% \lstinputlisting[label=listing:cfg2versat,language=C,frame=single,breaklines=true,firstline=22,lastline=61,caption=For Loop for writing darknet layers ]{./Code/parse2compiler.c}
 
-Afterward, by going through each layer, "yolo.c" will be written
-with all the data darknet lite will need. 
-In listing \ref{listing:cfg2versat2}, the addresses of the data needed for the layer. 
-In \ref{listing:cfg2versat3}, the static parameters are defined as well.
+% Afterward, by going through each layer, "yolo.c" will be written
+% with all the data darknet lite will need. 
+% In listing \ref{listing:cfg2versat2}, the addresses of the data needed for the layer. 
+% In \ref{listing:cfg2versat3}, the static parameters are defined as well.
 
-\lstinputlisting[label=listing:cfg2versat2,language=C,frame=single,breaklines=true,firstline=15,lastline=21,caption=For Loop for writing darknet layers ]{./Code/yolo.c}
+% \lstinputlisting[label=listing:cfg2versat2,language=C,frame=single,breaklines=true,firstline=15,lastline=21,caption=For Loop for writing darknet layers ]{./Code/yolo.c}
 
-\lstinputlisting[label=listing:cfg2versat3,language=C,frame=single,breaklines=true,firstline=133,lastline=139,caption=For Loop for writing darknet layers ]{./Code/yolo.c}
+% \lstinputlisting[label=listing:cfg2versat3,language=C,frame=single,breaklines=true,firstline=133,lastline=139,caption=For Loop for writing darknet layers ]{./Code/yolo.c}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -734,21 +731,18 @@ As it happens in the hardware, functional units can access the database which ha
 of the current stage and the previous one.
 
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/VersatSimulatorDraw.drawio.png}
-    \caption{Class Structure for the Versat Simulator}
-    \label{figure:VersatSimulatorClass}
-\end{figure} 
+% \begin{figure}[!htbp]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{Figures/VersatSimulatorDraw.drawio.png}
+%     \caption{Class Structure for the Versat Simulator}
+%     \label{figure:VersatSimulatorClass}
+% \end{figure} 
 
 
 \subsubsection{Functional Units}
 
-The following table contains the functional units present in the simulator 
-and is represented by 
-"CFU" in figure ~\ref{figure:VersatSimulatorClass}. 
-VI and VO represent CRead and CWrite 
-classes respectively.
+The following table contains the functional units present in the simulator. For Memory Units, there are 3 FUs possible.CMem, VI and VO.
+CMem reads and writes from the databus between CPU and Versat, while VI and VO are made to communicate through DRAM.
 
 
 
@@ -762,10 +756,10 @@ classes respectively.
         Write (VO) Mem Unit & Reads from databus \\ & and sends Data to DDR             \\ \hline
         MulAdd (MAC)    & Multiplication and Accumulate          \\ \hline
 		Mul    & Multiplication     \\ \hline
-		Alu    & Standard algorithmic and logic unit     \\ \hline
-		AluLite    & Stripped down  algorithmic and logic unit     \\ \hline
+		Alu    & Standard algorithmic and \\ & logic unit     \\ \hline
+		AluLite    & Stripped down  algorithmic and \\ & logic unit     \\ \hline
 		Barrel Shifter (BS) & Shifts to the right or to the left \\ \hline
-		Memory (Mem) & Sends/Receives data to/from the pipeline. \\ & Data is inserted through \\ & CPU communication   \\ \hline
+		Memory (Mem) & Sends/Receives data to/from \\ & the pipeline. Data is inserted through \\ & CPU communication   \\ \hline
         \end{tabular}
     }
     \linebreak
@@ -778,9 +772,6 @@ a run(), update(), output(), and copy() method. Of course, if it has variables n
 by the program, set param functions are also needed. Using the simulator, hardware development
 and program development can be parallelized to output a new program 
 with more optimized performance.
-
-In the next section, these methods will be explained in detail and 
-their importance to the simulator.
 
 \subsection{Simulation}
 
@@ -815,9 +806,9 @@ In the simulator, it works in a similar way to preserve compatibility
 as the goal is to have the same
 programs run on software simulators and the FPGA.
 
-\lstinputlisting[label=runfunctioncode,language=C++,frame=single,breaklines=true,firstline=222,lastline=245,caption= The Run function code]{./Code/Versat.cpp}
+% \lstinputlisting[label=runfunctioncode,language=C++,frame=single,breaklines=true,firstline=222,lastline=245,caption= The Run function code]{./Code/Versat.cpp}
 
-As we can see in the previous listing, we reset the state variables of the simulator, then shift the 
+As can be interpreted from~\ref{figure:VersatSimulatorSequenceDiagram}, before running the simulation, there is a reset of the state variables, then shift the 
 VO and FU shadow registers.
 This is done to simulate the pipeline delay in the FPGA. 
 Because the data needs to come and go to the main memory (DDR),
@@ -880,9 +871,9 @@ Meanwhile, the output method's goal is to, based on the inputs from the databus,
  and performing the selected operation. For the read memory (VI), it will output an address on the mem
  and performs a read operation. For the write memory, it will output an address and performs a write operation.
 
- In the listing \ref{listing:fu}, the code of the Mul functional unit is used as an example.
+%  In the listing \ref{listing:fu}, the code of the Mul functional unit is used as an example.
 
-\lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=21,lastline=65,caption=Update and Output method of Mul]{./Code/mul.cpp}
+% \lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=21,lastline=65,caption=Update and Output method of Mul]{./Code/mul.cpp}
 
 
 \subsubsection{Copy() and Info() Method}
@@ -891,9 +882,9 @@ Finally, the last 2 functions of the simulator, copy() the main purpose is to co
 used mostly at the beginning of the run to simulate the shadow registers.
 Meanwhile, the Info method is a State printing function that outputs a string with the full data of the current iteration,
 this way, you can check iteration by iteration the progress of the simulation, just like in hardware.
-At this moment, if debugging is activated, each clock iteration output and the state of Versat will be in a file.
+At this moment, if debugging is activated, each clock iteration output and the state of Versat will be in a log file.
 
-\lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=572,lastline=584,caption=Info output for the MAC functional unit]{./Code/versat_iter22.txt}
+% \lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=572,lastline=584,caption=Info output for the MAC functional unit]{./Code/versat_iter22.txt}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -904,14 +895,10 @@ At this moment, if debugging is activated, each clock iteration output and the s
 \section{Versat API 2.0}
 \label{chapter:API}
 
-The Versat API, developed in a previous thesis~\cite{valter:deepversat}, has the ability to conceal
-the calls to the hardware to avoid changing the program when the hardware changes. 
+The Versat API, developed in a previous thesis~\cite{valter:deepversat}, can conceal
+the calls to the hardware to avoid changing the program when the hardware changes.
 
-In this chapter, the new functions that are part of the Versat API will be discussed. The goal
-is to make development for Versat just like writing normal code and to be easy to port code the same way
-CUDA has done the same to run SIMD code on Nvidia GPUs.
-
-\lstinputlisting[label=listing:versathpp,language=C++,frame=single,breaklines=true,firstline=17,lastline=40,caption=Sample Versat API implementation for the Hardware for Mem functional unit]{./Code/Versat.hpp}
+% \lstinputlisting[label=listing:versathpp,language=C++,frame=single,breaklines=true,firstline=17,lastline=40,caption=Sample Versat API implementation for the Hardware for Mem functional unit]{./Code/Versat.hpp}
 
 \subsection{API Architecture}
 
@@ -940,39 +927,39 @@ When utilizing the VI instead of a MEM, the data transfer happens between the fu
 on the mem, the CPU writes directly to Versat, wasting CPU cycles. For the API, this means going from a read method that is straightforward
 to more configuration methods to set up the read operation from DDR The same happens to Write operations. To address this, 7 functions were created in 2 levels of abstraction:
 load\_data(),load\_segmented\_data(),write\_data() that use a lower level functions: set\_IntMem\_Write(),set\_ExtMem\_Write(),set\_IntMem\_Read() and set\_ExtMem\_Read().
-The function of the higher abstraction memory functions is to abstract the parameters of the AGU. In the following listing, we have one of the implementations
-as an example.
+The function of the higher abstraction memory functions is to abstract the parameters of the AGU. 
+% In the following listing, we have one of the implementations
+% as an example.
 
-\lstinputlisting[label=listing:loadsegdata,language=C++,frame=single,breaklines=true,firstline=377,lastline=387,caption=Load Segmented Data code]{./Code/versat_configurations.cpp}
+% \lstinputlisting[label=listing:loadsegdata,language=C++,frame=single,breaklines=true,firstline=366,lastline=376,caption=Load Segmented Data code]{./Code/versat_configurations.cpp}
 
 
 Although this means having to write code with the AGUs in mind
-and how they function. To avoid it, a new class was created, shown in listing \ref*{listing:accumulator},
-to also abstract how the AGU counts loops and approximate 
+and how they function. To avoid it, a new class was created to also abstract how the AGU counts loops and approximate 
 the code to simple C++ code that runs on a CPU.
 
-\lstinputlisting[label=listing:accumulator,language=C++,frame=single,breaklines=true,firstline=72,lastline=110,caption=Accumulator Class code]{./Code/versatnew.hpp}
+% \lstinputlisting[label=listing:accumulator,language=C++,frame=single,breaklines=true,firstline=72,lastline=110,caption=Accumulator Class code]{./Code/versatnew.hpp}
 
 To transform from AGU parameters to for loop, it depends on the number of loops pretended to be done. VI AGU is 3 cascade Accumulators
-and as such, the increment on the second and third accumulators needs to be adjusted, just as shown below.
+and as such, the increment on the second and third accumulators needs to be adjusted.
 
-\lstinputlisting[label=listing:intmemread,language=C++,frame=single,breaklines=true,firstline=77,lastline=86,caption=AGU parameters to Simple forloop parameters transform]{./Code/versat_configurations.cpp}
+% \lstinputlisting[label=listing:intmemread,language=C++,frame=single,breaklines=true,firstline=77,lastline=86,caption=AGU parameters to Simple forloop parameters transform]{./Code/versat_configurations.cpp}
 
 \subsection{Matrix Multiplication and Dot Product}
 
-As part of the new API, a matrix multiplication function was added. In listing \ref{listing:matrixmult} the code is presented. First, 2 Accumulator class variables are initialized.
+As part of the new API, a matrix multiplication function was added. To implement this function, first, 2 Accumulator class variables are initialized.
 Afterward, using the 2 arrays address in DDR, the AGU configurations of the VIs to read from the main memory are set, then the AGU configurations of VI for the data handling inside the Data Engine.
 Finally, the function that will write the configuration of a MAC and the store AGU configurations. This last step is optional as the result of this matrix multiplication can be used in the same run
 to make other operations e.g.: adding a bias using one of the ALUs to the results.
 
-\lstinputlisting[label=listing:matrixmult,language=C++,frame=single,breaklines=true,firstline=167,lastline=215,caption=Matrix Multiplication Configurations]{./Code/versat_configurations.cpp}
+% \lstinputlisting[label=listing:matrixmult,language=C++,frame=single,breaklines=true,firstline=167,lastline=215,caption=Matrix Multiplication Configurations]{./Code/versat_configurations.cpp}
 
 The Dot product function is very similar, the configurations are identical for the data transfer from the main memory to the VIs. In the inside loops of the VIs, instead of 3 loops, we only need to use 
 1.
 
 \subsection{Generic Convolution}
 
-As explained in chapter \ref*{chapter:Background}, convolutional neural networks are a type of neural nets that are 
+As explained previously, convolutional neural networks are a type of neural nets that are 
 used mostly in image and object recognition by using convolutional layers. To run a convolutional layer on Versat with
 optimized performance, the configurations must be written with regard to several parameters:
 
@@ -990,7 +977,7 @@ variables are the following:
 	\item Number of outputs that can be done per VI (y) in a single run and its variations. Outputs total (y\textsubscript{2}), Output Lines per VI (y\textsubscript{3}) Output Lines total (y\textsubscript{4}).
 The value of y4 and y2 decide the different configuration scenarios.
 	\item Resource Allocation Variables
-which are explained in subsection \ref*{ConvolutionScenarios}
+which are explained in subsection \ref{ConvolutionScenarios}
 	\item Address Variables
 	\item AGU Configuration Variables
   \end{itemize}
@@ -1032,10 +1019,6 @@ where w is the width of the input matrix, k is the kernel size and iter is the n
 \subsubsection{Convolution Scenarios}
 \label{ConvolutionScenarios}
 
-When writing the configurations of the convolution runs, there are several cases the software needs to take into consideration.
-As explained in the previous subsection, the data that the VIs can handle and the number of datapaths that the data can have influenced
-the convolution scenarios. For this function, 4 were implemented and are presented in figure \ref{ConvScenarioss}.
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{Figures/Variables.drawio.png}
@@ -1043,23 +1026,27 @@ the convolution scenarios. For this function, 4 were implemented and are present
     \label{ConvScenarioss}
 \end{figure}
 
+When writing the configurations of the convolution runs, there are several cases the software needs to take into consideration.
+As explained in the previous subsection, the data that the VIs can handle and the number of datapaths that the data can have influenced
+the convolution scenarios. For this function, 4 were implemented and are presented in figure \ref{ConvScenarioss}.
+
+
 The different hardware configurations and the endless possibilities for convolutions mean that all possibilities are covered. 
 The only limitation of this generic function is to make partial results which is the last possible case where the mem can't handle enough inputs for 
 1 output.
 
-In figure \ref{ConvFlowChart}, the flowchart of each case is presented.
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/ConvolutionFlowChart.drawio.png}
-    \caption{Configuration Flowchart for the different scenarios}
-    \label{ConvFlowChart}
-\end{figure} 
+% \begin{figure}[!htbp]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{Figures/ConvolutionFlowChart.drawio.png}
+%     \caption{Configuration Flowchart for the different scenarios}
+%     \label{ConvFlowChart}
+% \end{figure} 
 
-And on listing \ref{listing:convfinal} the AGU configurations of the VIs that hold the input matrix, the MAC configuration, and finally
-the VO AGU configuration.
+% And on listing \ref{listing:convfinal} the AGU configurations of the VIs that hold the input matrix, the MAC configuration, and finally
+% the VO AGU configuration.
 
-\lstinputlisting[label=listing:convfinal,language=C++,frame=single,breaklines=true,firstline=449,lastline=478,caption=Versat configurations for 1 datapath]{./Code/versat_configurations.cpp}
+% \lstinputlisting[label=listing:convfinal,language=C++,frame=single,breaklines=true,firstline=449,lastline=478,caption=Versat configurations for 1 datapath]{./Code/versat_configurations.cpp}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1067,15 +1054,6 @@ the VO AGU configuration.
 
 \section{Results}
 \label{chapter:results}
-
-In this chapter, the results from the simulator are presented and the new functions developed
-for Versat. In Section \ref{section:simtest}, a setup used by a testbench used by DeepVersat is used
-to prove the simulator is working according to predictions. Afterward, in section \ref{section:testgencov}, 
-a testbench is prepared to test the matrix multiplication and generic convolution with several hardware configurations
-available to test the performance of different scenarios in the simulator.
-
-The tests were executed on a 64-bit machine, with an AMD Ryzen 7 5800H Processor and 16GB of RAM running
-Windows 11, version 22H2, WSL 2.0 with the image of Ubuntu 20.04. The compiler used is g++ version 9.4.0.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Simulator Testing}
@@ -1093,12 +1071,12 @@ we calculate the result of the convolution in the CPU. Afterward, the configurat
 is done and then stage by stage the configuration of the VI, MAC, and ALU is done. Finally, the
 configuration of the VO is written.
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/test1.png}
-    \caption{Simulator test output in terminal}
-    \label{figure:test1}
-\end{figure} 
+% \begin{figure}[!htbp]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{Figures/test1.png}
+%     \caption{Simulator test output in terminal}
+%     \label{figure:test1}
+% \end{figure} 
 
 The estimated iterations needed are the following:
 
@@ -1154,7 +1132,6 @@ with several Versat Configurations.
 \end{table}
 
 % With this layer, figure \ref{figure:test3} has the output result of the generic convolution testbench.
-For this specific Versat hardware configuration the number of iterations needed is 711 using 3 Datapaths.
 
 % \begin{figure}[!htbp]
 %     \centering
@@ -1192,6 +1169,9 @@ by the datapaths. When the division is not a whole number, the remainder gets di
 by available datapaths. The consequence of this, when changing from 6 to 8 datapaths, the performance
 doesn't get any better. Datapath 0 will have to run twice to (2 lines) while Datapath 8 will run 1 line.
 To increase further the performance, the output channels would have to be divided through more datapaths.
+
+% The tests were executed on a 64-bit machine, with an AMD Ryzen 7 5800H Processor and 16GB of RAM running
+% Windows 11, version 22H2, WSL 2.0 with the image of Ubuntu 20.04. The compiler used is g++ version 9.4.0.
 
 
 %%%%%%%%%%%%%%%%%%%%%
