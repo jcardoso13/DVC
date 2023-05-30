@@ -11,30 +11,37 @@
 \chapter{Conclusions}
 \label{chapter:conclusions}
 
-In this thesis, several modules and tools were presented for neural networking development on Versat.
-The simulator is a significant improvement over normal hardware simulation for testing new
-software configurations and workloads. It also can predict the performance of the workloads
-and helps size how many functional units, stages, or how much the size of memories should be
-to achieve the highest performance.
-Furthermore, the new Versat API can bring new tools for development using the hardware
-and be able to write code for Versat akin to writing normal C++ code that runs on a CPU.
-Finally, the tools designed for Darknet give embedded development a boost by being able to
-run any CNN on embedded hardware, even if it's just a CPU.
-To test this, a suite of programs was planned and the results show the new software tools
-effectiveness.
+In this thesis, a compiler and software simulation model for Deep Neural
+Netowrks running on the DeepVersat Architecture are presented. The simulator
+runs orders of magnitude faster than an RTL simulator, allowing for the fast
+testing new software configurations and workloads. It can accurately predict the
+performance of the workloads running on DeepVersat. These tools are useful for
+architectural exploration, helping to determine the number of functional units,
+stages, or the memory sizes needed for optimal performance.
+
 
 % ----------------------------------------------------------------------
 \section{Achievements}
 \label{section:achievements}
 
-One achievement of this thesis was the development of the simulator. The simulator is able
-to successfully emulate the output of the hardware, where a new program written for Versat
-can be tested in 5 seconds instead of several minutes to put the program into the FPGA.
-Another achievement is the generic convolution being able to run any type of convolution layer
-efficiently. By changing the Versat parameters, a new complete hardware configuration can be
-done and tested with the software to check new performance figures.
-Lastly, the darknet framework for embedded devices and the tools used to parse CFG
-are important for future work using the Versat CGRA.
+First, a darknet framework for embedded devices and new tools have been
+developed to parse CFG, which are important for future work using the Versat
+CGRA. These tools make it possible to run any CNN on embedded hardware, even if
+it comprises just a CPU.
+
+Second, a software simulation model, referred to as the simulator has been
+developed and can emulate the output of the hardware. A new program written for
+Versat can be compiled in seconds instead of the several minutes it takes to
+compile the DeepVersat FPGA bitstream.
+
+Third, a generic convolution method making possible to run any type of
+convolution layer efficiently has been developed. By changing the Versat
+parameters, a new hardware convolution configuration can be tested, and the
+performance can be determined with the simulator.
+
+Lastly, a new Versat API has been developed, which can make writing code for
+Versat akin to writing normal C++ code that runs on a CPU.
+
 
 % ----------------------------------------------------------------------
 \section{Future Work}
