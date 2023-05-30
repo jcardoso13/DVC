@@ -11,16 +11,20 @@
 \chapter{Results}
 \label{chapter:results}
 
-In this chapter, the results from the simulator are presented and the new functions developed
-for Versat. In Section \ref{section:simtest}, a setup used by a testbench used by DeepVersat is used
-to prove the simulator is working according to predictions. Afterward, in section \ref{section:testgencov}, 
-a testbench is prepared to test the matrix multiplication and generic convolution with several hardware configurations
-available to test the performance of different scenarios in the simulator.
+In this chapter, experimental results for the DeepVersat software simulator and
+for the new API functions are presented. In Section \ref{section:simtest}, a
+simple test case is applied to the simulator to prove it works as
+specified. Afterward, in section \ref{section:testgencov}, test cases for matrix
+multiplication and generic convolution are presented. The convolution test case
+features several hardware configurations, which test different simulation
+scenarios in a more thorough way.
 
-The tests were executed on a 64-bit machine, with an AMD Ryzen 7 5800H Processor and 16GB of RAM running
-Windows 11, version 22H2, WSL 2.0 with the image of Ubuntu 20.04. The compiler used is g++ version 9.4.0.
+The tests were executed on a 64-bit machine, with an AMD Ryzen 7 5800H Processor
+and 16GB of RAM running Windows 11, version 22H2, WSL 2.0 with the image of
+Ubuntu 20.04. The compiler used is g++ version 9.4.0.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Simulator Testing}
 \label{section:simtest}
 
