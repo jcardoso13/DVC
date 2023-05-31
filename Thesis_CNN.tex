@@ -76,7 +76,7 @@ as each neuron is only connected to a few neurons of the previous layer.
 \label{section:convlayer}
 
 In a typical CNN, not all layers are convolutional, but the convolutional layers
-are the most compute-intensive ones. CNNs take input images with 3 dimensions
+are the most compute-intensive ones. CNNs take input images with three  dimensions
 (width, height, and color space); for the following convolutional layers 3D
 arrays are used (width, height, and number of channels). For the earlier example
 of the MNIST data set, the input would have dimensions 28x28x1 as it is a 2D
@@ -102,7 +102,7 @@ called the local receptive field.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=1\textwidth]{Figures/conv.png}
-    \caption{2D convolution with stride = 1 and without zero padding}
+    \caption{2D convolution with stride = one and without zero padding}
     \label{Cl}
 \end{figure} 
 
@@ -110,7 +110,7 @@ The output's dimensions depend on several parameters of the convolution such as
 zero-padding and stride. The former means to add zeros around the edges of the
 input matrix. The latter means the step used for the convolution, if the value
 is e.g. 2, it will skip a pixel each iteration of the convolution.
-Equation~\ref{equation: padding} can be used to calculate the output size.
+Equation~\ref{equation:padding} can be used to calculate the output size.
 
 \begin{equation} \label{equation:padding}
      n^{l+1} = \frac{n^{l}- b^{l}+2 \times p}{s} + 1
@@ -133,7 +133,7 @@ Maximum Pooling or MaxPool, like is suggested in its name groups $ n * n $
 points and outputs the pixel with the highest value.  The output will have its size
 lowered by $n$ times.  The Average Pooling or AvgPool, instead takes all of
 the input points and calculates the average. Downsampling can also be achieved
-by using convolutions with stride 2 and padding equal to 1.  Upsample layers can
+by using convolutions with stride two and padding equal to 1.  Upsample layers can
 be also used that turn each pixel into $n^{2}$, where $n$ is the number of times
 the output will be bigger than the input.
 
@@ -166,7 +166,7 @@ where $w_{ji}^{l+1}$ are the weights associated with a specific input for each o
 The Shortcut layer or skip connection was first introduced in
 Resnet~\cite{resnet}.  It allows connecting of the previous layer to another to
 allow the flow of information across layers.  The Route layer, used in
-Yolov3~\cite{yolov3}, concatenates 2 layers in depth (channel) or skips the
+Yolov3~\cite{yolov3}, concatenates two layers in depth (channel) or skips the
 layer forward. This is used after the detection layer in Yolov3 to extract other
 features.
 
@@ -189,7 +189,7 @@ to compute the weighted sum of input and biases, which is used to give a value
 to a neuron. Non-linear AFs are used to transform linear inputs into non-linear
 outputs.  While training Deep Neural Networks, vanishing and exploding
 gradients are common issues, in other words, after successive multiplications
-of the loss gradient, the values tend to 0 or infinity and thus the
+of the loss gradient, the values tend to zero or infinity and thus the
 gradient disappears. AFs help mitigate this issue by keeping the gradient within
 specific limits. The most popular activation functions can be found in
 table~\ref{table:AF}.
@@ -245,7 +245,7 @@ input for inference.
   Yolov3~\cite{yolov3}]{./Code/yolov3.cfg}
 
 In Listing~\ref{cfg}, there is a snippet of the file featuring a convolution
-layer with 32 kernels of size 3x3. It has stride 1 and zero padding of 1,
+layer with 32 kernels of size 3x3. It has stride one and zero padding of 1,
 meaning the output size equals the input size. The input size can be
 calculated by analyzing the previous layers and the network parameters. The
 network parameters in Listing~\ref{net} includes data to be used for training while only
@@ -260,7 +260,7 @@ the first three parameters are needed for inference.
 Convolutional Architecture for Fast Feature Embedding (Caffe)~\cite{caffe} is
 also an open-source framework written in C++ with a Python interface.  Caffe
 exports a neural network by serializing it using the Google Protocol Buffers
-(ProtoBuf) serialization library. Each network has 2 prototxt files:
+(ProtoBuf) serialization library. Each network has two prototxt files:
 \begin{itemize}
     \item deploy.prototxt- File that describes the structure of the network that
       can be deployed for inference.

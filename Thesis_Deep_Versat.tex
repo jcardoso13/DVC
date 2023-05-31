@@ -34,7 +34,7 @@ can write to the configuration module for the Versat runs. Between runs of the D
  Depending on the project and calculations, a new type of FU or the existing ones can be altered to support the algorithm.
  The DE has a full mesh topology, which means that each FU can be the output to another, which leads to a decrease in operating frequency.
 
- Each Input of a Functional Unit has a Mux with 19 entries, 8 of which are from the memories (2 from each Mem out of 4 total units) and the rest from the Functional Units (11).
+ Each Input of a Functional Unit has a Mux with 19 entries, eight of which are from the memories (2 from each Mem out of four total units) and the rest from the Functional Units (11).
 
  \begin{figure}[!htbp]
     \centering
@@ -43,7 +43,7 @@ can write to the configuration module for the Versat runs. Between runs of the D
     \label{figure:DE}
 \end{figure} 
 
- The 4 Memories are dual port and for the input of both ports, 
+ The four Memories are dual port and for the input of both ports, 
  there is an Address Generation Unit (AGU) that is able to 
  reproduce two nested loops of memory indexes.
  The AGUs control which MEM data is the input of the FUs and where
@@ -142,8 +142,8 @@ a large amount of data into DeepVersat. The data flow bus is reserved for inter-
 The memory map to address the peripherals,
  including DeepVersat, is in table \ref{table:deepversat}.
  Each Versat has 15 bits of address while the CPU addresses
- the peripherals with 32 bits, with 8 of those occupied to choose
- the peripheral in question. That leaves 9 bits to address several Versat Cores
+ the peripherals with 32 bits, with eight of those occupied to choose
+ the peripheral in question. That leaves nine bits to address several Versat Cores
  which brings the theoretical maximum Versat cores to 512. The IOB-RV32 is compatible with the
  GNU toolchain to offer better portability of code and alongside the C++ Versat API the difficulty
  to code for the System diminishes.

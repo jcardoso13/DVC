@@ -27,7 +27,7 @@ object relation and explain in detail each method used to emulate Versat clock b
 
 The Simulator is made up of the Parent Class called Versat, which will be simulated itself, 
 as each Versat instance is independent of the others, the simulations are also independent.
-The Versat is made up of 2 CStage Arrays, one is the "live" while the other is the 
+The Versat is made up of two CStage Arrays, one is the "live" while the other is the 
 shadow registers, where the configurations are held before the simulator is run.
 Each Stage is made up of its Functional Units, of which each is connected to the Databus.
 As it happens in the hardware, functional units can access the database which has the output 
@@ -101,7 +101,7 @@ of a typical program that uses Versat Simulator.
 \subsection{Run() Function}
 
 In the software API for Embedded Versat, the run function would write to a shadow register,
-which we can call "start" changing the value from 0 to 1. 
+which we can call "start" changing the value from zero to 1. 
 Similarly, another register would
 change the value to 0, which we can call "done". While this last register isn't turned to 1, 
 Versat hasn't finished running with the 
@@ -121,16 +121,16 @@ Because the data needs to come and go to the main memory (DDR),
 1 run cycle is used just for fetching data and writing data. 
 Using a small example:
 If a developer writes a configuration to do a 5x5 matrix multiplication, 
-Versat will have to run 3 times.
+Versat will have to run three  times.
 Once to fetch data from memory, the second for the actual use of Versat 
 and the final one is to get data onto memory.
 
 In the simulator, this is done using the same class instances and 
 copying the configuration values. On the hardware, it's several flip-flop registers in a row.
-However, all these 3 stages can happen at once if you run multiple configurations in one program, 
+However, all these three  stages can happen at once if you run multiple configurations in one program, 
 e.g.: running a CNN
-through Versat, will have at least 1 run per layer. 
-So, if it has 5 layers, Versat will have to run 5+2 times, the last 2 times are done to
+through Versat, will have at least one run per layer. 
+So, if it has five layers, Versat will have to run 5+2 times, the last two times are done to
 flush the Versat of any data.
 
 After the shift, a new thread is created to run the simulator in parallel 
@@ -148,7 +148,7 @@ reset such as VI,VO and MAC FU.
 
 The databus on Versat is a simple array that holds all the outputs of the functional units.
 The data type (versat\_t) of the array depends on the width of Versat, which is part of the configuration file.
-Using higher width, e.g: 64 bits, is useful for the same instruction, multiple data (SIMD) 
+Using higher width, e.g: 64 bits, is useful for the single instruction, multiple data (SIMD) 
 applications but requires the functional units to be adapted.
 For the purpose of this thesis, 16 bits and 32 bits are used depending 
 on the neural network and how it is optimized.
@@ -185,10 +185,9 @@ Meanwhile, the output method's goal is to, based on the inputs from the databus,
 
 \subsection{Copy() and Info() Method}
 
-Finally, the last 2 functions of the simulator, copy() the main purpose is to copy the configuration parameters from one instance to another,
-used mostly at the beginning of the run to simulate the shadow registers.
-Meanwhile, the Info method is a State printing function that outputs a string with the full data of the current iteration,
-this way, you can check iteration by iteration the progress of the simulation, just like in hardware.
-At this moment, if debugging is activated, each clock iteration output and the state of Versat will be in a file.
+Finally, the last two functions of the simulator are copy() and info(). The former primary purpose is to copy the configuration parameters from one instance to another,
+used mainly at the beginning of the run to simulate the shadow registers.
+Meanwhile, the info method is a state printing function that outputs a string with the complete data of the current iteration,
+this way, there will be an output file iteration by iteration to check the progress of the simulation, just like in a hardware simulator.
 
 \lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=572,lastline=584,caption=Info output for the MAC functional unit]{./Code/versat_iter22.txt}

@@ -101,7 +101,7 @@ with several Versat Configurations.
 \end{table}
 
 With this layer, figure \ref{figure:test3} has the output result of the generic convolution testbench.
-For this specific Versat hardware configuration the number of iterations needed is 711 using 3 Datapaths.
+For this specific Versat hardware configuration the number of iterations needed is 711 using three  Datapaths.
 
 \begin{figure}[!htbp]
     \centering
@@ -135,6 +135,6 @@ decides the number of valid datapaths, of course, VI needs +1 in numbers more th
 
 The reason for these results is quite simple. In total, 11 output lines are divided
 by the datapaths. When the division is not a whole number, the remainder gets distributed
-by available datapaths. The consequence of this, when changing from 6 to 8 datapaths, the performance
-doesn't get any better. Datapath 0 will have to run twice to (2 lines) while Datapath 8 will run 1 line.
+by available datapaths. The consequence of this, when changing from six to eight datapaths, the performance
+doesn't get any better. Datapath zero will have to run twice to (2 lines) while Datapath 8 will run one line.
 To increase further the performance, the output channels would have to be divided through more datapaths.
