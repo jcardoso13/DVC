@@ -50,18 +50,23 @@ joao.pedro.cardoso@tecnico.ulisboa.pt}
 \maketitle
 
 \begin{abstract}
-This paper presents the problem of accelerating the execution of Deep Neural
-Networks (DNNs) using Coarse-Grained Reconfigurable Arrays (CGRAs), 
-with special emphasis on compiling a DNN description into code that runs on a
-CPU/CGRA system. This topic is a vast one, so this paper focuses on simulating
-DeepVersat , a CPU/CGRA system suitable for DNN, and tools for running any
-Convolutional Neural Network on DeepVersat. The tools presented in this paper
-allow for architectural exploration and optimization, and a dramatic reduction
-of the development time.
+ The goal of this work is to extend the capabilities of the DeepVersat Coarse-Grained Reconfigurable Array (CGRA) to
+ process Deep Neural Networks (DNN), with particular emphasis on compiling a DNN description into code that runs on a 
+ CPU/DeepVersat system.
+ First, to get from a DNN description file to runnable code, a neural network framework must be adapted to run its layers
+ on Versat for acceleration. After analysis of the possibilities, Darknet is seen as a clear choice as it is written in C, compatible
+ with the already available Versat Application Programming Interface (API) while also being open-source. First, however, the framework needs to be adapted and slimmed down for its intended application, creating in the process Darknet Lite.
+ The Versat API grows to achieve the acceleration of the compute-intensive layers, adding more layers of abstraction to allocate the resources
+ of the deployed hardware configuration in real-time to bring the highest performance possible. Furthermore, a software simulator allows for architectural optimization and dramatically reduced development time
+ to run DeepVersat based on the hardware configuration file.
+ This dissertation surveys the problem of accelerating the execution of DNNs using CGRAs alongside the compilation of DNNs into FPGAs. The Versat CGRA and DeepVersat iterations are explained in detail.
+ Furthermore, it presents Darknet Lite, the DeepVersat Simulator, and the new API. Finally, a series of applications to test the simulator and the new API is presented that show the potential
+ of the simulator by giving the number of iterations needed to run a convolutional layer on a specific DeepVersat configuration. The user can then adjust the configuration to study the performance
+ and choose the most performant and efficient configuration for that DNN.
 \end{abstract}
 
 \begin{IEEEkeywords}
-CGRA, Versat, Darknet, Convolutional Neural Networks, Deep Neural Networks
+    Coarse-Grained Reconfigurable Array, Versat, Darknet, Convolutional Neural Networks, Deep Neural Networks, Simulator, Embedded Systems, Heterogeneous Systems
 \end{IEEEkeywords}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,12 +125,12 @@ to avoid developer work to adapt to new convolutions.
 \section{Deep Neural Networks}
 \label{chapter:cnn}
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/mlp.png}
-    \caption{Deep Neural Network Structure}
-    \label{MLP}
-\end{figure}
+% \begin{figure}[!htb]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{Figures/mlp.png}
+%     \caption{Deep Neural Network Structure}
+%     \label{MLP}
+% \end{figure}
 
 A Neural Network (NN) is an interconnected group of nodes that follow a
 computational model that propagates data forward while processing. The earliest
@@ -815,34 +820,30 @@ Because the data needs to come and go to the main memory (DDR),
 1 run cycle is used just for fetching data and writing data. 
 Using a small example:
 If a developer writes a configuration to do a 5x5 matrix multiplication, 
-Versat will have to run three  times.
+Versat will have to run three times.
 Once to fetch data from memory, the second for the actual use of Versat 
 and the final one is to get data onto memory.
 
 In the simulator, this is done using the same class instances and 
 copying the configuration values. On the hardware, it's several flip-flop registers in a row.
-However, all these three  stages can happen at once if you run multiple configurations in one program, 
-e.g.: running a CNN
-through Versat, will have at least one run per layer. 
-So, if it has five layers, Versat will have to run 5+2 times, the last two times are done to
+However, all these three stages can happen simultaneously if you run multiple configurations in one program, 
+e.g., running a CNN
+through Versat will have at least one run per layer. 
+So, if it has five layers, Versat will have to run 5+2 times. The last two times are done to
 flush the Versat of any data.
 
-After the shift, a new thread is created to run the simulator in parallel 
-with the configurations,
-having the same behavior as the hardware.
+After the shift, a new thread is created to run the simulator in parallel with the configurations, having the same behavior as the hardware.
 
 \subsubsection{Start() Method}
 
-At the beginning of the configuration run, the method "start run" of 
-all FUs and memories are started.
-In this function, several functional units will have their state variables 
-reset such as VI,VO and MAC FU.
+At the beginning of the configuration run, the method "start run" of all FUs and memories are started.
+In this function, several functional units will have their state variables reset, such as VI, VO and MAC FU.
 
 \subsubsection{Databus}
 
 The databus on Versat is a simple array that holds all the outputs of the functional units.
-The data type (versat\_t) of the array depends on the width of Versat, which is part of the configuration file.
-Using higher width, e.g: 64 bits, is useful for the same instruction, multiple data (SIMD) 
+The array's data type (versat\_t) depends on the width of Versat, which is part of the configuration file.
+Using higher width, e.g., 64 bits, is useful for the same instruction, multiple data (SIMD) 
 applications but requires the functional units to be adapted.
 For the purpose of this thesis, 16 bits and 32 bits are used depending 
 on the neural network and how it is optimized.
@@ -867,8 +868,8 @@ like the memories or MAC.
 Meanwhile, the output method's goal is to, based on the inputs from the databus, calculate the result from
  the functional Unit.
 
- For a compute functional unit such as the MAC or the ALU, this means reading from the databus for operands A and B
- and performing the selected operation. For the read memory (VI), it will output an address on the mem
+ For computing functional units such as the MAC or the ALU, this means reading from the databus for operands A and B
+ and performing the selected operation. For the read memory (VI), it will output an address on the memory
  and performs a read operation. For the write memory, it will output an address and performs a write operation.
 
 %  In the listing \ref{listing:fu}, the code of the Mul functional unit is used as an example.
@@ -878,11 +879,10 @@ Meanwhile, the output method's goal is to, based on the inputs from the databus,
 
 \subsubsection{Copy() and Info() Method}
 
-Finally, the last two functions of the simulator, copy() the main purpose is to copy the configuration parameters from one instance to another,
-used mostly at the beginning of the run to simulate the shadow registers.
-Meanwhile, the Info method is a State printing function that outputs a string with the full data of the current iteration,
-this way, you can check iteration by iteration the progress of the simulation, just like in hardware.
-At this moment, if debugging is activated, each clock iteration output and the state of Versat will be in a log file.
+Finally, the last two functions of the simulator are copy() and info(). The former primary purpose is to copy the configuration parameters from one instance to another,
+used mainly at the beginning of the run to simulate the shadow registers.
+Meanwhile, the info method is a state printing function that outputs a string with the complete data of the current iteration,
+this way, there will be an output file iteration by iteration to check the progress of the simulation, just like in a hardware simulator.
 
 % \lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=572,lastline=584,caption=Info output for the MAC functional unit]{./Code/versat_iter22.txt}
 
@@ -923,9 +923,9 @@ In figure \ref{newAPI}, a graphic representation of the new API is presented. It
 
 \subsection{Memory Operations API}
 
-When utilizing the VI instead of a MEM, the data transfer happens between the functional unit and direct memory access while
-on the mem, the CPU writes directly to Versat, wasting CPU cycles. For the API, this means going from a read method that is straightforward
-to more configuration methods to set up the read operation from DDR The same happens to Write operations. To address this, seven functions were created in two levels of abstraction:
+When utilizing the VI instead of a standard memory unit, the data transfer happens between the functional unit and direct memory access while
+in the latter, the CPU writes directly to Versat, wasting CPU cycles. For the API, this means going from a read method that is straightforward
+to more configuration methods to set up the read operation from DDR. The same happens to Write operations. To address this, seven functions were created in two levels of abstraction:
 load\_data(),load\_segmented\_data(),write\_data() that use a lower level functions: set\_IntMem\_Write(),set\_ExtMem\_Write(),set\_IntMem\_Read() and set\_ExtMem\_Read().
 The function of the higher abstraction memory functions is to abstract the parameters of the AGU. 
 % In the following listing, we have one of the implementations
@@ -950,11 +950,11 @@ and as such, the increment on the second and third accumulators needs to be adju
 As part of the new API, a matrix multiplication function was added. To implement this function, first, two Accumulator class variables are initialized.
 Afterward, using the two arrays address in DDR, the AGU configurations of the VIs to read from the main memory are set, then the AGU configurations of VI for the data handling inside the Data Engine.
 Finally, the function that will write the configuration of a MAC and the store AGU configurations. This last step is optional as the result of this matrix multiplication can be used in the same run
-to make other operations e.g.: adding a bias using one of the ALUs to the results.
+to make other operations, e.g., adding a bias using one of the ALUs to the results.
 
 % \lstinputlisting[label=listing:matrixmult,language=C++,frame=single,breaklines=true,firstline=167,lastline=215,caption=Matrix Multiplication Configurations]{./Code/versat_configurations.cpp}
 
-The Dot product function is very similar, the configurations are identical for the data transfer from the main memory to the VIs. In the inside loops of the VIs, instead of three  loops, we only need to use 
+The Dot product function is very similar, and the configurations are identical for the data transfer from the main memory to the VIs. In the inside loops of the VIs, instead of three  loops, we only need to use 
 1.
 
 \subsection{Generic Convolution}
@@ -968,7 +968,7 @@ optimized performance, the configurations must be written with regard to several
 	\item Functional Units used in the Data Engine. Here it's about the lowest common denominator, i.e. the bottleneck in the Data Engine determines the number of outputs done simultaneously.
   \end{enumerate}
  
-This function has a total of 20 variables calculated at the start before the Versat configurations are written. The most important
+This function has 20 variables calculated at the start before the Versat configurations are written. The most important
 variables are the following:
 
 \begin{itemize}
@@ -1000,13 +1000,13 @@ kernel vector. It's done this way as matrix multiply is a heavily optimized oper
 and offset the workload there. On Versat, this is not needed as to calculate one output, we will need only enough space in mem to hold
 k\textsuperscript{2}*ch where ch is the channels of the input. And as such, it means 9216 bytes per VI at least for YoloV3 CNN when using 16-bit operands.
 
-To load the data onto the mems in Versat, we will load segmented data. That is, for each mem, we will load the data
+To load the data onto memory in Versat, we will load segmented data. That is, for each memory, we will load the data
 needed to do y iterations or y\textsubscript{3} iterations, depending on which convolution scenario it is.
-The more inputs are transferred to a VI mem, the more efficient it is as data doesn't need to be replicated as much between the instances,
-i.e. for the first output, there's a need for k\textsuperscript{2}*ch inputs, but for other sequential outputs, if the stride is one only k*ch more inputs are needed.
+The more inputs are transferred to a VI unit, the more efficient it is, as data doesn't need to be replicated as much between the instances,
+i.e., for the first output, there's a need for k\textsuperscript{2}*ch inputs, but for other sequential outputs, if the stride is one, only k*ch more inputs are needed.
 of course, this is only true if the stride is lower than the kernel size.
 
-On the code, this takes form in one single line, thus the importance of the previously written functions.
+This takes form on the code in one line, thus the importance of the previously written functions.
 
 \lstinputlisting[label=listing:memread,language=C++,frame=single,breaklines=true,firstline=446,lastline=446,caption=Load Input Matrix into VIs]{./Code/versat_configurations.cpp}
 
@@ -1090,14 +1090,13 @@ through the several stages by adding two due to the MACs and ALUs.
 \label{section:testgencov}
 
 In this section, the same method for the previous testbench is made. 
-While the previous one relies on using API v1 for the configuration, these test benches
+However, while the previous one relies on API v1 for the configuration, these test benches
 run the new API. 
 
 \subsubsection{Testbench for Matrix Multiplication}
 
-The Matrix Multiplication is a quite simple program. The only thing needed is an instance
-Versat, run versat\_init(), create the matrixes, and then use the function matrix\_multiplication()
-The data is also computed in the CPU the result to verify the output.
+The Matrix Multiplication is a quite simple program. The only thing needed is an instance Versat, run versat\_init(), create the matrixes, and then use the function matrix\_multiplication()
+The data is also computed in the CPU as the result to verify the output.
 
 % \begin{figure}[!htbp]
 %     \centering
@@ -1141,8 +1140,8 @@ with several Versat Configurations.
 % \end{figure}
 
 In Table \ref{table:Iterations}, the different Datapath numbers and how it affects performance.
-A datapath is a combination of one VI, one MAC, and one VO. So the lower number in the Versat configuration file
-decides the number of valid datapaths, of course, VI needs +1 in numbers more than the functional units due to the Kernel memory.
+A datapath combines one VI, one MAC, and one VO. So the lower number in the Versat configuration file
+decides the number of valid datapaths. Of course, VI needs +1 in numbers more than the functional units due to the Kernel memory.
 
 \begin{table}[!htpb]
     \centering
@@ -1166,12 +1165,12 @@ decides the number of valid datapaths, of course, VI needs +1 in numbers more th
 
 The reason for these results is quite simple. In total, 11 output lines are divided
 by the datapaths. When the division is not a whole number, the remainder gets distributed
-by available datapaths. The consequence of this, when changing from six to eight datapaths, the performance
-doesn't get any better. Datapath zero will have to run twice to (2 lines) while Datapath eight will run one line.
-To increase further the performance, the output channels would have to be divided through more datapaths.
+by available datapaths. Consequently, the performance
+doesn't get any better when changing from six to eight datapaths. Datapath zero will have to run twice to (2 lines) while Datapath eight will run one line.
+The output channels would have to be divided through more datapaths to increase the performance.
 
-% The tests were executed on a 64-bit machine, with an AMD Ryzen 7 5800H Processor and 16GB of RAM running
-% Windows 11, version 22H2, WSL 2.0 with the image of Ubuntu 20.04. The compiler used is g++ version 9.4.0.
+% The tests were executed on a 64-bit machine with an AMD Ryzen 7 5800H Processor and 16GB of RAM running
+% Windows 11, version 22H2, WSL 2.0 with the image of Ubuntu 20.04. The compiler used is G++ version 9.4.0.
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -1180,30 +1179,29 @@ To increase further the performance, the output channels would have to be divide
 \section{Conclusions}
 \label{chapter:conclusions}
 
-In this paper, several modules and tools were presented for neural networking development on Versat.
-The simulator is a significant improvement over normal hardware simulation for testing new
+This paper presented several modules and tools for neural networking development on Versat.
+The simulator significantly improves over standard hardware simulation for testing new
 software configurations and workloads. It also can predict the performance of the workloads
 and helps size how many functional units, stages, or how much the size of memories should be
 to achieve the highest performance.
 Furthermore, the new Versat API can bring new tools for development using the hardware
-and be able to write code for Versat akin to writing normal C++ code that runs on a CPU.
+and be able to write code for Versat akin to writing regular C++ code that runs on a CPU.
 Finally, the tools designed for Darknet give embedded development a boost by being able to
 run any CNN on embedded hardware, even if it's just a CPU.
-To test this, a suite of programs was planned and the results show the new software tools
+To test this, a suite of programs was planned, and the results show the new software tools
 effectiveness.
 
 % ----------------------------------------------------------------------
 \subsection{Achievements}
 \label{section:achievements}
 
-One achievement of this paper was the development of the simulator. The simulator is able
-to successfully emulate the output of the hardware, where a new program written for Versat
+One achievement of this paper was the development of the simulator. The simulator can successfully emulate the output of the hardware, where a new program written for Versat
 can be tested in five seconds instead of several minutes to put the program into the FPGA.
-Another achievement is the generic convolution being able to run any type of convolution layer
-efficiently. By changing the Versat parameters, a new complete hardware configuration can be
+Another achievement is the generic convolution's ability to run any convolution layer
+efficiently. Changing the Versat parameters allows a new complete hardware configuration to be
 done and tested with the software to check new performance figures.
 Lastly, the darknet framework for embedded devices and the tools used to parse CFG
-are important for future work using the Versat CGRA.
+are essential for future work using the Versat CGRA.
 
 
 
