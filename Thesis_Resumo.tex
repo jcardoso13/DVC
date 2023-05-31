@@ -21,19 +21,8 @@
 % o custo de usar o Versat baixa consideravelmente e a performance é otimizada á configuração do Versat escolhida podendo 
 % testar centenas de configurações de Hardware para otimizar a performance de uma rede em especifico.
 
-O objetivo deste trabalho é estender os recursos do DeepVersat, que é uma arquitetura em matrizes reconfiguráveis de grão grosso (CGRA), para
-processar Redes Neurais Profundas (DNN), com ênfase particular na compilação de uma descrição DNN em código que é executado num
-Sistema CPU/DeepVersat.
-Primeiro, para passar de um ficheiro de descrição DNN para um código executável, uma "framework" de rede neuronais deve ser adaptada para executar as diferentes camadas
-no Versat para aceleração. Após análise das possibilidades, o Darknet é visto como uma escolha clara, pois é uma "framework" de código aberto escrito em C, compatível
-com a interface de programação do Versat. Primeiro, no entanto, a estrutura precisa de ser adaptada e reduzida para o uso pretendido, criando no processo o Darknet Lite.
-A interface do Versat cresce para alcançar a aceleração das camadas de computação intensiva, adicionando mais camadas de abstração para alocar os recursos
-da configuração de hardware implementada em tempo real para trazer o mais alto desempenho possível. Além disso, um simulador do DeepVersat permite otimização arquitetônica e reduz drasticamente o tempo de desenvolvimento
-para correr o DeepVersat com base no arquivo de configuração de hardware.
-Esta dissertação examina o problema de acelerar a execução de DNNs usando CGRAs juntamente com a compilação de DNNs em FPGAs. As iterações Versat CGRA e DeepVersat são explicadas em detalhes.
-Além disso, apresenta o Darknet Lite, o simulador do DeepVersat e a nova interface. Por fim, é apresentada uma série de aplicações para testar o simulador e a nova interface que mostram o potencial
-do simulador, fornecendo o número de iterações necessárias para executar uma camada convolucional numa determinada configuração do DeepVersat. O utilizador, então, pode ajustar a configuração para estudar o desempenho
-e escolher a configuração mais eficaz e eficiente para esse DNN.
+O foco desta tese concentra-se na aceleração de Redes Neuronais Profundas (DNN) com os recursos da matriz reconfigurável de grão grosso (CGRA) DeepVersat.
+O objetivo principal é desenvolver um compilador que converta as descrições DNN em código executável otimizado para o sistema CPU/DeepVersat. Para conseguir isso, uma estrutura de rede neuronais, Darknet, é estendida, adaptada e simpleficada para compilar arquivos de descrição DNN em código que integra-se com o sistema, utilizando a interface de software (API) do Versat. A API do Versat foi expandida para conseguir a aceleração de camadas de computação intesiva, com alocação dinâmica de recursos para melhorar o desempenho. O simulador em software também foi desenvolvido para facilitar a otimização  arquitetônica e reduzir o tempo de desenvolvimento para implementações baseadas no DeepVersat. A utilidade do Darknet Lite na compilação de DNNs no código Versat e a eficácia da nova API em várias condigurações de hardware são demonstradas por vários ficheiros de teste, estabelecendo uma prova de conceito para a abordagem proposta.
 
 
 \vfill

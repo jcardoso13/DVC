@@ -13,21 +13,9 @@
 % Add an entry in the table of contents as a section
 \addcontentsline{toc}{section}{Abstract}
 
-The goal of this work is to extend the capabilities of the DeepVersat Coarse-Grained Reconfigurable Array (CGRA) to
-process Deep Neural Networks (DNN), with particular emphasis on compiling a DNN description into code that runs on a 
-CPU/DeepVersat system.
-First, to get from a DNN description file to runnable code, a neural network framework must be adapted to run its layers
-on Versat for acceleration. After analysis of the possibilities, Darknet is seen as a clear choice as it is written in C, compatible
-with the already available Versat Application Programming Interface (API) while also being open-source. First, however, the framework needs to be adapted and slimmed down for its intended application, creating in the process Darknet Lite.
-The Versat API grows to achieve the acceleration of the compute-intensive layers, adding more layers of abstraction to allocate the resources
-of the deployed hardware configuration in real-time to bring the highest performance possible. Furthermore, a software simulator allows for architectural optimization and dramatically reduced development time
-to run DeepVersat based on the hardware configuration file.
-This dissertation surveys the problem of accelerating the execution of DNNs using CGRAs alongside the compilation of DNNs into FPGAs. The Versat CGRA and DeepVersat iterations are explained in detail.
-Furthermore, it presents Darknet Lite, the DeepVersat Simulator, and the new API. Finally, a series of applications to test the simulator and the new API is presented that show the potential
-of the simulator by giving the number of iterations needed to run a convolutional layer on a specific DeepVersat configuration. The user can then adjust the configuration to study the performance
-and choose the most performant and efficient configuration for that DNN.
 
-
+This thesis focuses on accelerating Deep Neural Networks (DNN) with the capabilities of the DeepVersat Coarse-Grained Reconfigurable Array (CGRA). The primary objective is to develop a compilation approach that converts DNN descriptions into executable code optimized for CPU/DeepVersat system. To achieve this, a neural network framework, Darknet, is extended, adapted, and streamlined to compile DNN description files into code that integrates with the system, utilizing the Versat Application Programming Interface (API). The Versat API is expanded to enable acceleration of compute-intensive layers, with dynamic resource allocation for improved performance. A software simulator is also developed to facilitate architectural optimization and reduce development time for DeepVersat-based implementations. 
+The usefulness of Darknet Lite in compiling DNNs into Versat code and the effectiveness of the new API on various hardware configurations are demonstrated through multiple test files, establishing a proof of concept for the proposed approach.
 
 \vfill
 

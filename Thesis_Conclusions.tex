@@ -12,12 +12,12 @@
 \label{chapter:conclusions}
 
 In this thesis, a compiler and software simulation model for Deep Neural
-Netowrks running on the DeepVersat Architecture are presented. The simulator
+Networks running on the DeepVersat Architecture are presented. The simulator
 runs orders of magnitude faster than an RTL simulator, allowing for the fast
-testing new software configurations and workloads. It can accurately predict the
-performance of the workloads running on DeepVersat. These tools are useful for
+testing of new software configurations and workloads. It can accurately predict the
+performance of the workloads running on DeepVersat. These tools are helpful for
 architectural exploration, helping to determine the number of functional units,
-stages, or the memory sizes needed for optimal performance.
+stages, or memory sizes needed for optimal performance.
 
 
 % ----------------------------------------------------------------------
@@ -25,45 +25,43 @@ stages, or the memory sizes needed for optimal performance.
 \label{section:achievements}
 
 First, a darknet framework for embedded devices and new tools have been
-developed to parse CFG, which are important for future work using the Versat
-CGRA. These tools make it possible to run any CNN on embedded hardware, even if
+developed to parse CFG, which are essential for future work using the Versat
+CGRA. These tools make running any CNN on embedded hardware possible, even if
 it comprises just a CPU.
 
-Second, a software simulation model, referred to as the simulator has been
-developed and can emulate the output of the hardware. A new program written for
+Second, a software simulation model, referred to as the simulator, has been
+developed and can emulate the hardware output. A new program was written for
 Versat can be compiled in seconds instead of the several minutes it takes to
 compile the DeepVersat FPGA bitstream.
 
-Third, a generic convolution method making possible to run any type of
-convolution layer efficiently has been developed. By changing the Versat
-parameters, a new hardware convolution configuration can be tested, and the
+Third, a generic convolution method has been developed to run any 
+convolution layer efficiently. Changing the Versat
+parameters allows a new hardware convolution configuration to be tested, and the
 performance can be determined with the simulator.
 
 Lastly, a new Versat API has been developed, which can make writing code for
-Versat akin to writing normal C++ code that runs on a CPU.
+Versat is akin to writing regular C++ code that runs on a CPU.
 
 
 % ----------------------------------------------------------------------
 \section{Future Work}
 \label{section:future}
 
-For future work, obvious sections need to be addressed. While darknet lite was developed,
+For future work, prominent sections need to be addressed. For example, while developing darknet lite,
 they were not linked with Versat and the simulator. For that, a max pool generic function
-needs to be added and redirect the convolution layer to the generic convolution for Versat.
+must be added and redirect the convolution layer to the generic convolution for Versat.
 
-Other work includes improving the simulator by adding new FUs and new generic functions. On that
-topic, adding partial results to the convolution will also benefit possible Versat configurations.
+Other work includes improving the simulator by adding new FUs and generic functions. On that
+adding partial results to the convolution will also benefit possible Versat configurations.
 
-Versat is a highly versatile CGRA but for deep neural networks, datapath width is needed, i.e
-more memories and MACs to add more MACs means increasing the propagation time and as such
-grouping VIs and MACs into a bigger functional unit to avoid the usage of a multiplexer
-in the entrance of the MACs. This could be called the SIMD path while the rest of the configuration
-could still be highly configurable and have the usual functional units to have the cake and eat it too.
+Versat is a highly versatile CGRA, but for deep neural networks, datapath width is needed, i.e.
+more memories and MACs to add more MACs means increasing the propagation time and, as such, grouping VIs and MACs into a bigger functional unit to avoid the usage of a multiplexer at the entrance of the MACs. This could be called the SIMD path, while the rest of the configuration
+could still be highly configurable and have the standard functional units to have the cake and eat it too.
 Highest performance and high configurability.
 
 On the memory side, the ability to configure the size of each mem would give more flexibility
-and the configurations to be more data efficient. In this thesis, there were two types of VIs. One
-that holds the inputs and another that holds the kernels. The kernels don't use much space and thus
+and the configurations to be more data efficient. For example, in this thesis, there were two types of VIs. One
+that holds the inputs and another that contains the kernels. The kernels don't use much space, and thus
 the memory will hold a lot of empty values because both VIs have the same size.
 
 
