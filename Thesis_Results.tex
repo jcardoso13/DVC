@@ -29,7 +29,7 @@ Ubuntu 20.04. The compiler used is G++ version 9.4.0.
 \section{Compiling DNN Description}
 \label{section:DNNDescription}
 
-The Darknet Reference Model is a 15-layer CNN that is designed to have similar performance to AlexNet\ref{alexnet} while using 1/10th the parameters. 
+The Darknet Reference Model is a 15-layer CNN that is designed to have similar performance to AlexNet\cite{alexnet} while using 1/10th the parameters. 
 It achieves top-1 accuracy of 61.1\% and a top-5 accuracy of 83\%. In a CPU-only scenario, it takes 0.14s per image. When using the CUDA API, it drops to 2.9ms per image.
 
 To compile the CNN, we run the DNN compiler, which uses the darknet parser to write the configurations for Darknet lite, as mentioned in \ref{chapter:Darknet}.
@@ -103,7 +103,7 @@ run the new API.
 The Matrix Multiplication is a quite simple program. The only thing needed is an instance
 Versat, run versat\_init(), create the matrixes, and then use the function matrix\_multiplication()
 The data is also computed in the CPU result to verify the output, which can be found in
-figure \ref{figure:test2}. In listing\ref{testbench3}, the code of the test file is presented.
+figure \ref{figure:test2}. In Listing\ref{testbench3}, the code of the test file is presented.
 
 \lstinputlisting[label=testbench3,language=C++,frame=single,breaklines=true,firstline=22,lastline=91,caption=Writting the configurations of DeepVersat using API v2 for Matrix Multiplication]{./Code/testMatrixMult.cpp}
 
@@ -132,7 +132,7 @@ with several Versat Configurations.
     \caption{CNN Layer on the test file}
 \end{table}
 
-With this layer, figure \ref{figure:test3} has the output result of the generic convolution test file.
+With this layer, Figure~\ref{figure:test3} has the output result of the generic convolution test file.
 For this specific Versat hardware configuration, the number of iterations needed is 711 using three  Datapaths.
 
 \begin{figure}[!htbp]

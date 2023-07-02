@@ -23,7 +23,7 @@ Usually, the input is a past layer output or an image input.
 By Parsing the .cfg file, a configuration file is written in C with the layer array and static position of the data for each layer. 
 Each Layer has its definition in C to be run by the embedded CPU, but for the sake of this project, several layers can be replaced by functions that utilize Versat, the same way that the original Darknet framework had its functions written for CPU or GPU usage.
 
-The following listing is an example of a CPU layer that computes the convolutional layer while using Fixed Point Logic.
+The following Listingis an example of a CPU layer that computes the convolutional layer while using Fixed Point Logic.
 
 \lstinputlisting[label=ConvolutionalLayerCPU,language=C++,frame=single,breaklines=true,firstline=54,lastline=85,caption=Convolutional Layer using only CPU and fixed memory]{./Code/convolutional_layer.c}
 
@@ -37,7 +37,7 @@ By using the network parser of Darknet, an array of layers is created with all i
 \lstinputlisting[label=listing:cfg2versat,language=C,frame=single,breaklines=true,firstline=22,lastline=61,caption=For Loop for writing darknet layers ]{./Code/parse2compiler.c}
 
 Afterward, by going through each layer, "yolo.c" will be written with all the data darknet lite will need. 
-In listing \ref{listing:cfg2versat2}, the addresses of the data needed for the layer. 
+In Listing\ref{listing:cfg2versat2}, the addresses of the data needed for the layer. 
 In \ref{listing:cfg2versat3}, the static parameters are defined as well.
 
 \lstinputlisting[label=listing:cfg2versat2,language=C,frame=single,breaklines=true,firstline=15,lastline=21,caption=For Loop for writing darknet layers ]{./Code/yolo.c}

@@ -37,14 +37,14 @@ When utilizing the VI instead of a MEM, the data transfer happens between the fu
 on the mem, the CPU writes directly to Versat, wasting CPU cycles. For the API, this means going from a straightforward read method
 to more configuration methods to set up the read operation from DDR. The same happens to Write operations. To address this, seven functions were created in two levels of abstraction:
 load\_data(),load\_segmented\_data(),write\_data() that use a lower level functions: set\_IntMem\_Write(),set\_ExtMem\_Write(),set\_IntMem\_Read() and set\_ExtMem\_Read().
-The function of the higher abstraction memory functions is to abstract the parameters of the AGU. In the following listing, we have one of the implementations
+The function of the higher abstraction memory functions is to abstract the parameters of the AGU. In the following Listing, we have one of the implementations
 as an example.
 
 \lstinputlisting[label=listing:loadsegdata,language=C++,frame=single,breaklines=true,firstline=366,lastline=376,caption=Load Segmented Data code]{./Code/versat_configurations.cpp}
 
 
 Although this means having to write code with the AGUs in mind
-and how they function. To avoid it, a new class was created, shown in listing \ref*{listing:accumulator},
+and how they function. To avoid it, a new class was created, shown in Listing\ref*{listing:accumulator},
 to abstract how the AGU counts loops and approximate 
 the code to simple C++ code that runs on a CPU.
 
@@ -57,7 +57,7 @@ and as such, the increment on the second and third accumulators needs to be adju
 
 \section{Matrix Multiplication and Dot Product}
 
-As part of the new API, a matrix multiplication function was added. The code is presented in listing \ref{listing:matrixmult}. First, two Accumulator class variables are initialized.
+As part of the new API, a matrix multiplication function was added. The code is presented in Listing\ref{listing:matrixmult}. First, two Accumulator class variables are initialized.
 Afterward, using the two arrays address in DDR, the AGU configurations of the VIs to read from the main memory are set, then the AGU configurations of VI for the data handling inside the Data Engine.
 Finally, the function will write the MAC configuration and the store AGU configurations. This last step is optional as the result of this matrix multiplication can be used in the same run
 to make other operations, e.g., adding a bias using one of the ALUs to the results.
@@ -130,7 +130,7 @@ Where w is the width of the input matrix, k is the kernel size, and iter is the 
 
 When writing the configurations of the convolution runs, the software needs to consider several cases.
 As explained in the previous subsection, the data that the VIs can handle and the number of datapaths that the data can have influenced
-the convolution scenarios. Four were implemented for this function and presented in figure \ref{ConvScenarioss}.
+the convolution scenarios. Four were implemented for this function and presented in Figure \ref{ConvScenarioss}.
 
 \begin{figure}[!htbp]
     \centering
@@ -142,7 +142,7 @@ the convolution scenarios. Four were implemented for this function and presented
 The different hardware configurations and the endless possibilities for convolutions mean that all options are covered. 
 The only limitation of this generic function is to make partial results which is the last case where the mem can't handle enough inputs for one output.
 
-In figure \ref{ConvFlowChart}, the flowchart of each case is presented.
+In Figure~\ref{ConvFlowChart}, the flowchart of each case is presented.
 
 \newpage
 \begin{figure}[!htbp]
@@ -152,7 +152,7 @@ In figure \ref{ConvFlowChart}, the flowchart of each case is presented.
     \label{ConvFlowChart}
 \end{figure} 
 
-And on listing \ref{listing:convfinal} the AGU configurations of the VIs that hold the input matrix, the MAC configuration, and finally
+And on Listing\ref{listing:convfinal} the AGU configurations of the VIs that hold the input matrix, the MAC configuration, and finally
 the VO AGU configuration.
 
 \lstinputlisting[label=listing:convfinal,language=C++,frame=single,breaklines=true,firstline=449,lastline=478,caption=Versat configurations for one datapath]{./Code/versat_configurations.cpp}

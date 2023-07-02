@@ -124,35 +124,46 @@
 \cleardoublepage
 
 
-% ----------------------------------------------------------------------
-%  Declaration
-% ----------------------------------------------------------------------
-\section*{Declaration}
-I declare that this document is an original work of my own authorship and that it 
-fulfills all the requirements of the Code of Conduct and Good Practices of the 
-Universidade de Lisboa.
-\cleardoublepage
+
 
 
 % ----------------------------------------------------------------------
 % Dedication page (optional)
 % ----------------------------------------------------------------------
 
+\phantomsection
+\addcontentsline{toc}{section}{Dedication}
 \input{Thesis_Dedication} % file "Thesis_Dedication.tex"
 \cleardoublepage
 
 % ----------------------------------------------------------------------
 %  Acknowledgments (optional)
 % ----------------------------------------------------------------------
+\phantomsection
 \input{Thesis_Acknowledgements} % file "Thesis_Acknowledgements.tex"
 \cleardoublepage
 
 % ----------------------------------------------------------------------
+%  Declaration
+% ----------------------------------------------------------------------
+\phantomsection
+\section*{Declaration}
+I declare that this document is an original work of my own authorship and that it 
+fulfills all the requirements of the Code of Conduct and Good Practices of the 
+Universidade de Lisboa.
+\addcontentsline{toc}{section}{Declaration}
+\cleardoublepage
+
+
+
+% ----------------------------------------------------------------------
 %  Abstract (both in English and Portuguese)
 % ----------------------------------------------------------------------
+\phantomsection
 \input{Thesis_Resumo}   % file "Thesis_Resumo.tex"
 \cleardoublepage
 
+\phantomsection
 \input{Thesis_Abstract} % file "Thesis_Abstract.tex"
 \cleardoublepage
 
@@ -162,6 +173,7 @@ Universidade de Lisboa.
 
 % Table of contents
 %
+\phantomsection
 \tableofcontents
 \cleardoublepage 
 
@@ -206,10 +218,10 @@ Universidade de Lisboa.
 %\input{Thesis_Glossary} % file "Thesis_Glossary.tex"
 
 % Add an entry in the table of contents as a section
-\phantomsection
-\addcontentsline{toc}{section}{\glossaryname}
-% Insert glossary section produced by MakeIndex
-\printglossary
+% \phantomsection
+% \addcontentsline{toc}{section}{\glossaryname}
+% % Insert glossary section produced by MakeIndex
+% \printglossary
 %\cleardoublepage
 
 % Set Arabic numbering (1,2,...) after the preface

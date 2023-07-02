@@ -296,7 +296,7 @@ gradients are common issues, in other words, after successive multiplications
 of the loss gradient, the values tend to 0 or infinity and thus the
 gradient disappears. AFs help mitigate this issue by keeping the gradient within
 specific limits. The most popular activation functions can be found in
-table~\ref{table:AF}.
+Table~\ref{table:AF}.
 
 % \begin{table}[htb]
 %     \centering
@@ -684,7 +684,7 @@ its required parameters.
 
 % Afterward, by going through each layer, "yolo.c" will be written
 % with all the data darknet lite will need. 
-% In listing \ref{listing:cfg2versat2}, the addresses of the data needed for the layer. 
+% In Listing\ref{listing:cfg2versat2}, the addresses of the data needed for the layer. 
 % In \ref{listing:cfg2versat3}, the static parameters are defined as well.
 
 % \lstinputlisting[label=listing:cfg2versat2,language=C,frame=single,breaklines=true,firstline=15,lastline=21,caption=For Loop for writing darknet layers ]{./Code/yolo.c}
@@ -739,7 +739,7 @@ of the current stage and the previous one.
 
 \subsubsection{Functional Units}
 
-The following table contains the functional units present in the simulator. For Memory Units, there are three  FUs possible.CMem, VI and VO.
+The following Table contains the functional units present in the simulator. For Memory Units, there are three  FUs possible.CMem, VI and VO.
 CMem reads and writes from the databus between CPU and Versat, while VI and VO are made to communicate through DRAM.
 
 
@@ -865,7 +865,7 @@ Meanwhile, the output method's goal is to, based on the inputs from the databus,
  and performing the selected operation. For the read memory (VI), it will output an address on the memory
  and performs a read operation. For the write memory, it will output an address and performs a write operation.
 
-%  In the listing \ref{listing:fu}, the code of the Mul functional unit is used as an example.
+%  In the Listing\ref{listing:fu}, the code of the Mul functional unit is used as an example.
 
 % \lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=21,lastline=65,caption=Update and Output method of Mul]{./Code/mul.cpp}
 
@@ -921,7 +921,7 @@ in the latter, the CPU writes directly to Versat, wasting CPU cycles. For the AP
 to more configuration methods to set up the read operation from DDR. The same happens to Write operations. To address this, seven functions were created in two levels of abstraction:
 load\_data(),load\_segmented\_data(),write\_data() that use a lower level functions: set\_IntMem\_Write(),set\_ExtMem\_Write(),set\_IntMem\_Read() and set\_ExtMem\_Read().
 The function of the higher abstraction memory functions is to abstract the parameters of the AGU. 
-% In the following listing, we have one of the implementations
+% In the following Listing, we have one of the implementations
 % as an example.
 
 % \lstinputlisting[label=listing:loadsegdata,language=C++,frame=single,breaklines=true,firstline=366,lastline=376,caption=Load Segmented Data code]{./Code/versat_configurations.cpp}
@@ -1036,7 +1036,7 @@ The only limitation of this generic function is to make partial results which is
 %     \label{ConvFlowChart}
 % \end{figure} 
 
-% And on listing \ref{listing:convfinal} the AGU configurations of the VIs that hold the input matrix, the MAC configuration, and finally
+% And on Listing\ref{listing:convfinal} the AGU configurations of the VIs that hold the input matrix, the MAC configuration, and finally
 % the VO AGU configuration.
 
 % \lstinputlisting[label=listing:convfinal,language=C++,frame=single,breaklines=true,firstline=449,lastline=478,caption=Versat configurations for one datapath]{./Code/versat_configurations.cpp}

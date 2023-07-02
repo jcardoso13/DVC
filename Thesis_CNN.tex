@@ -14,7 +14,7 @@ has a linear part based on an aggregation of data, and then a non-linear part
 called the activation function, which is applied to the aggregate sum. The issue
 with using only one neuron is that it is not able to be used in non-linear
 separable problems. By aggregating several neurons in layers and the input of
-each neuron as in figure~\ref{MLP} being based on the previous layers, that
+each neuron as in Figure~\ref{MLP} being based on the previous layers, that
 problem can be eliminated.
 
 \begin{figure}[!htbp]
@@ -82,7 +82,7 @@ of the MNIST data set, the input would have dimensions 28x28x1 as it is a 2D
 image in grayscale.
 
 To compute a neuron in the next layer, we use the convolution
-equation~\ref{equation:convolution} aided by Figure~\ref{Cl}.
+Equation~\ref{equation:convolution} aided by Figure~\ref{Cl}.
 
 \begin{equation} \label{equation:convolution}
    %\resizebox{.5 \textwidth}{!} 
@@ -172,8 +172,7 @@ features.
 \paragraph{Dropout Layer}
 
 This type of layer was conceived to avoid overfitting~\cite{Dropout} by dropping
-the neurons with a probability below the threshold. In
-Figure~\ref{figure:Dropout}, there is a graphical representation.
+the neurons with a probability below the threshold. In Figure~\ref{figure:Dropout}, there is a graphical representation.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/dropout.png}
@@ -191,7 +190,7 @@ gradients are common issues. In other words, after successive multiplications
 of the loss gradient, the values tend to zero or infinity, and thus, the
 gradient disappears. AFs help mitigate this issue by keeping the gradient within
 specific limits. The most popular activation functions can be found in
-table~\ref{table:AF}.
+Table~\ref{table:AF}.
 
 \begin{table}[]
     \centering

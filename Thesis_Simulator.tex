@@ -36,9 +36,9 @@ of the current stage and the previous stages' output.
 
 \subsection{Functional Units}
 
-The following table contains the functional units present in the simulator 
+The following Table contains the functional units present in the simulator 
 and is represented by 
-"CFU" in figure ~\ref{figure:VersatSimulatorClass}. 
+"CFU" inFigure~\ref{figure:VersatSimulatorClass}. 
 VI and VO represent CRead and CWrite 
 classes respectively.
 
@@ -74,7 +74,7 @@ their importance to the simulator.
 \section{Simulation}
 
 After the program that is running on the CPU finishes writing the configurations, it will call the run method of Versat.
-In figure \ref{figure:VersatSimulatorSequenceDiagram}, a sequence diagram is presented with the rundown
+InFigure\ref{figure:VersatSimulatorSequenceDiagram}, a sequence diagram is presented with the rundown
 of a typical program that uses Versat Simulator.
 
 \newpage
@@ -106,7 +106,7 @@ programs run on software simulators and the FPGA.
 
 \lstinputlisting[label=runfunctioncode,language=C++,frame=single,breaklines=true,firstline=222,lastline=245,caption= The Run function code]{./Code/Versat.cpp}
 
-As we can see in the previous listing, we reset the state variables of the simulator, then shift the VO and FU shadow registers.
+As we can see in the previous Listing, we reset the state variables of the simulator, then shift the VO and FU shadow registers.
 This is done to simulate the pipeline delay in the FPGA. 
 Because the data needs to come and go to the main memory (DDR),
 One run cycle is used just for fetching data and writing data. 
@@ -145,7 +145,7 @@ on the neural network and how it is optimized.
 When the Versat is instanced in the program, the functional units constructor will point
 to the correct position of the databus as referenced in the following figure.
 
-As mentioned in figure \ref{figure:deepversatarch} from chapter \ref{chapter:Background}, section \ref{sector:DeepVersat}, 
+As mentioned inFigure\ref{figure:deepversatarch} from chapter \ref{chapter:Background}, section \ref{sector:DeepVersat}, 
 each functional unit will be able to access the output from the functional units of the
 current stage and previous. Software-wise, each stage will be pointing to a part of the databus.  
 
@@ -166,7 +166,7 @@ Meanwhile, the output method's goal is to, based on the inputs from the databus,
  and performing the selected operation. For the read memory (VI), it will output an address on the mem
  and performs a read operation. For the write memory, it will output an address and performs a write operation.
 
- In the listing \ref{listing:fu}, the code of the Mul functional unit is used as an example.
+ In the Listing\ref{listing:fu}, the code of the Mul functional unit is used as an example.
 
  \newpage
  \lstinputlisting[label=listing:fu,language=C++,frame=single,breaklines=true,firstline=21,lastline=65,caption=Update and Output method of Mul]{./Code/mul.cpp}
