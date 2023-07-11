@@ -70,7 +70,7 @@
 \usepackage[all]{nowidow}
 \usepackage{titlesec}
 
-\setcounter{secnumdepth}{4}
+\setcounter{secnumdepth}{3}
 
 \titleformat{\paragraph}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
@@ -124,7 +124,16 @@
 \cleardoublepage
 
 
-
+% ----------------------------------------------------------------------
+%  Declaration
+% ----------------------------------------------------------------------
+\phantomsection
+\section*{Declaration}
+I declare that this document is an original work of my own authorship and that it 
+fulfills all the requirements of the Code of Conduct and Good Practices of the 
+Universidade de Lisboa.
+\addcontentsline{toc}{section}{Declaration}
+\cleardoublepage
 
 
 % ----------------------------------------------------------------------
@@ -143,16 +152,7 @@
 \input{Thesis_Acknowledgements} % file "Thesis_Acknowledgements.tex"
 \cleardoublepage
 
-% ----------------------------------------------------------------------
-%  Declaration
-% ----------------------------------------------------------------------
-\phantomsection
-\section*{Declaration}
-I declare that this document is an original work of my own authorship and that it 
-fulfills all the requirements of the Code of Conduct and Good Practices of the 
-Universidade de Lisboa.
-\addcontentsline{toc}{section}{Declaration}
-\cleardoublepage
+
 
 
 
@@ -174,6 +174,7 @@ Universidade de Lisboa.
 % Table of contents
 %
 \phantomsection
+\addcontentsline{toc}{section}{Contents}
 \tableofcontents
 \cleardoublepage 
 

@@ -11,11 +11,8 @@ A Neural Network (NN) is an interconnected group of nodes that follow a
 computational model that propagates data forward while processing. The earliest
 NNs were proposed by McCulloh and Pitts~\cite{neuron:model}, in which a neuron
 has a linear part based on an aggregation of data, and then a non-linear part
-called the activation function, which is applied to the aggregate sum. The issue
-with using only one neuron is that it is not able to be used in non-linear
-separable problems. By aggregating several neurons in layers and the input of
-each neuron as in Figure~\ref{MLP} being based on the previous layers, that
-problem can be eliminated.
+called the activation function, which is applied to the aggregate sum. By aggregating several neurons in layers and the input of
+each neuron as in Figure~\ref{MLP} being based on the previous layers, it can solve non-linear separable problems~\cite{approximation:problem}.
 
 \begin{figure}[!htbp]
     \centering
@@ -66,8 +63,6 @@ Multilayer Perceptrons (MLP). These networks fix the complexity issue discussed,
     \label{CNNl}
 \end{figure} 
 
- \subsubsection{Architecture Overview}
- \label{section:Aoverview}
 
  % There are several types of layers used in these networks to achieve the desired result.
 
@@ -109,13 +104,12 @@ The output's dimensions depend on convolution parameters such as
 zero-padding and stride. The former means to add zeros around the edges of the
 input matrix. The latter implies the step used for the convolution. If the value
 is, e.g., 2, it will skip a pixel each iteration.
-Equation~\ref{equation:padding} can be used to calculate the output size.
+Equation~\ref{equation:padding} can be used to calculate the output spacial dimensionality\cite{cnnequation}.
 
 \begin{equation} \label{equation:padding}
-     n^{l+1} = \frac{n^{l}- b^{l}+2 \times p}{s} + 1
+  \frac{(V-R)+2Z}{S+1}
 \end{equation}
-where $n$ is the width/height of the input of layer $l$, $ b$ is the
-width/height of the kernel, $p$ is zero-padding while $s$ is the stride.
+where $V$ is the input Volume, $R$ is the kernel size, $Z$ is the amount of zero-padding set while $S$ is the stride.
 
 The number of channels of the output is equal to the number of filters in the
 convolutional layer.
