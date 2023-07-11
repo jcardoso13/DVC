@@ -188,31 +188,24 @@ gradient disappears. AFs help mitigate this issue by keeping the gradient within
 specific limits. The most popular activation functions can be found in
 Table~\ref{table:AF}.
 
-\begin{table}[]
+\begin{table}[htb]
     \centering
-    \resizebox{.6\textwidth}{!}{%}
-    \begin{tabular}{ll}
+    \resizebox{0.6\textwidth}{!}{%
+    \begin{tabular}{|l|l|}
     \hline
-    \textbf{Activation Functions} & \textbf{Computation Equation} \\ \hline \hline
-    Sigmoid                       &  $\displaystyle f(x)=\frac{1}{1+ e^{-x}}$                             \\ \hline
-    Tanh                          &  $\displaystyle f(x)=\frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}$                            \\ \hline
-    Softmax                       &  $\displaystyle f(x_{i})=\frac{x_{i}}{\sum_{j}e^{x_{j}}}$                             \\ \hline
-    ReLU                          &    $ f(x)=\begin{matrix}
-        x & if & x\geq 0  \\ 
-        0 & if & x< 0 
-    \end{matrix} $                           \\ \hline
-    LReLU                         &  $f(x)= \begin{matrix}
-        x & if & x > 0  \\ 
-        \alpha x & if & x \leq 0 
-    \end{matrix} $                        \\ \hline
-    ELU                           &             $ f(x)=\begin{matrix}
-        x & if & x> 0  \\ 
-        \alpha e^{x} - 1 & if & x\leq 0 
-    \end{matrix} $                 \\ \hline
+    \textbf{Activation Functions} & \textbf{Computation Equation} \\ \hline
+    Sigmoid                       &  $f(x) = \dfrac{1}{1 + e^{-x}}$                             \\ \hline 
+    Tanh                          &  $f(x) = \dfrac{e^{x} - e^{-x}}{e^{x} + e^{-x}}$                            \\ \hline
+    Softmax                       &  $f(x_{i}) = \dfrac{x_{i}}{\sum_{j}e^{x_{j}}}$                             \\  \hline 
+    ReLU                          &  $f(x) = \begin{cases} x & \text{if } x \geq 0 \\ 0 & \text{if } x < 0 \end{cases}$                           \\ \hline 
+    LReLU                         &  $f(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha x & \text{if } x \leq 0 \end{cases}$                        \\ \hline 
+    ELU                           &  $f(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha e^{x} - 1 & \text{if } x \leq 0 \end{cases}$                 \\ \hline
     \end{tabular}%
     }
+    \linebreak
     \caption{Popular activation functions}
     \label{table:AF}
+	\vspace{\abovecaptionskip}
 \end{table}
 
 
