@@ -148,10 +148,12 @@ Equation~\ref{equation:connected} describes the operation.
 \begin{equation} \label{equation:connected}
     %\resizebox{.5 \textwidth}{!} 
      %{%
-     \displaystyle x_{j}^{l+1}=\delta (\sum_{i}(x_{i}^{l} \times w_{ji}^{l+1})+ b_{j}^{l+1})
+     \displaystyle y_{j}^{l}=\delta (\sum_{i}^{n}(x_{i}^{l} \times w_{ji}^{l})+ b_{j}^{l})
+     %\displaystyle y_{jk}(x)= \delta (\sum_{i}^{n} x_{i} \times w_{jk} + w_{j0})
      %}%
 \end{equation}
-where $w_{ji}^{l+1}$ are the weights associated with a specific input for each output.
+where $ y_{j}^{l}$ is the output, $\delta$ is the activation function, $n$ is the input size, $ w_{ji}^{l} $  are the weights associated with a specific input (weight matrix) for each output,$ b_{j}^{l}$ are the bias, $x_{i}^{l}$ is the current
+input of the layer. Finally, $l$,$j$,$i$,$n$ are positive integers and represent the current layer, output index, input index and layer size respectively respectively.
 
 
 \paragraph{Route $\&$ Shortcut Layer}
